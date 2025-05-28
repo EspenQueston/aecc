@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resources - Association of Congolese Students in China</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/enhanced-style.css">
+    <link rel="stylesheet" href="css/auth-layout.css">
+    <link rel="stylesheet" href="css/featured-sections.css">
+    <link rel="stylesheet" href="css/impact-sections.css">
+    <link rel="stylesheet" href="css/resources-layout.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">AECC</div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="blogs.html">Blogs</a></li>
+                    <li><a href="resources.html" class="active">Resources</a></li>
+                    <li><a href="learning.html">Learning</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li class="search-container">
+                        <input type="text" class="search-input" placeholder="Search...">
+                        <button class="search-button"><i class="fas fa-search"></i></button>
+                    </li>
+                </ul>
+                <button class="login-btn">Login</button>
+                <div class="mobile-menu">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Enhanced Login Modal -->
+    <div id="loginModal" class="login-modal">
+        <div class="modal-content">
+            <div class="login-header">
+                <h2>Welcome Back</h2>
+                <p>Sign in to access your account</p>
+                <span class="close-btn">&times;</span>
+            </div>
+            <div class="login-body">
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="loginEmail">Email</label>
+                        <div class="input-with-icon">
+                            <input type="email" id="loginEmail" required>
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Password</label>
+                        <div class="input-with-icon">
+                            <input type="password" id="loginPassword" required>
+                            <i class="fas fa-lock"></i>
+                        </div>
+                    </div>
+                    <div class="form-options">
+                        <div class="remember-me">
+                            <input type="checkbox" id="rememberMe">
+                            <label for="rememberMe">Remember me</label>
+                        </div>
+                        <a href="#" class="forgot-password">Forgot Password?</a>
+                    </div>
+                    <button type="submit" class="login-btn-modal">Sign In</button>
+                </form>
+            </div>
+            <div class="login-footer">
+                <p>Or sign in with</p>
+                <div class="social-login">
+                    <a href="#" class="social-login-btn facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-login-btn google"><i class="fab fa-google"></i></a>
+                    <a href="#" class="social-login-btn twitter"><i class="fab fa-twitter"></i></a>
+                </div>
+                <div class="register-link">
+                    Don't have an account? <a href="register.html">Register here</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-banner gradient-primary">
+        <div class="container">
+            <h1>Resources</h1>
+            <p>Access helpful documents, links, and community support for your academic journey</p>
+            <ul class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item active">Resources</li>
+            </ul>
+        </div>
+    </div>
+
+    <main class="page-transition">
+        <section class="resources-section">
+            <div class="container">
+                <div class="resources-tabs fade-in">
+                    <button class="tab-btn active" data-tab="downloadable">Downloadable Files</button>
+                    <button class="tab-btn" data-tab="external">External Resources</button>
+                    <button class="tab-btn" data-tab="forum">Community Forum</button>
+                </div>
+                
+                <div class="tab-content">
+                    <div class="tab-pane active" id="downloadable">
+                        <h2 class="section-title">Downloadable Files</h2>
+                        <p>Access important documents, guides, and forms relevant to your studies and stay in China.</p>
+                        
+                        <div class="resource-cards-container fade-in">
+                            <div class="resource-card-horizontal">
+                                <div class="resource-icon-container">
+                                    <i class="fas fa-file-pdf resource-icon"></i>
+                                </div>
+                                <div class="resource-card-content">
+                                    <h3 class="resource-card-title">Student Visa Guide</h3>
+                                    <p class="resource-card-text">Comprehensive guide to student visa application, renewal, and regulations in China. This document covers all the necessary steps, required documents, and important deadlines for international students.</p>
+                                    <a href="#" class="resource-card-link"><i class="fas fa-download"></i> Download PDF (2.3 MB)</a>
+                                </div>
+                            </div>
+                            
+                            <div class="resource-card-horizontal">
+                                <div class="resource-icon-container">
+                                    <i class="fas fa-file-word resource-icon"></i>
+                                </div>
+                                <div class="resource-card-content">
+                                    <h3 class="resource-card-title">Scholarship Application Templates</h3>
+                                    <p class="resource-card-text">Templates for personal statements, research proposals, and recommendation letters. These professionally formatted templates will help you create compelling application documents for various scholarship programs.</p>
+                                    <a href="#" class="resource-card-link"><i class="fas fa-download"></i> Download DOCX (1.5 MB)</a>
+                                </div>
+                            </div>
+                            
+                            <div class="resource-card-horizontal">
+                                <div class="resource-icon-container">
+                                    <i class="fas fa-file-pdf resource-icon"></i>
+                                </div>
+                                <div class="resource-card-content">
+                                    <h3 class="resource-card-title">University Registration Process</h3>
+                                    <p class="resource-card-text">Step-by-step guide to registering at Chinese universities for international students. Learn about the registration procedures, required documents, and important contacts to ensure a smooth start to your academic journey.</p>
+                                    <a href="#" class="resource-card-link"><i class="fas fa-download"></i> Download PDF (1.8 MB)</a>
+                                </div>
+                            </div>
+                            
+                            <div class="resource-card-horizontal">
+                                <div class="resource-icon-container">
+                                    <i class="fas fa-file-pdf resource-icon"></i>
+                                </div>
+                                <div class="resource-card-content">
+                                    <h3 class="resource-card-title">Health Insurance Information</h3>
+                                    <p class="resource-card-text">Guide to health insurance options and healthcare facilities for international students. This comprehensive document includes information about university health centers, local hospitals, and emergency contacts.</p>
+                                    <a href="#" class="resource-card-link"><i class="fas fa-download"></i> Download PDF (3.1 MB)</a>
+                                </div>
+                            </div>
+                            
+                            <div class="resource-card-horizontal">
+                                <div class="resource-icon-container">
+                                    <i class="fas fa-file-excel resource-icon"></i>
+                                </div>
+                                <div class="resource-card-content">
+                                    <h3 class="resource-card-title">Budget Planning Spreadsheet</h3>
+                                    <p class="resource-card-text">Excel template for planning your monthly and yearly budget as a student in China. This customizable spreadsheet includes categories for tuition, housing, food, transportation, and other expenses specific to student life.</p>
+                                    <a href="#" class="resource-card-link"><i class="fas fa-download"></i> Download XLSX (0.8 MB)</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-pane" id="external">
+                        <h2 class="section-title">External Resources</h2>
+                        <p>Links to valuable external resources to support your academic journey.</p>
+                        
+                        <div class="external-resources-container fade-in">
+                            <div class="external-resource-card">
+                                <div class="external-resource-image">
+                                    <img src="https://images.unsplash.com/photo-1523050854058-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Chinese Government Scholarship">
+                                </div>
+                                <div class="external-resource-content">
+                                    <h3 class="external-resource-title">Chinese Government Scholarship</h3>
+                                    <p class="external-resource-description">Official website for Chinese Government Scholarship applications and information. Learn about eligibility requirements, application procedures, and deadlines for various scholarship programs offered by the Chinese government.</p>
+                                    <a href="#" class="external-resource-link" target="_blank"><i class="fas fa-external-link-alt"></i> Visit Website</a>
+                                </div>
+                            </div>
+                            
+                            <div class="external-resource-card">
+                                <div class="external-resource-image">
+                                    <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Study in China">
+                                </div>
+                                <div class="external-resource-content">
+                                    <h3 class="external-resource-title">Study in China Portal</h3>
+                                    <p class="external-resource-description">Comprehensive resource for international students planning to study in China. Find information about universities, programs, admission requirements, and student life in different cities across China.</p>
+                                    <a href="#" class="external-resource-link" target="_blank"><i class="fas fa-external-link-alt"></i> Visit Website</a>
+                                </div>
+                            </div>
+                            
+                            <div class="external-resource-card">
+                                <div class="external-resource-image">
+                                    <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Language Learning">
+                                </div>
+                                <div class="external-resource-content">
+                                    <h3 class="external-resource-title">Chinese Language Learning Resources</h3>
+                                    <p class="external-resource-description">Collection of online resources for learning Mandarin Chinese, including courses, apps, dictionaries, and practice materials. These resources cater to different proficiency levels from beginner to advanced.</p>
+                                    <a href="#" class="external-resource-link" target="_blank"><i class="fas fa-external-link-alt"></i> Visit Website</a>
+                                </div>
+                            </div>
+                            
+                            <div class="external-resource-card">
+                                <div class="external-resource-image">
+                                    <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="University Rankings">
+                                </div>
+                                <div class="external-resource-content">
+                                    <h3 class="external-resource-title">Chinese University Rankings</h3>
+                                    <p class="external-resource-description">Up-to-date rankings of Chinese universities based on academic reputation, research output, and international outlook. This resource helps prospective students identify top institutions in their field of study.</p>
+                                    <a href="#" class="external-resource-link" target="_blank"><i class="fas fa-external-link-alt"></i> Visit Website</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-pane" id="forum">
+                        <h2 class="section-title">Community Forum</h2>
+                        <p>Connect with fellow Congolese students, share experiences, and get advice.</p>
+                        
+                        <div class="forum-container fade-in">
+                            <div class="forum-header">
+                                <div class="forum-search">
+                                    <input type="text" placeholder="Search forum...">
+                                    <button><i class="fas fa-search"></i></button>
+                                </div>
+                                <div class="forum-actions">
+                                    <button><i class="fas fa-plus"></i> New Topic</button>
+                                    <button><i class="fas fa-sign-in-alt"></i> Sign In to Post</button>
+                                </div>
+                            </div>
+                            
+                            <div class="forum-categories">
+                                <div class="forum-category">
+                                    <h3>Academic Discussions</h3>
+                                    <div class="forum-topics">
+                                        <div class="forum-topic">
+                                            <div class="topic-info">
+                                                <div class="topic-title">Tips for HSK Level 5 Exam Preparation</div>
+                                                <div class="topic-meta">
+                                                    <span class="topic-author"><i class="fas fa-user"></i> Jean Lumumba</span>
+                                                    <span class="topic-date"><i class="far fa-calendar-alt"></i> March 25, 2025</span>
+                                                </div>
+                                            </div>
+                                            <div class="topic-stats">
+                                                <div class="topic-replies"><i class="fas fa-comment"></i> 24 Replies</div>
+                                                <div class="topic-views"><i class="fas fa-eye"></i> 156 Views</div>
+                                            </div>
+                                            <div class="topic-last-post">
+                                                <div>Last post by Marie Kabila</div>
+                                                <div>Today, 10:45 AM</div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="forum-topic">
+                                            <div class="topic-info">
+                                                <div class="topic-title">Research Opportunities in Engineering</div>
+                                                <div class="topic-meta">
+                                                    <span class="topic-author"><i class="fas fa-user"></i> Pierre Mobutu</span>
+                                                    <span class="topic-date"><i class="far fa-calendar-alt"></i> March 22, 2025</span>
+                                                </div>
+                                            </div>
+                                            <div class="topic-stats">
+                                                <div class="topic-replies"><i class="fas fa-comment"></i> 18 Replies</div>
+                                                <div class="topic-views"><i class="fas fa-eye"></i> 132 Views</div>
+                                            </div>
+                                            <div class="topic-last-post">
+                                                <div>Last post by David Kanza</div>
+                                                <div>Yesterday, 3:20 PM</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="forum-category">
+                                    <h3>Scholarships & Funding</h3>
+                                    <div class="forum-topics">
+                                        <div class="forum-topic">
+                                            <div class="topic-info">
+                                                <div class="topic-title">2025 CSC Scholarship Application Guide</div>
+                                                <div class="topic-meta">
+                                                    <span class="topic-author"><i class="fas fa-user"></i> Claire Tshisekedi</span>
+                                                    <span class="topic-date"><i class="far fa-calendar-alt"></i> March 20, 2025</span>
+                                                </div>
+                                            </div>
+                                            <div class="topic-stats">
+                                                <div class="topic-replies"><i class="fas fa-comment"></i> 35 Replies</div>
+                                                <div class="topic-views"><i class="fas fa-eye"></i> 278 Views</div>
+                                            </div>
+                                            <div class="topic-last-post">
+                                                <div>Last post by Jean Lumumba</div>
+                                                <div>Today, 9:15 AM</div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="forum-topic">
+                                            <div class="topic-info">
+                                                <div class="topic-title">Part-time Job Opportunities for Students</div>
+                                                <div class="topic-meta">
+                                                    <span class="topic-author"><i class="fas fa-user"></i> Marie Kabila</span>
+                                                    <span class="topic-date"><i class="far fa-calendar-alt"></i> March 18, 2025</span>
+                                                </div>
+                                            </div>
+                                            <div class="topic-stats">
+                                                <div class="topic-replies"><i class="fas fa-comment"></i> 29 Replies</div>
+                                                <div class="topic-views"><i class="fas fa-eye"></i> 215 Views</div>
+                                            </div>
+                                            <div class="topic-last-post">
+                                                <div>Last post by Pierre Mobutu</div>
+                                                <div>Yesterday, 5:45 PM</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Resource Spotlight with Gradient Background -->
+        <section class="resource-spotlight-section">
+            <div class="container">
+                <h2 class="section-title light">Resource Spotlight</h2>
+                <div class="resource-spotlight-container fade-in">
+                    <div class="resource-spotlight-image">
+                        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="New Scholarship Opportunities">
+                    </div>
+                    <div class="resource-spotlight-content">
+                        <h3 class="resource-spotlight-title">New Scholarship Opportunities</h3>
+                        <p class="resource-spotlight-text">The Chinese Scholarship Council has announced new scholarship opportunities for Congolese students for the 2025-2026 academic year. Download our comprehensive guide to learn about eligibility requirements, application procedures, and tips for a successful application.</p>
+                        <a href="#" class="resource-spotlight-link">Download Guide</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-top gradient-secondary">
+            <div class="container">
+                <div class="footer-grid">
+                    <div class="footer-section">
+                        <h3>AECC</h3>
+                        <p>Supporting Congolese students in China through community, resources, and opportunities.</p>
+                        <div class="social-links">
+                            <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Quick Links</h3>
+                        <ul class="footer-links">
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="blogs.html">Blogs</a></li>
+                            <li><a href="resources.html">Resources</a></li>
+                            <li><a href="learning.html">Learning</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Contact Info</h3>
+                        <p><i class="fas fa-map-marker-alt"></i> Beijing, China</p>
+                        <p><i class="fas fa-phone"></i> +86 123 456 7890</p>
+                        <p><i class="fas fa-envelope"></i> info@aecc.org</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2025 Association of Congolese Students in China. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script src="js/enhanced-script.js"></script>
+    <script>
+        // Tab functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            const tabPanes = document.querySelectorAll('.tab-pane');
+            
+            tabBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Remove active class from all buttons and panes
+                    tabBtns.forEach(b => b.classList.remove('active'));
+                    tabPanes.forEach(p => p.classList.remove('active'));
+                    
+                    // Add active class to clicked button and corresponding pane
+                    this.classList.add('active');
+                    const tabId = this.getAttribute('data-tab');
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
+            
+            // Forum topic expand/collapse
+            const forumTopics = document.querySelectorAll('.forum-topic');
+            forumTopics.forEach(topic => {
+                topic.addEventListener('click', function() {
+                    // Navigate to topic detail page in a real implementation
+                    console.log('Topic clicked:', this.querySelector('.topic-title').textContent);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

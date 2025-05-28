@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Association of Congolese Students in China</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/enhanced-style.css">
+    <link rel="stylesheet" href="css/contact-enhanced.css">
+    <link rel="stylesheet" href="css/auth-layout.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">AECC</div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="blogs.html">Blogs</a></li>
+                    <li><a href="resources.html">Resources</a></li>
+                    <li><a href="learning.html">Learning</a></li>
+                    <li><a href="contact.html" class="active">Contact</a></li>
+                    <li class="search-container">
+                        <input type="text" class="search-input" placeholder="Search...">
+                        <button class="search-button"><i class="fas fa-search"></i></button>
+                    </li>
+                </ul>
+                <button class="login-btn">Login</button>
+                <div class="mobile-menu">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Enhanced Login Modal -->
+    <div id="loginModal" class="login-modal">
+        <div class="modal-content">
+            <div class="login-header">
+                <h2>Welcome Back</h2>
+                <p>Sign in to access your account</p>
+                <span class="close-btn">&times;</span>
+            </div>
+            <div class="login-body">
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="loginEmail">Email</label>
+                        <div class="input-with-icon">
+                            <input type="email" id="loginEmail" required>
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Password</label>
+                        <div class="input-with-icon">
+                            <input type="password" id="loginPassword" required>
+                            <i class="fas fa-lock"></i>
+                        </div>
+                    </div>
+                    <div class="form-options">
+                        <div class="remember-me">
+                            <input type="checkbox" id="rememberMe">
+                            <label for="rememberMe">Remember me</label>
+                        </div>
+                        <a href="#" class="forgot-password">Forgot Password?</a>
+                    </div>
+                    <button type="submit" class="login-btn-modal">Sign In</button>
+                </form>
+            </div>
+            <div class="login-footer">
+                <p>Or sign in with</p>
+                <div class="social-login">
+                    <a href="#" class="social-login-btn facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-login-btn google"><i class="fab fa-google"></i></a>
+                    <a href="#" class="social-login-btn twitter"><i class="fab fa-twitter"></i></a>
+                </div>
+                <div class="register-link">
+                    Don't have an account? <a href="register.html">Register here</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section with Dynamic Background -->
+    <section class="contact-hero">
+        <div class="container">
+            <div class="contact-hero-content fade-in">
+                <h1 class="contact-hero-title">Get in Touch With Us</h1>
+                <p class="contact-hero-subtitle">We're here to answer your questions and help you connect with the Congolese student community in China.</p>
+            </div>
+        </div>
+    </section>
+
+    <main class="page-transition">
+        <section class="contact-section">
+            <div class="container">
+                <div class="contact-grid">
+                    <div class="contact-info fade-in">
+                        <div class="contact-card">
+                            <div class="card-header">
+                                <h2>Contact Information</h2>
+                                <p>Multiple ways to reach us</p>
+                            </div>
+                            <div class="card-body">
+                                <div class="info-item hover-lift">
+                                    <div class="info-icon rotate-icon">
+                                        <i class="fas fa-envelope"></i>
+                                    </div>
+                                    <div class="info-content">
+                                        <h3>Email</h3>
+                                        <p>info@aecc.org</p>
+                                        <p>support@aecc.org</p>
+                                    </div>
+                                </div>
+                                <div class="info-item hover-lift">
+                                    <div class="info-icon rotate-icon">
+                                        <i class="fas fa-phone"></i>
+                                    </div>
+                                    <div class="info-content">
+                                        <h3>Phone</h3>
+                                        <p>+86 123 456 7890</p>
+                                        <p>+86 987 654 3210</p>
+                                    </div>
+                                </div>
+                                <div class="info-item hover-lift">
+                                    <div class="info-icon rotate-icon">
+                                        <i class="fab fa-weixin"></i>
+                                    </div>
+                                    <div class="info-content">
+                                        <h3>WeChat</h3>
+                                        <p>AECC-Official</p>
+                                        <p>Scan the QR code below to add us</p>
+                                        <div class="qr-code hover-scale">
+                                            <img src="https://source.unsplash.com/random/150x150/?qrcode" alt="WeChat QR Code">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="info-item hover-lift">
+                                    <div class="info-icon rotate-icon">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                    </div>
+                                    <div class="info-content">
+                                        <h3>Address</h3>
+                                        <p>123 University Avenue</p>
+                                        <p>Haidian District, Beijing</p>
+                                        <p>China, 100000</p>
+                                    </div>
+                                </div>
+                                <div class="info-item hover-lift">
+                                    <div class="info-icon rotate-icon">
+                                        <i class="far fa-clock"></i>
+                                    </div>
+                                    <div class="info-content">
+                                        <h3>Office Hours</h3>
+                                        <p>Monday - Friday: 9:00 AM - 5:00 PM</p>
+                                        <p>Saturday: 10:00 AM - 2:00 PM</p>
+                                        <p>Sunday: Closed</p>
+                                    </div>
+                                </div>
+                                <div class="social-media">
+                                    <h3>Connect With Us</h3>
+                                    <div class="social-links">
+                                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                                        <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                                        <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contact-form delayed-fade-in">
+                        <div class="form-card">
+                            <div class="card-header">
+                                <h2>Send Us a Message</h2>
+                                <p>We'll respond within 24 hours</p>
+                            </div>
+                            <div class="card-body">
+                                <form id="contactForm" aria-label="Contact form">
+                                    <div class="form-group hover-lift">
+                                        <label for="name">Full Name*</label>
+                                        <input type="text" id="name" required aria-required="true">
+                                    </div>
+                                    <div class="form-group hover-lift">
+                                        <label for="email">Email Address*</label>
+                                        <input type="email" id="email" required aria-required="true">
+                                    </div>
+                                    <div class="form-group hover-lift">
+                                        <label for="subject">Subject*</label>
+                                        <input type="text" id="subject" required aria-required="true">
+                                    </div>
+                                    <div class="form-group hover-lift">
+                                        <label for="message">Message*</label>
+                                        <textarea id="message" rows="6" required aria-required="true"></textarea>
+                                    </div>
+                                    <button type="submit" class="btn-primary pulse" aria-label="Send message">Send Message</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="map-section fade-in">
+                    <h2 class="section-title">Our Location</h2>
+                    <div class="map-container hover-lift">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.9663095343008!2d-74.00425878459418!3d40.74076684379132!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259bf5c1654f3%3A0xc80f9cfce5383d5d!2sGoogle!5e0!3m2!1sen!2sus!4v1586000412564!5m2!1sen!2sus" width="100%" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section with Gradient Background -->
+        <section class="faq-section gradient-section">
+            <div class="container">
+                <h2 class="section-title">Frequently Asked Questions</h2>
+                <div class="faq-container fade-in">
+                    <div class="faq-item hover-lift">
+                        <div class="faq-question">
+                            <h3>How can I become a member of AECC?</h3>
+                            <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>To become a member, you need to be a Congolese student currently studying in China. Register through our website by clicking the "Login" button and then "Register here". After completing the registration form, your application will be reviewed, and you'll receive a confirmation email within 48 hours.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item hover-lift">
+                        <div class="faq-question">
+                            <h3>What benefits do I get as an AECC member?</h3>
+                            <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>As a member, you'll gain access to networking opportunities, cultural events, academic resources, scholarship information, and career counseling. You'll also receive regular updates on important news and events relevant to Congolese students in China.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item hover-lift">
+                        <div class="faq-question">
+                            <h3>Is there a membership fee?</h3>
+                            <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>No, membership to AECC is free for all eligible Congolese students studying in China. Our association is funded through donations, partnerships, and sponsors.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item hover-lift">
+                        <div class="faq-question">
+                            <h3>How can I get involved in AECC activities?</h3>
+                            <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Once you become a member, you'll receive invitations to all our events and activities. You can also volunteer for committees, contribute to our blog, participate in forums, or propose new initiatives. Contact us directly if you have specific interests or skills you'd like to contribute.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item hover-lift">
+                        <div class="faq-question">
+                            <h3>How can I request assistance with academic or visa issues?</h3>
+                            <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Members can request assistance by filling out the contact form on this page, sending an email to support@aecc.org, or reaching out through WeChat. Please provide a detailed description of your issue, and our support team will respond within 24-48 hours.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-top gradient-secondary">
+            <div class="container">
+                <div class="footer-grid">
+                    <div class="footer-section">
+                        <h3>About AECC</h3>
+                        <p>The Association of Congolese Students in China is dedicated to supporting and connecting Congolese students throughout their academic journey in China.</p>
+                        <div class="social-links">
+                            <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Quick Links</h3>
+                        <ul class="footer-links">
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="blogs.html">Blogs</a></li>
+                            <li><a href="resources.html">Resources</a></li>
+                            <li><a href="learning.html">Learning</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Contact Us</h3>
+                        <ul class="footer-contact-list">
+                            <li><i class="fas fa-envelope"></i> info@aecc.org</li>
+                            <li><i class="fas fa-phone"></i> +86 123 456 7890</li>
+                            <li><i class="fas fa-map-marker-alt"></i> 123 University Avenue, Beijing, China</li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Stay Updated</h3>
+                        <p>Subscribe to our newsletter for the latest news and updates.</p>
+                        <form class="footer-subscribe-form">
+                            <input type="email" placeholder="Your email address">
+                            <button type="submit" class="subscribe-btn">Subscribe</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2025 Association of Congolese Students in China. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Login Modal
+            const loginBtn = document.querySelector('.login-btn');
+            const loginModal = document.getElementById('loginModal');
+            const closeBtn = document.querySelector('.close-btn');
+            
+            loginBtn.addEventListener('click', function() {
+                loginModal.style.display = 'block';
+            });
+            
+            closeBtn.addEventListener('click', function() {
+                loginModal.style.display = 'none';
+            });
+            
+            window.addEventListener('click', function(event) {
+                if (event.target == loginModal) {
+                    loginModal.style.display = 'none';
+                }
+            });
+            
+            // FAQ Accordion
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', function() {
+                    const faqItem = this.parentElement;
+                    
+                    // Close all other FAQ items
+                    document.querySelectorAll('.faq-item').forEach(item => {
+                        if (item !== faqItem) {
+                            item.classList.remove('active');
+                        }
+                    });
+                    
+                    // Toggle current FAQ item
+                    faqItem.classList.toggle('active');
+                });
+            });
+            
+            // Form Submission
+            const contactForm = document.getElementById('contactForm');
+            
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Simulate form submission
+                    const submitBtn = this.querySelector('button[type="submit"]');
+                    const originalText = submitBtn.textContent;
+                    
+                    submitBtn.disabled = true;
+                    submitBtn.textContent = 'Sending...';
+                    
+                    setTimeout(() => {
+                        alert('Your message has been sent! We will contact you soon.');
+                        this.reset();
+                        submitBtn.disabled = false;
+                        submitBtn.textContent = originalText;
+                    }, 1500);
+                });
+            }
+        });
+    </script>
+</body>
+</html>

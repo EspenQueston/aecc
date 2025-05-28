@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile - Association of Congolese Students in China</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/enhanced-style.css">
+    <link rel="stylesheet" href="css/profile.css">
+    <link rel="stylesheet" href="css/auth-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">AECC</div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="blogs.html">Blogs</a></li>
+                    <li><a href="resources.html">Resources</a></li>
+                    <li><a href="learning.html">Learning</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li class="search-container">
+                        <input type="text" class="search-input" placeholder="Search...">
+                        <button class="search-button"><i class="fas fa-search"></i></button>
+                    </li>
+                </ul>
+                <div class="user-profile-menu">
+                    <div class="profile-avatar">
+                        <img src="https://source.unsplash.com/random/50x50/?avatar" alt="User Avatar">
+                    </div>
+                    <div class="profile-dropdown">
+                        <a href="profile.html" class="dropdown-item"><i class="fas fa-user"></i> My Profile</a>
+                        <a href="#" class="dropdown-item"><i class="fas fa-cog"></i> Settings</a>
+                        <a href="#" class="dropdown-item logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                    </div>
+                </div>
+                <div class="mobile-menu">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div class="page-banner gradient-primary">
+        <div class="container">
+            <h1>My Profile</h1>
+            <p>Welcome to your personal dashboard</p>
+            <ul class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item active">My Profile</li>
+            </ul>
+        </div>
+    </div>
+
+    <main class="page-transition">
+        <section class="profile-dashboard">
+            <div class="container">
+                <div class="profile-grid">
+                    <!-- Profile Sidebar -->
+                    <div class="profile-sidebar fade-in">
+                        <div class="profile-card">
+                            <div class="profile-header">
+                                <div class="profile-avatar-large">
+                                    <img src="https://source.unsplash.com/random/150x150/?avatar" alt="User Avatar">
+                                </div>
+                                <h2 class="profile-name">John Doe</h2>
+                                <p class="profile-status">Master's Student</p>
+                                <p class="profile-university">Beijing University</p>
+                            </div>
+                            <div class="profile-info">
+                                <div class="profile-stat">
+                                    <span class="stat-value">2021</span>
+                                    <span class="stat-label">Member Since</span>
+                                </div>
+                                <div class="profile-stat">
+                                    <span class="stat-value">Active</span>
+                                    <span class="stat-label">Status</span>
+                                </div>
+                            </div>
+                            <div class="profile-actions">
+                                <button class="btn btn-primary"><i class="fas fa-edit"></i> Edit Profile</button>
+                                <button class="btn btn-outline"><i class="fas fa-cog"></i> Settings</button>
+                            </div>
+                        </div>
+                        
+                        <div class="profile-nav">
+                            <ul>
+                                <li class="active"><a href="#overview"><i class="fas fa-home"></i> Overview</a></li>
+                                <li><a href="#personal-info"><i class="fas fa-user"></i> Personal Information</a></li>
+                                <li><a href="#academic-info"><i class="fas fa-graduation-cap"></i> Academic Information</a></li>
+                                <li><a href="#documents"><i class="fas fa-file-alt"></i> Documents</a></li>
+                                <li><a href="#events"><i class="fas fa-calendar-alt"></i> Events</a></li>
+                                <li><a href="#messages"><i class="fas fa-envelope"></i> Messages</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- Profile Content -->
+                    <div class="profile-content fade-in">
+                        <!-- Overview Section -->
+                        <div class="profile-section active" id="overview">
+                            <div class="section-header">
+                                <h2><i class="fas fa-home"></i> Overview</h2>
+                                <p>Welcome to your profile dashboard</p>
+                            </div>
+                            
+                            <div class="welcome-card">
+                                <div class="welcome-icon">
+                                    <i class="fas fa-hand-paper"></i>
+                                </div>
+                                <div class="welcome-content">
+                                    <h3>Welcome back, John!</h3>
+                                    <p>We're glad to see you again. Here's what's new since your last visit:</p>
+                                    <ul class="notification-list">
+                                        <li><i class="fas fa-bell"></i> New event: Annual Gathering - April 15, 2025</li>
+                                        <li><i class="fas fa-newspaper"></i> New blog post: "Opportunities for African Students in China"</li>
+                                        <li><i class="fas fa-users"></i> 5 new members joined this week</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <div class="info-cards-container">
+                                <div class="info-card">
+                                    <div class="info-card-icon">
+                                        <i class="fas fa-calendar-check"></i>
+                                    </div>
+                                    <div class="info-card-content">
+                                        <h3>Upcoming Events</h3>
+                                        <p>2 events this month</p>
+                                    </div>
+                                    <a href="#events" class="card-link">View All</a>
+                                </div>
+                                
+                                <div class="info-card">
+                                    <div class="info-card-icon">
+                                        <i class="fas fa-file-download"></i>
+                                    </div>
+                                    <div class="info-card-content">
+                                        <h3>Downloads</h3>
+                                        <p>5 resources available</p>
+                                    </div>
+                                    <a href="#documents" class="card-link">View All</a>
+                                </div>
+                                
+                                <div class="info-card">
+                                    <div class="info-card-icon">
+                                        <i class="fas fa-envelope"></i>
+                                    </div>
+                                    <div class="info-card-content">
+                                        <h3>Messages</h3>
+                                        <p>3 unread messages</p>
+                                    </div>
+                                    <a href="#messages" class="card-link">View All</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Personal Information Section -->
+                        <div class="profile-section" id="personal-info">
+                            <div class="section-header">
+                                <h2><i class="fas fa-user"></i> Personal Information</h2>
+                                <button class="btn btn-sm btn-outline"><i class="fas fa-edit"></i> Edit</button>
+                            </div>
+                            
+                            <div class="info-grid">
+                                <div class="info-item">
+                                    <div class="info-label">Full Name</div>
+                                    <div class="info-value">John Doe</div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-label">Date of Birth</div>
+                                    <div class="info-value">January 15, 1995</div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-label">Gender</div>
+                                    <div class="info-value">Male</div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-label">Passport Number</div>
+                                    <div class="info-value">AB123456789</div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-label">Phone Number</div>
+                                    <div class="info-value">+86 123 456 7890</div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-label">WeChat ID</div>
+                                    <div class="info-value">john_doe_cn</div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-label">Email Address</div>
+                                    <div class="info-value">john.doe@example.com</div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-label">Last Entry into China</div>
+                                    <div class="info-value">September 5, 2022</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Academic Information Section -->
+                        <div class="profile-section" id="academic-info">
+                            <div class="section-header">
+                                <h2><i class="fas fa-graduation-cap"></i> Academic Information</h2>
+                                <button class="btn btn-sm btn-outline"><i class="fas fa-edit"></i> Edit</button>
+                            </div>
+                            
+                            <div class="info-grid">
+                                <div class="info-item">
+                                    <div class="info-label">University</div>
+                                    <div class="info-value">Beijing University</div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-label">Current Level</div>
+                                    <div class="info-value">Master's Degree</div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-label">Field of Study</div>
+                                    <div class="info-value">Computer Science</div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-label">Expected Graduation</div>
+                                    <div class="info-value">June 2025</div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-label">Current City</div>
+                                    <div class="info-value">Beijing</div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-label">Current Province</div>
+                                    <div class="info-value">Beijing</div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-label">Scholarship Status</div>
+                                    <div class="info-value">Yes - Chinese Government Scholarship</div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-label">Student ID</div>
+                                    <div class="info-value">2022120345</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Documents Section -->
+                        <div class="profile-section" id="documents">
+                            <div class="section-header">
+                                <h2><i class="fas fa-file-alt"></i> Documents</h2>
+                                <button class="btn btn-sm btn-primary"><i class="fas fa-upload"></i> Upload New</button>
+                            </div>
+                            
+                            <div class="documents-grid">
+                                <div class="document-card">
+                                    <div class="document-icon">
+                                        <i class="fas fa-passport"></i>
+                                    </div>
+                                    <div class="document-info">
+                                        <h3>Passport</h3>
+                                        <p>Uploaded on: Oct 10, 2022</p>
+                                        <p>Expires: Jan 15, 2030</p>
+                                    </div>
+                                    <div class="document-actions">
+                                        <button class="btn btn-sm btn-outline"><i class="fas fa-eye"></i> View</button>
+                                        <button class="btn btn-sm btn-outline"><i class="fas fa-download"></i> Download</button>
+                                    </div>
+                                </div>
+                                
+                                <div class="document-card">
+                                    <div class="document-icon">
+                                        <i class="fas fa-id-card"></i>
+                                    </div>
+                                    <div class="document-info">
+                                        <h3>Current Visa</h3>
+                                        <p>Uploaded on: Oct 10, 2022</p>
+                                        <p>Expires: Sep 1, 2025</p>
+                                    </div>
+                                    <div class="document-actions">
+                                        <button class="btn btn-sm btn-outline"><i class="fas fa-eye"></i> View</button>
+                                        <button class="btn btn-sm btn-outline"><i class="fas fa-download"></i> Download</button>
+                                    </div>
+                                </div>
+                                
+                                <div class="document-card">
+                                    <div class="document-icon">
+                                        <i class="fas fa-file-alt"></i>
+                                    </div>
+                                    <div class="document-info">
+                                        <h3>Admission Notice</h3>
+                                        <p>Uploaded on: Oct 10, 2022</p>
+                                        <p>Status: Verified</p>
+                                    </div>
+                                    <div class="document-actions">
+                                        <button class="btn btn-sm btn-outline"><i class="fas fa-eye"></i> View</button>
+                                        <button class="btn btn-sm btn-outline"><i class="fas fa-download"></i> Download</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Events Section -->
+                        <div class="profile-section" id="events">
+                            <div class="section-header">
+                                <h2><i class="fas fa-calendar-alt"></i> Events</h2>
+                                <button class="btn btn-sm btn-outline"><i class="fas fa-filter"></i> Filter</button>
+                            </div>
+                            
+                            <div class="events-list">
+                                <div class="event-card">
+                                    <div class="event-date">
+                                        <div class="date-day">15</div>
+                                        <div class="date-month">APR</div>
+                                    </div>
+                                    <div class="event-details">
+                                        <h3 class="event-title">Annual Gathering</h3>
+                                        <p class="event-location"><i class="fas fa-map-marker-alt"></i> Beijing International Convention Center</p>
+                                        <p class="event-time"><i class="far fa-clock"></i> 2:00 PM - 6:00 PM</p>
+                                        <div class="event-description">
+                                            <p>Join us for our annual gathering of Congolese students across China. Network, share experiences, and celebrate our culture.</p>
+                                        </div>
+                                        <div class="event-actions">
+                                            <button class="btn btn-sm btn-primary">RSVP</button>
+                                            <button class="btn btn-sm btn-outline">Add to Calendar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="event-card">
+                                    <div class="event-date">
+                                        <div class="date-day">22</div>
+                                        <div class="date-month">MAY</div>
+                                    </div>
+                                    <div class="event-details">
+                                        <h3 class="event-title">Career Workshop</h3>
+                                        <p class="event-location"><i class="fas fa-map-marker-alt"></i> Online Webinar</p>
+                                        <p class="event-time"><i class="far fa-clock"></i> 7:00 PM - 9:00 PM</p>
+                                        <div class="event-description">
+                                            <p>Learn about career opportunities after graduation. Featuring speakers from multinational companies and successful entrepreneurs.</p>
+                                        </div>
+                                        <div class="event-actions">
+                                            <button class="btn btn-sm btn-primary">Register</button>
+                                            <button class="btn btn-sm btn-outline">Add to Calendar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Messages Section -->
+                        <div class="profile-section" id="messages">
+                            <div class="section-header">
+                                <h2><i class="fas fa-envelope"></i> Messages</h2>
+                                <button class="btn btn-sm btn-primary"><i class="fas fa-plus"></i> New Message</button>
+                            </div>
+                            
+                            <div class="messages-list">
+                                <div class="message-card unread">
+                                    <div class="message-avatar">
+                                        <img src="https://source.unsplash.com/random/40x40/?avatar" alt="Sender Avatar">
+                                    </div>
+                                    <div class="message-content">
+                                        <div class="message-header">
+                                            <h3 class="message-sender">AECC Admin</h3>
+                                            <span class="message-date">Mar 25, 2025</span>
+                                        </div>
+                                        <div class="message-subject">Important: Membership Renewal</div>
+                                        <div class="message-preview">Your membership is due for renewal next month. Please log in to your...</div>
+                                    </div>
+                                    <div class="message-actions">
+                                        <button class="btn btn-sm btn-outline"><i class="fas fa-eye"></i></button>
+                                        <button class="btn btn-sm btn-outline"><i class="fas fa-reply"></i></button>
+                                        <button class="btn btn-sm btn-outline"><i class="fas fa-trash"></i></button>
+                                    </div>
+                                </div>
+                                
+                                <div class="message-card unread">
+                                    <div class="message-avatar">
+                                        <img src="https://source.unsplash.com/random/40x40/?avatar&2" alt="Sender Avatar">
+                                    </div>
+                                    <div class="message-content">
+                                        <div class="message-header">
+                                            <h3 class="message-sender">Events Team</h3>
+                                            <span class="message-date">Mar 22, 2025</span>
+                                        </div>
+                                        <div class="message-subject">You're Invited: Annual Gathering</div>
+                                        <div class="message-preview">We are pleased to invite you to our Annual Gathering event taking place on...</div>
+                                    </div>
+                                    <div class="message-actions">
+                                        <button class="btn btn-sm btn-outline"><i class="fas fa-eye"></i></button>
+                                        <button class="btn btn-sm btn-outline"><i class="fas fa-reply"></i></button>
+                                        <button class="btn btn-sm btn-outline"><i class="fas fa-trash"></i></button>
+                                    </div>
+                                </div>
+                                
+                                <div class="message-card">
+                                    <div class="message-avatar">
+                                        <img src="https://source.unsplash.com/random/40x40/?avatar&3" alt="Sender Avatar">
+                                    </div>
+                                    <div class="message-content">
+                                        <div class="message-header">
+                                            <h3 class="message-sender">Scholarship Office</h3>
+                                            <span class="message-date">Mar 15, 2025</span>
+                                        </div>
+                                        <div class="message-subject">Scholarship Renewal Information</div>
+                                        <div class="message-preview">Please find attached the information regarding the scholarship renewal process...</div>
+                                    </div>
+                                    <div class="message-actions">
+                                        <button class="btn btn-sm btn-outline"><i class="fas fa-eye"></i></button>
+                                        <button class="btn btn-sm btn-outline"><i class="fas fa-reply"></i></button>
+                                        <button class="btn btn-sm btn-outline"><i class="fas fa-trash"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-top gradient-secondary">
+            <div class="container">
+                <div class="footer-grid">
+                    <div class="footer-section">
+                        <h3>About AECC</h3>
+                        <p>The Association of Congolese Students in China is dedicated to supporting and connecting Congolese students throughout their academic journey in China.</p>
+                        <div class="social-links">
+                            <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Quick Links</h3>
+                        <ul class="footer-links">
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="blogs.html">Blogs</a></li>
+                            <li><a href="resources.html">Resources</a></li>
+                            <li><a href="learning.html">Learning</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Contact Us</h3>
+                        <ul class="footer-contact-list">
+                            <li><i class="fas fa-envelope"></i> info@aecc.org</li>
+                            <li><i class="fas fa-phone"></i> +86 123 456 7890</li>
+                            <li><i class="fas fa-map-marker-alt"></i> 123 University Avenue, Beijing, China</li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Stay Updated</h3>
+                        <p>Subscribe to our newsletter for the latest news and updates.</p>
+                        <form class="footer-subscribe-form">
+                            <input type="email" placeholder="Your email address">
+                            <button type="submit" class="subscribe-btn">Subscribe</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2025 Association of Congolese Students in China. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/auth.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if user is logged in and redirect if not
+            const checkAuth = async () => {
+                const user = await window.auth.getCurrentUser();
+                if (!user) {
+                    window.location.href = 'index.html';
+                    return;
+                }
+                
+                // Load user profile data
+                await window.auth.loadProfileData(user);
+            };
+            
+            checkAuth();
+            
+            // Profile Section Navigation
+            const profileNavLinks = document.querySelectorAll('.profile-nav ul li a');
+            const profileSections = document.querySelectorAll('.profile-section');
+            
+            profileNavLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetSection = this.getAttribute('href').substring(1);
+                    
+                    // Remove active class from all links and sections
+                    profileNavLinks.forEach(link => link.classList.remove('active'));
+                    profileSections.forEach(section => section.classList.remove('active'));
+                    
+                    // Add active class to clicked link and target section
+                    this.classList.add('active');
+                    document.getElementById(targetSection).classList.add('active');
+                });
+            });
+            
+            // Logout functionality
+            const logoutBtn = document.querySelector('.logout-btn');
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    window.auth.logoutUser();
+                });
+            }
+            
+            // Edit Profile Button
+            const editButtons = document.querySelectorAll('.btn-outline');
+            editButtons.forEach(button => {
+                if (button.innerHTML.includes('Edit')) {
+                    button.addEventListener('click', function() {
+                        const section = this.closest('.profile-section');
+                        const fields = section.querySelectorAll('.profile-info-item p');
+                        
+                        fields.forEach(field => {
+                            const text = field.textContent;
+                            const input = document.createElement('input');
+                            input.type = 'text';
+                            input.value = text;
+                            input.className = 'edit-field';
+                            field.parentNode.replaceChild(input, field);
+                        });
+                        
+                        // Change edit button to save button
+                        this.innerHTML = '<i class="fas fa-save"></i> Save';
+                        this.classList.remove('btn-outline');
+                        this.classList.add('btn-primary');
+                        
+                        // Add event listener to save button
+                        this.addEventListener('click', async function() {
+                            const inputs = section.querySelectorAll('.edit-field');
+                            const data = {};
+                            
+                            inputs.forEach(input => {
+                                const label = input.parentNode.querySelector('span').textContent.replace(':', '').trim();
+                                data[label.toLowerCase().replace(' ', '_')] = input.value;
+                            });
+                            
+                            // Save profile data
+                            try {
+                                const token = localStorage.getItem('token');
+                                const response = await fetch('http://localhost:5000/api/profile', {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/json',
+                                        'x-auth-token': token
+                                    },
+                                    body: JSON.stringify(data)
+                                });
+                                
+                                if (!response.ok) {
+                                    throw new Error('Failed to update profile');
+                                }
+                                
+                                // Replace inputs with paragraphs
+                                inputs.forEach(input => {
+                                    const p = document.createElement('p');
+                                    p.textContent = input.value;
+                                    input.parentNode.replaceChild(p, input);
+                                });
+                                
+                                // Change save button back to edit button
+                                this.innerHTML = '<i class="fas fa-edit"></i> Edit';
+                                this.classList.remove('btn-primary');
+                                this.classList.add('btn-outline');
+                                
+                                window.auth.showNotification('Profile updated successfully', 'success');
+                            } catch (error) {
+                                console.error('Error updating profile:', error);
+                                window.auth.showNotification('Failed to update profile', 'error');
+                            }
+                        }, { once: true });
+                    });
+                }
+            });
+            
+            // File Upload Button
+            const uploadBtn = document.querySelector('.btn-primary[data-action="upload"]');
+            if (uploadBtn) {
+                uploadBtn.addEventListener('click', function() {
+                    const fileInput = document.createElement('input');
+                    fileInput.type = 'file';
+                    fileInput.accept = '.pdf,.doc,.docx,.jpg,.png';
+                    fileInput.click();
+                    
+                    fileInput.addEventListener('change', async function() {
+                        if (this.files.length === 0) return;
+                        
+                        const file = this.files[0];
+                        const formData = new FormData();
+                        formData.append('file', file);
+                        
+                        try {
+                            const token = localStorage.getItem('token');
+                            const response = await fetch('http://localhost:5000/api/upload', {
+                                method: 'POST',
+                                headers: {
+                                    'x-auth-token': token
+                                },
+                                body: formData
+                            });
+                            
+                            if (!response.ok) {
+                                throw new Error('Failed to upload file');
+                            }
+                            
+                            const data = await response.json();
+                            
+                            // Add new document to the list
+                            const documentsList = document.querySelector('.documents-list');
+                            const newDocument = document.createElement('div');
+                            newDocument.className = 'document-item';
+                            newDocument.innerHTML = `
+                                <div class="document-icon">
+                                    <i class="fas fa-file-${getFileIcon(file.name)}"></i>
+                                </div>
+                                <div class="document-info">
+                                    <h4>${file.name}</h4>
+                                    <p>Uploaded on ${new Date().toLocaleDateString()}</p>
+                                </div>
+                                <div class="document-actions">
+                                    <a href="${data.fileUrl}" class="btn btn-sm btn-outline" target="_blank"><i class="fas fa-download"></i></a>
+                                    <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
+                                </div>
+                            `;
+                            
+                            documentsList.appendChild(newDocument);
+                            window.auth.showNotification('File uploaded successfully', 'success');
+                        } catch (error) {
+                            console.error('Error uploading file:', error);
+                            window.auth.showNotification('Failed to upload file', 'error');
+                        }
+                    });
+                });
+            }
+            
+            // Helper function to get file icon based on extension
+            function getFileIcon(filename) {
+                const ext = filename.split('.').pop().toLowerCase();
+                
+                if (['jpg', 'jpeg', 'png', 'gif'].includes(ext)) return 'image';
+                if (['pdf'].includes(ext)) return 'pdf';
+                if (['doc', 'docx'].includes(ext)) return 'word';
+                if (['xls', 'xlsx'].includes(ext)) return 'excel';
+                if (['ppt', 'pptx'].includes(ext)) return 'powerpoint';
+                
+                return 'alt';
+            }
+        });
+    </script>
+</body>
+</html>
