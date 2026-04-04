@@ -172,7 +172,7 @@ export default function Register() {
 
   function validateStep(step) {
     if (step === 1) {
-      if (!regForm.firstName || !regForm.lastName || !regForm.dateOfBirth || !regForm.gender || !regForm.passportNumber || !regForm.phoneNumber || !regForm.wechatId || !regForm.province || !regForm.city || !regForm.lastEntryDate) {
+      if (!regForm.firstName || !regForm.lastName || !regForm.dateOfBirth || !regForm.gender || !regForm.passportNumber || !regForm.phoneNumber || !regForm.wechatId) {
         setError('Veuillez remplir tous les champs obligatoires');
         return false;
       }
@@ -182,21 +182,21 @@ export default function Register() {
         return false;
       }
       if (age > 65) {
-        setError('Veuillez vérifier votre date de naissance');
+        setError('Veuillez v\u00e9rifier votre date de naissance');
         return false;
       }
       if (!/^OA\d{7}$/.test(regForm.passportNumber)) {
-        setError('Le numéro de passeport doit commencer par OA suivi de 7 chiffres (ex: OA1234567)');
+        setError('Le num\u00e9ro de passeport doit commencer par OA suivi de 7 chiffres (ex: OA1234567)');
         return false;
       }
     }
     if (step === 2) {
-      if (!regForm.university || !regForm.fieldOfStudy || !regForm.degreeLevel || !regForm.expectedGraduation || !regForm.scholarshipStatus) {
+      if (!regForm.province || !regForm.city || !regForm.lastEntryDate || !regForm.university || !regForm.fieldOfStudy || !regForm.degreeLevel || !regForm.expectedGraduation || !regForm.scholarshipStatus) {
         setError('Veuillez remplir tous les champs obligatoires');
         return false;
       }
       if (regForm.scholarshipStatus === 'yes' && !regForm.scholarshipType) {
-        setError('Veuillez sélectionner le type de bourse');
+        setError('Veuillez s\u00e9lectionner le type de bourse');
         return false;
       }
     }
@@ -313,12 +313,12 @@ export default function Register() {
                 <div className="step-progress">
                   <div className={`step-dot ${regStep >= 1 ? 'active' : ''} ${regStep > 1 ? 'done' : ''}`}>
                     <span>{regStep > 1 ? <i className="fas fa-check"></i> : '1'}</span>
-                    <small>Personnel</small>
+                    <small>Identité</small>
                   </div>
                   <div className={`step-line ${regStep > 1 ? 'done' : ''}`}></div>
                   <div className={`step-dot ${regStep >= 2 ? 'active' : ''} ${regStep > 2 ? 'done' : ''}`}>
                     <span>{regStep > 2 ? <i className="fas fa-check"></i> : '2'}</span>
-                    <small>Académique</small>
+                    <small>Séjour</small>
                   </div>
                   <div className={`step-line ${regStep > 2 ? 'done' : ''}`}></div>
                   <div className={`step-dot ${regStep >= 3 ? 'active' : ''}`}>
@@ -366,40 +366,20 @@ export default function Register() {
                         </select>
                       </div>
                     </div>
-                    <div className="form-group">
-                      <label>N° Passeport <span className="required">*</span></label>
-                      <input name="passportNumber" value={regForm.passportNumber} onChange={handleRegChange} pattern="^OA\d{7}$" placeholder="OA1234567" maxLength={9} required />
-                      <span className="form-hint"><i className="fas fa-info-circle"></i> Format: OA suivi de 7 chiffres</span>
-                    </div>
                     <div className="form-row">
+                      <div className="form-group">
+                        <label>N° Passeport <span className="required">*</span></label>
+                        <input name="passportNumber" value={regForm.passportNumber} onChange={handleRegChange} pattern="^OA\d{7}$" placeholder="OA1234567" maxLength={9} required />
+                        <span className="form-hint"><i className="fas fa-info-circle"></i> Format: OA + 7 chiffres</span>
+                      </div>
                       <div className="form-group">
                         <label>Téléphone <span className="required">*</span></label>
                         <input name="phoneNumber" value={regForm.phoneNumber} onChange={handleRegChange} placeholder="+86 138 0000 0000" required />
                       </div>
-                      <div className="form-group">
-                        <label>WeChat ID <span className="required">*</span></label>
-                        <input name="wechatId" value={regForm.wechatId} onChange={handleRegChange} placeholder="Votre identifiant WeChat" required />
-                      </div>
-                    </div>
-                    <div className="form-row">
-                      <div className="form-group">
-                        <label>Province en Chine <span className="required">*</span></label>
-                        <select name="province" value={regForm.province} onChange={handleRegChange} required>
-                          <option value="">— Sélectionner la province —</option>
-                          {provinces.map(p => <option key={p} value={p}>{p}</option>)}
-                        </select>
-                      </div>
-                      <div className="form-group">
-                        <label>Ville <span className="required">*</span></label>
-                        <select name="city" value={regForm.city} onChange={handleRegChange} required disabled={!regForm.province}>
-                          <option value="">{regForm.province ? '— Sélectionner la ville —' : '— Choisissez d\'abord la province —'}</option>
-                          {cities.map(c => <option key={c} value={c}>{c}</option>)}
-                        </select>
-                      </div>
                     </div>
                     <div className="form-group">
-                      <label>Date d'entrée en Chine <span className="required">*</span></label>
-                      <input type="date" name="lastEntryDate" value={regForm.lastEntryDate} onChange={handleRegChange} max={new Date().toISOString().split('T')[0]} required />
+                      <label>WeChat ID <span className="required">*</span></label>
+                      <input name="wechatId" value={regForm.wechatId} onChange={handleRegChange} placeholder="Votre identifiant WeChat" required />
                     </div>
                     <button type="button" className="btn btn-primary btn-block" onClick={() => validateStep(1) && setRegStep(2)}>
                       Suivant <i className="fas fa-arrow-right"></i>
@@ -409,12 +389,32 @@ export default function Register() {
 
                 {regStep === 2 && (
                   <div className="form-step animate-in">
-                    <h3><i className="fas fa-graduation-cap"></i> Informations académiques</h3>
-                    <p className="form-step-desc">Renseignez vos informations universitaires</p>
+                    <h3><i className="fas fa-map-marker-alt"></i> Séjour & Études</h3>
+                    <p className="form-step-desc">Localisation en Chine et informations académiques</p>
 
+                    <div className="form-row">
+                      <div className="form-group">
+                        <label>Province en Chine <span className="required">*</span></label>
+                        <select name="province" value={regForm.province} onChange={handleRegChange} required>
+                          <option value="">— Sélectionner —</option>
+                          {provinces.map(p => <option key={p} value={p}>{p}</option>)}
+                        </select>
+                      </div>
+                      <div className="form-group">
+                        <label>Ville <span className="required">*</span></label>
+                        <select name="city" value={regForm.city} onChange={handleRegChange} required disabled={!regForm.province}>
+                          <option value="">{regForm.province ? '— Sélectionner —' : '— Province d\'abord —'}</option>
+                          {cities.map(c => <option key={c} value={c}>{c}</option>)}
+                        </select>
+                      </div>
+                    </div>
+                    <div className="form-group">
+                      <label>Date d'entrée en Chine <span className="required">*</span></label>
+                      <input type="date" name="lastEntryDate" value={regForm.lastEntryDate} onChange={handleRegChange} max={new Date().toISOString().split('T')[0]} required />
+                    </div>
                     <div className="form-group">
                       <label>Université <span className="required">*</span></label>
-                      <input name="university" value={regForm.university} onChange={handleRegChange} placeholder="Nom complet de votre université" required />
+                      <input name="university" value={regForm.university} onChange={handleRegChange} placeholder="Nom de votre université" required />
                     </div>
                     <div className="form-group">
                       <label>Filière / Spécialité <span className="required">*</span></label>

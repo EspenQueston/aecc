@@ -11,6 +11,7 @@ export default function PublicLayout() {
   const [searchQuery, setSearchQuery] = useState('');
   const [nlEmail, setNlEmail] = useState('');
   const [nlStatus, setNlStatus] = useState(null);
+  const [showWechat, setShowWechat] = useState(false);
   const navigate = useNavigate();
 
   function handleSearch(e) {
@@ -109,10 +110,9 @@ export default function PublicLayout() {
               <h3><span className="footer-logo-frame"><img src="/logo.png" alt="AECC" onError={e => e.target.style.display='none'} /></span> AECC</h3>
               <p>Association des Étudiants Congolais en Chine — Créée le 1er Août 2000 à Pékin. Devise : Unité – Travail – Réussite.</p>
               <div className="social-links">
-                <a href="#" aria-label="WeChat"><i className="fab fa-wechat"></i></a>
-                <a href="#" aria-label="WhatsApp"><i className="fab fa-whatsapp"></i></a>
-                <a href="#" aria-label="Instagram"><i className="fab fa-instagram"></i></a>
-                <a href="#" aria-label="Facebook"><i className="fab fa-facebook"></i></a>
+                <button onClick={() => setShowWechat(true)} className="social-link-btn" aria-label="WeChat"><i className="fab fa-wechat"></i></button>
+                <a href="https://www.facebook.com/profile.php?id=61560764129668" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i className="fab fa-facebook"></i></a>
+                <a href="https://www.instagram.com/aecc242congochine/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i className="fab fa-instagram"></i></a>
               </div>
             </div>
             <div className="footer-links">
@@ -160,6 +160,18 @@ export default function PublicLayout() {
 
       <ChatWidget />
       <ScrollWidget />
+
+      {showWechat && (
+        <div className="wechat-modal-overlay" onClick={() => setShowWechat(false)}>
+          <div className="wechat-modal" onClick={e => e.stopPropagation()}>
+            <button className="wechat-modal-close" onClick={() => setShowWechat(false)}><i className="fas fa-times"></i></button>
+            <div className="wechat-modal-icon"><i className="fab fa-wechat"></i></div>
+            <h3>WeChat ID</h3>
+            <p className="wechat-id">18506959673</p>
+            <p className="wechat-hint">Scannez ou ajoutez cet ID sur WeChat pour nous contacter</p>
+          </div>
+        </div>
+      )}
     </>
   );
 }
