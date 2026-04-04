@@ -1,17 +1,15 @@
 import { useParams, Link } from 'react-router-dom';
 
 const ALL_MEMBERS = {
-  'cluivert-moukendi': {
-    name: 'Cluivert Moukendi',
+  'rinel': {
+    name: 'Rinel',
     role: 'Président',
     structure: 'Bureau Exécutif',
     icon: 'fas fa-crown',
     color: '#B7222D',
     photo: null,
     bio: 'Président de l\'Association des Étudiants Congolais en Chine (AECC). Conformément aux statuts (Art. 10), le Président est chargé de la coordination et de l\'orientation des activités de l\'association. Il représente l\'AECC dans les actes de vie civile et veille au bon fonctionnement des structures.',
-    education: [
-      { degree: 'Master en Informatique', university: 'Université de Pékin', year: '2023 – 2026' },
-    ],
+    education: [],
     responsibilities: [
       'Coordonner, orienter et contrôler les activités de l\'Association (Art. 10)',
       'Représenter l\'Association dans les actes de vie civile',
@@ -20,17 +18,17 @@ const ALL_MEMBERS = {
       'Assurer la permanence de l\'Association',
       'Ordonnateur principal des dépenses (cosignataire avec le Trésorier)',
     ],
-    contact: { email: 'president@aecc.org', wechat: 'cluivert_aecc' },
-    languages: ['Français', 'Anglais', 'Chinois (HSK 5)', 'Lingala'],
+    contact: { email: 'president@aecc.org', wechat: null },
+    languages: ['Français', 'Anglais', 'Chinois', 'Lingala'],
   },
-  'secretaire-general': {
-    name: 'Secrétaire Général(e)',
-    role: 'Secrétaire Général(e)',
+  'cleve': {
+    name: 'Cleve',
+    role: 'Secrétaire Général',
     structure: 'Bureau Exécutif',
     icon: 'fas fa-file-alt',
-    color: '#0E7C42',
+    color: '#2563eb',
     photo: null,
-    bio: 'Le/la Secrétaire Général(e) est chargé(e) de l\'administration et de l\'organisation de l\'AECC. Conformément aux statuts (Art. 12), il/elle assure l\'intérim du Président en cas d\'absence et veille au bon fonctionnement du bureau.',
+    bio: 'Secrétaire Général de l\'AECC. Conformément aux statuts (Art. 12), il assure l\'intérim du Président en cas d\'absence et veille au bon fonctionnement du bureau. Il est chargé de l\'administration et de l\'organisation de l\'association.',
     education: [],
     responsibilities: [
       'Assurer le bon fonctionnement du Bureau, notamment la régularité et la tenue des réunions (Art. 12)',
@@ -42,14 +40,14 @@ const ALL_MEMBERS = {
     contact: { email: 'secretariat@aecc.org', wechat: null },
     languages: ['Français', 'Anglais', 'Chinois'],
   },
-  'secretaire-socio-culturel': {
-    name: 'Secrétaire Socio-Culturel(le)',
-    role: 'Secrétaire aux Relations Publiques et Affaires Socio-culturelles',
+  'mabiala': {
+    name: 'Mabiala',
+    role: 'Secrétaire Socio-culturel',
     structure: 'Bureau Exécutif',
     icon: 'fas fa-bullhorn',
     color: '#7c3aed',
     photo: null,
-    bio: 'Le/la Secrétaire chargé(e) aux relations publiques et aux affaires socio-culturelles a pour mission d\'assurer la mobilisation et la communication, d\'accueillir et suivre les étudiants congolais (Art. 13). Il/elle assure l\'intérim du Secrétaire Général en cas d\'absence.',
+    bio: 'Secrétaire chargé aux relations publiques et aux affaires socio-culturelles de l\'AECC. Il a pour mission d\'assurer la mobilisation et la communication, d\'accueillir et suivre les étudiants congolais (Art. 13). Il assure l\'intérim du Secrétaire Général en cas d\'absence.',
     education: [],
     responsibilities: [
       'Assurer la mobilisation et la communication de l\'Association (Art. 13)',
@@ -61,14 +59,14 @@ const ALL_MEMBERS = {
     contact: { email: 'communication@aecc.org', wechat: null },
     languages: ['Français', 'Anglais', 'Chinois'],
   },
-  'tresorier': {
-    name: 'Trésorier(ère)',
-    role: 'Trésorier(ère) Général(e)',
+  'exauce': {
+    name: 'Exauce',
+    role: 'Trésorier Général',
     structure: 'Bureau Exécutif',
     icon: 'fas fa-wallet',
     color: '#d97706',
     photo: null,
-    bio: 'Le/la Trésorier(ère) est le gestionnaire des ressources financières et du patrimoine de l\'Association (Art. 14). Il/elle assure la transparence financière et est cosignataire des sorties de fonds avec le Président.',
+    bio: 'Trésorier Général de l\'AECC. Il est le gestionnaire des ressources financières et du patrimoine de l\'Association (Art. 14). Il assure la transparence financière et est cosignataire des sorties de fonds avec le Président.',
     education: [],
     responsibilities: [
       'Tenir les documents comptables de l\'Association (Art. 14)',
@@ -80,15 +78,17 @@ const ALL_MEMBERS = {
     contact: { email: 'tresorerie@aecc.org', wechat: null },
     languages: ['Français', 'Anglais', 'Chinois'],
   },
-  'responsable-technique': {
-    name: 'Responsable Technique',
+  'cluivert': {
+    name: 'Cluivert',
     role: 'Responsable Technique',
     structure: 'Bureau Exécutif',
     icon: 'fas fa-cogs',
     color: '#059669',
     photo: null,
-    bio: 'Le/la Responsable Technique gère l\'ensemble de l\'infrastructure numérique de l\'AECC. Ce poste assure le développement et la maintenance du site web, des réseaux sociaux et de tous les outils technologiques de l\'association.',
-    education: [],
+    bio: 'Responsable Technique de l\'AECC. Il gère l\'ensemble de l\'infrastructure numérique de l\'association : développement et maintenance du site web, réseaux sociaux et tous les outils technologiques.',
+    education: [
+      { degree: 'Master en Informatique', university: 'Université de Pékin', year: '2023 – 2026' },
+    ],
     responsibilities: [
       'Développer et maintenir le site web de l\'AECC',
       'Gérer les réseaux sociaux de l\'Association',
@@ -97,17 +97,17 @@ const ALL_MEMBERS = {
       'Proposer des solutions technologiques pour améliorer le fonctionnement',
       'Assurer la sécurité des données des membres',
     ],
-    contact: { email: 'technique@aecc.org', wechat: null },
-    languages: ['Français', 'Anglais', 'Chinois'],
+    contact: { email: 'technique@aecc.org', wechat: '18506959673' },
+    languages: ['Français', 'Anglais', 'Chinois (HSK 5)', 'Lingala'],
   },
-  'commissaire': {
-    name: 'Commissaire',
+  'gloire': {
+    name: 'Gloire',
     role: 'Commissaire',
     structure: 'Commission de Contrôle, d\'Évaluation et de Discipline',
-    icon: 'fas fa-balance-scale',
+    icon: 'fas fa-gavel',
     color: '#dc2626',
     photo: null,
-    bio: 'Le/la Commissaire dirige la Commission de Contrôle, d\'Évaluation et de Discipline (C.C.E.D). Conformément aux statuts (Art. 19-22), cette commission indépendante veille à la bonne gestion des finances, au bon fonctionnement des instances et à l\'exécution des activités de l\'association.',
+    bio: 'Commissaire de la C.C.E.D de l\'AECC. Conformément aux statuts (Art. 19-22), cette commission indépendante veille à la bonne gestion des finances, au bon fonctionnement des instances et à l\'exécution des activités de l\'association.',
     education: [],
     responsibilities: [
       'Suivre la gestion de l\'Association (Art. 19 des Statuts)',
@@ -120,14 +120,14 @@ const ALL_MEMBERS = {
     contact: { email: 'discipline@aecc.org', wechat: null },
     languages: ['Français', 'Anglais', 'Chinois'],
   },
-  'rapporteur': {
-    name: 'Rapporteur(e)',
-    role: 'Rapporteur(e)',
+  'david': {
+    name: 'David',
+    role: 'Rapporteur',
     structure: 'Commission de Contrôle, d\'Évaluation et de Discipline',
     icon: 'fas fa-pen-fancy',
     color: '#0891b2',
     photo: null,
-    bio: 'Le/la Rapporteur(e) assiste le Commissaire dans ses fonctions au sein de la C.C.E.D. Il/elle rédige les rapports d\'activité de la commission et présente les conclusions lors des assemblées. En cas de démission du Commissaire, le Rapporteur devient Commissaire (Art. 19 du R.I.).',
+    bio: 'Rapporteur de la C.C.E.D de l\'AECC. Il assiste le Commissaire dans ses fonctions, rédige les rapports d\'activité de la commission et présente les conclusions lors des assemblées. En cas de démission du Commissaire, le Rapporteur devient Commissaire (Art. 19 du R.I.).',
     education: [],
     responsibilities: [
       'Rédiger les rapports et comptes rendus de la commission',
