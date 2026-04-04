@@ -1,39 +1,69 @@
 {
   "name": "congolese-students-china",
-  "version": "1.0.0",
-  "description": "Website for the Association of Congolese Students in China",
-  "main": "server.js",
+  "version": "2.0.0",
+  "description": "AECC - Association des Étudiants Congolais en Chine",
+  "main": "server/server.js",
   "scripts": {
-    "start": "node server.js",
-    "server": "nodemon server.js",
-    "client": "cd client && npm start",
-    "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "install-client": "cd client && npm install",
-    "build": "cd client && npm run build",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm run install-client && npm run build"
+    "start": "node server/server.js",
+    "server": "nodemon server/server.js",
+    "dev": "nodemon server/server.js",
+    "db:init": "node server/scripts/init-database.js",
+    "db:reset": "node server/scripts/init-database.js",
+    "db:info": "node server/scripts/db-manager.js info",
+    "db:backup": "node server/scripts/backup-restore.js backup",
+    "db:restore": "node server/scripts/backup-restore.js restore",
+    "db:list-backups": "node server/scripts/backup-restore.js list",
+    "db:list-users": "node server/scripts/db-manager.js list-users",
+    "db:create-admin": "node server/scripts/db-manager.js create-admin",
+    "db:clear-users": "node server/scripts/db-manager.js clear users",
+    "db:clear-blogs": "node server/scripts/db-manager.js clear posts",
+    "db:clear-events": "node server/scripts/db-manager.js clear events",
+    "db:clear-resources": "node server/scripts/db-manager.js clear resources",
+    "db:clear-profiles": "node server/scripts/db-manager.js clear profiles",
+    "migrate:wordpress": "node server/scripts/migrate-to-wordpress-complete.js",
+    "create-admin": "node server/scripts/create-admin.js",
+    "test": "jest --forceExit --detectOpenHandles",
+    "test:watch": "jest --watch --forceExit --detectOpenHandles",
+    "client": "cd client-react && npm run dev",
+    "dev:full": "concurrently \"npm run server\" \"npm run client\""
   },
   "keywords": [
     "congo",
     "china",
     "students",
-    "association"
+    "association",
+    "mern"
   ],
   "author": "Association of Congolese Students in China",
   "license": "MIT",
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.1024.0",
     "bcryptjs": "^2.4.3",
-    "cloudinary": "^2.6.0",
-    "config": "^3.3.12",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
+    "express-rate-limit": "^8.3.2",
     "express-validator": "^7.2.1",
+    "helmet": "^8.1.0",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^7.5.0",
-    "multer": "^1.4.5-lts.1"
+    "multer": "^1.4.5-lts.1",
+    "nodemailer": "^8.0.4",
+    "qrcode": "^1.5.4",
+    "speakeasy": "^2.0.0"
   },
   "devDependencies": {
     "concurrently": "^8.2.1",
-    "nodemon": "^3.0.1"
+    "jest": "^30.3.0",
+    "mongodb-memory-server": "^11.0.1",
+    "nodemon": "^3.0.1",
+    "supertest": "^7.2.2"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "testMatch": [
+      "**/server/tests/**/*.test.js"
+    ],
+    "testTimeout": 30000
   }
 }

@@ -1,1 +1,62 @@
-node_modules
+# Dependencies
+node_modules/
+client-react/node_modules/
+
+# Environment & secrets
+.env
+.env.*
+
+# Local MongoDB data
+data/
+
+# Backups
+backups/
+
+# Uploaded files (stored in R2 in production)
+uploads/
+
+# Build output (rebuilt on server)
+client-react/dist/
+
+# Logs
+*.log
+debug.log
+npm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Dev tools
+.windsurfrules
+db-export/
+.github/
+
+# Tests (dev-only)
+server/tests/
+
+# Migration & seed scripts (not needed in production)
+server/scripts/add-sample-*.js
+server/scripts/add-test-*.js
+server/scripts/fetch-*.js
+server/scripts/init-*.js
+server/scripts/migrate-*.js
+server/scripts/seed-*.js
+server/scripts/show-*.js
+server/scripts/update-*.js
+server/scripts/reset-admin.js
+server/scripts/init-wordpress-blog-system.js
+server/scripts/init-wordpress-blog.js
+server/scripts/migrate-to-wordpress.js
+server/scripts/migrate-to-wordpress-complete.js
+
+# Docs (dev-only)
+docs/
+PROJECT_TRACKER.md

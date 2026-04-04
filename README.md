@@ -1,87 +1,127 @@
-# Association of Congolese Students in China Website
+# AECC — Association des Étudiants Congolais en Chine
 
-A comprehensive, dynamic, and user-friendly website for the Association of Congolese Students in China. This platform serves as a central hub for information, resources, and community engagement, catering to the needs of Congolese students studying in China.
+Plateforme communautaire pour les étudiants congolais (RDC) en Chine. Recensement des étudiants, blogs, événements, ressources partagées et gestion administrative.
 
-## Features
+## Stack technique
 
-- **Contact Information**: Contact details and interactive map
-- **Blogs**: Member experiences, tips, and stories
-- **About Us**: Association information, office members, and history
-- **Resources**: Downloadable files and external resources
-- **Learning Section**: Curated learning resources
-- **Registration**: Comprehensive user registration system
-- **Profile Page**: Personalized user profiles
-- **Login**: Secure authentication system
-- **Home Page**: Professional and engaging landing page
-- **Community Forum**: Discussion board for student interaction
-- **Events Calendar**: Upcoming events and activities
-- **Newsletter**: Subscription-based updates
-- **Multilingual Support**: English, French, and Chinese
+| Couche | Technologie |
+|--------|------------|
+| **Runtime** | Node.js |
+| **Backend** | Express 4.18 |
+| **Base de données** | MongoDB (Mongoose 7.5) |
+| **Auth** | JWT + bcryptjs |
+| **Uploads** | Multer (stockage disque) |
+| **Validation** | express-validator |
+| **Frontend** | HTML / CSS / JavaScript (vanilla) |
 
-## Tech Stack
+## Fonctionnalités
 
-- **Frontend**: React, Redux, Bootstrap
-- **Backend**: Node.js, Express
-- **Database**: MongoDB
-- **Authentication**: JWT
-- **File Storage**: Multer, AWS S3 (optional)
-- **Deployment**: Heroku, Netlify, or similar
+- **Inscription** multi-étapes avec upload de documents (passeport, visa, admission)
+- **Blogs** WordPress-style avec catégories, tags, commentaires
+- **Événements** avec filtres (type, date, lieu) et pagination
+- **Ressources** partagées (documents, vidéos, bourses, liens Telegram)
+- **Profils** étendus (compétences, réseaux sociaux)
+- **Contact** formulaire avec gestion admin
+- **Newsletter** abonnement/désabonnement
+- **Admin panel** complet (dashboard, CRUD, settings)
 
-## Getting Started
+## Démarrage rapide
 
-### Prerequisites
+### Prérequis
 
-- Node.js (v14 or higher)
-- npm or yarn
-- MongoDB (local or Atlas)
+- Node.js v16+
+- MongoDB (local ou Atlas)
 
 ### Installation
 
-1. Clone the repository
-   ```
-   git clone <repository-url>
-   cd congolese-students-china
-   ```
-
-2. Install server dependencies
-   ```
-   npm install
-   ```
-
-3. Install client dependencies
-   ```
-   npm run install-client
-   ```
-
-4. Create a `.env` file in the root directory with the following variables
-   ```
-   MONGO_URI=your_mongodb_connection_string
-   JWT_SECRET=your_jwt_secret
-   ```
-
-5. Run the development server
-   ```
-   npm run dev
-   ```
-
-## Project Structure
-
-```
-congolese-students-china/
-├── client/                  # React frontend
-├── config/                  # Configuration files
-├── controllers/             # Route controllers
-├── middleware/              # Custom middleware
-├── models/                  # Database models
-├── routes/                  # API routes
-├── uploads/                 # Uploaded files
-├── .env                     # Environment variables
-├── .gitignore               # Git ignore file
-├── package.json             # Project dependencies
-├── README.md                # Project documentation
-└── server.js                # Entry point
+```bash
+git clone <repository-url>
+cd congolese-students-china
+npm install
 ```
 
-## License
+### Configuration
 
-This project is licensed under the MIT License.
+Créer un fichier `.env` à la racine :
+
+```env
+MONGO_URI=mongodb://localhost:27017/congolese_students
+JWT_SECRET=votre_secret_jwt_securise
+PORT=5000
+CORS_ORIGINS=http://localhost:5000,http://localhost:3000
+```
+
+### Lancement
+
+```bash
+# Développement (avec nodemon)
+npm run dev
+
+# Production
+npm start
+```
+
+Le serveur démarre sur `http://localhost:5000`.
+
+## Structure du projet
+
+```
+├── server/                    # Backend (Node.js + Express)
+│   ├── server.js              # Point d'entrée
+│   ├── config/
+│   │   ├── db.js              # Connexion MongoDB
+│   │   └── keys.js            # Config centralisée
+│   ├── controllers/           # Logique métier (10 controllers)
+│   ├── middleware/
+│   │   ├── auth.js            # Vérification JWT
+│   │   ├── adminAuth.js       # JWT + rôle admin + whitelist
+│   │   ├── errorHandler.js    # Gestion d'erreurs centralisée
+│   │   └── upload.js          # Config Multer
+│   ├── models/                # Schémas Mongoose (7 modèles)
+│   ├── routes/api/            # Routes API (10 fichiers)
+│   ├── scripts/               # Scripts utilitaires DB
+│   └── utils/
+│
+├── client/                    # Frontend (HTML/CSS/JS)
+│   ├── *.html                 # Pages publiques (12 pages)
+│   ├── css/                   # Stylesheets (18 fichiers)
+│   ├── js/                    # Scripts frontend (10 fichiers)
+│   └── admin/                 # Panneau d'administration
+│
+├── uploads/                   # Fichiers uploadés
+├── backups/                   # Sauvegardes DB
+└── docs/                      # Documentation
+```
+
+## Scripts npm
+
+| Commande | Description |
+|----------|-------------|
+| `npm start` | Lancer le serveur en production |
+| `npm run dev` | Lancer avec nodemon (dev) |
+| `npm run create-admin` | Créer un utilisateur admin |
+| `npm run db:init` | Initialiser la base de données |
+| `npm run db:backup` | Sauvegarder la base |
+| `npm run db:restore` | Restaurer une sauvegarde |
+| `npm run migrate:wordpress` | Migrer vers le système blog WordPress |
+
+## API
+
+Toutes les routes API sont préfixées par `/api/`. Voir [PROJECT_TRACKER.md](PROJECT_TRACKER.md) pour la liste complète des endpoints.
+
+| Ressource | Base URL |
+|-----------|----------|
+| Auth | `/api/auth` |
+| Users | `/api/users` |
+| Blogs | `/api/blogs` |
+| Events | `/api/events` |
+| Profiles | `/api/profile` |
+| Resources | `/api/resources` |
+| Contact | `/api/contact` |
+| Newsletter | `/api/newsletter` |
+| System | `/api/system` |
+| Upload | `/api/upload` |
+
+## Licence
+
+MIT
