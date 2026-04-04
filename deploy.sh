@@ -31,7 +31,7 @@ else
   sudo mkdir -p /var/www
   cd /var/www
   # Replace with your actual git repo URL
-  git clone https://github.com/YOUR_REPO/congolese-students-china.git aecc
+  git clone https://github.com/EspenQueston/aecc.git aecc
   cd "$APP_DIR"
 fi
 

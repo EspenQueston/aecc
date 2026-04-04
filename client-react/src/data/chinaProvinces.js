@@ -1,0 +1,36 @@
+// China provinces and their major cities for student registration
+const CHINA_PROVINCES = {
+  'Beijing': ['Haidian', 'Chaoyang', 'Dongcheng', 'Xicheng', 'Fengtai', 'Shijingshan', 'Tongzhou', 'Changping', 'Daxing', 'Shunyi'],
+  'Shanghai': ['Pudong', 'Huangpu', 'Xuhui', 'Changning', 'Jing\'an', 'Putuo', 'Hongkou', 'Yangpu', 'Minhang', 'Baoshan'],
+  'Guangdong': ['Guangzhou', 'Shenzhen', 'Dongguan', 'Foshan', 'Zhuhai', 'Zhongshan', 'Huizhou', 'Jiangmen', 'Shantou', 'Zhanjiang'],
+  'Zhejiang': ['Hangzhou', 'Ningbo', 'Wenzhou', 'Shaoxing', 'Jinhua', 'Jiaxing', 'Huzhou', 'Taizhou', 'Quzhou', 'Lishui'],
+  'Jiangsu': ['Nanjing', 'Suzhou', 'Wuxi', 'Changzhou', 'Nantong', 'Xuzhou', 'Yangzhou', 'Yancheng', 'Zhenjiang', 'Taizhou'],
+  'Hubei': ['Wuhan', 'Yichang', 'Xiangyang', 'Jingzhou', 'Huangshi', 'Shiyan', 'Xiaogan', 'Huanggang', 'Ezhou', 'Xiantao'],
+  'Sichuan': ['Chengdu', 'Mianyang', 'Deyang', 'Yibin', 'Nanchong', 'Leshan', 'Luzhou', 'Zigong', 'Suining', 'Dazhou'],
+  'Hunan': ['Changsha', 'Zhuzhou', 'Xiangtan', 'Hengyang', 'Yueyang', 'Changde', 'Yiyang', 'Loudi', 'Chenzhou', 'Shaoyang'],
+  'Henan': ['Zhengzhou', 'Luoyang', 'Kaifeng', 'Nanyang', 'Xinxiang', 'Anyang', 'Xuchang', 'Jiaozuo', 'Shangqiu', 'Zhoukou'],
+  'Hebei': ['Shijiazhuang', 'Tangshan', 'Baoding', 'Handan', 'Langfang', 'Qinhuangdao', 'Cangzhou', 'Xingtai', 'Hengshui', 'Zhangjiakou'],
+  'Shandong': ['Jinan', 'Qingdao', 'Yantai', 'Weifang', 'Weihai', 'Zibo', 'Linyi', 'Jining', 'Tai\'an', 'Dezhou'],
+  'Liaoning': ['Shenyang', 'Dalian', 'Anshan', 'Fushun', 'Jinzhou', 'Yingkou', 'Dandong', 'Liaoyang', 'Panjin', 'Tieling'],
+  'Fujian': ['Fuzhou', 'Xiamen', 'Quanzhou', 'Zhangzhou', 'Putian', 'Longyan', 'Sanming', 'Nanping', 'Ningde', 'Wuyishan'],
+  'Shaanxi': ['Xi\'an', 'Xianyang', 'Baoji', 'Weinan', 'Yan\'an', 'Hanzhong', 'Yulin', 'Ankang', 'Shangluo', 'Tongchuan'],
+  'Tianjin': ['Heping', 'Nankai', 'Hexi', 'Hedong', 'Hebei', 'Hongqiao', 'Binhai', 'Dongli', 'Xiqing', 'Jinnan'],
+  'Chongqing': ['Yuzhong', 'Jiangbei', 'Nan\'an', 'Shapingba', 'Jiulongpo', 'Dadukou', 'Beibei', 'Yubei', 'Banan', 'Wanzhou'],
+  'Heilongjiang': ['Harbin', 'Qiqihar', 'Daqing', 'Mudanjiang', 'Jiamusi', 'Jixi', 'Hegang', 'Shuangyashan', 'Suihua', 'Yichun'],
+  'Jilin': ['Changchun', 'Jilin', 'Siping', 'Tonghua', 'Baicheng', 'Liaoyuan', 'Songyuan', 'Baishan', 'Yanbian', 'Meihekou'],
+  'Anhui': ['Hefei', 'Wuhu', 'Bengbu', 'Ma\'anshan', 'Anqing', 'Huainan', 'Fuyang', 'Suzhou', 'Huaibei', 'Chuzhou'],
+  'Jiangxi': ['Nanchang', 'Ganzhou', 'Jiujiang', 'Shangrao', 'Ji\'an', 'Yichun', 'Fuzhou', 'Jingdezhen', 'Xinyu', 'Pingxiang'],
+  'Shanxi': ['Taiyuan', 'Datong', 'Changzhi', 'Jincheng', 'Yuncheng', 'Linfen', 'Jinzhong', 'Shuozhou', 'Xinzhou', 'Lvliang'],
+  'Yunnan': ['Kunming', 'Dali', 'Lijiang', 'Qujing', 'Yuxi', 'Honghe', 'Chuxiong', 'Wenshan', 'Baoshan', 'Zhaotong'],
+  'Guizhou': ['Guiyang', 'Zunyi', 'Anshun', 'Bijie', 'Liupanshui', 'Tongren', 'Qiannan', 'Qiandongnan', 'Qianxinan', 'Kaili'],
+  'Gansu': ['Lanzhou', 'Tianshui', 'Baiyin', 'Wuwei', 'Zhangye', 'Pingliang', 'Qingyang', 'Dingxi', 'Longnan', 'Jiuquan'],
+  'Guangxi': ['Nanning', 'Guilin', 'Liuzhou', 'Beihai', 'Wuzhou', 'Yulin', 'Baise', 'Hezhou', 'Hechi', 'Laibin'],
+  'Hainan': ['Haikou', 'Sanya', 'Danzhou', 'Wenchang', 'Qionghai', 'Wanning', 'Dongfang', 'Chengmai', 'Lingao', 'Baoting'],
+  'Inner Mongolia': ['Hohhot', 'Baotou', 'Chifeng', 'Ordos', 'Tongliao', 'Hulunbuir', 'Wuhai', 'Bayannur', 'Ulanqab', 'Xilin Gol'],
+  'Xinjiang': ['Urumqi', 'Karamay', 'Kashgar', 'Aksu', 'Korla', 'Hotan', 'Yining', 'Changji', 'Turpan', 'Hami'],
+  'Tibet': ['Lhasa', 'Shigatse', 'Chamdo', 'Nyingchi', 'Shannan', 'Nagqu', 'Ali'],
+  'Ningxia': ['Yinchuan', 'Shizuishan', 'Wuzhong', 'Guyuan', 'Zhongwei'],
+  'Qinghai': ['Xining', 'Haidong', 'Haixi', 'Haibei', 'Huangnan', 'Hainan', 'Guoluo', 'Yushu']
+};
+
+export default CHINA_PROVINCES;
