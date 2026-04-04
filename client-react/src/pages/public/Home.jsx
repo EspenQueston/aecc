@@ -5,16 +5,16 @@ import NewsletterBlock from '../../components/common/NewsletterBlock';
 import ExpandableText from '../../components/common/ExpandableText';
 
 const BUREAU_MEMBERS = [
-  { name: 'Rinel', role: 'Président', slug: 'rinel', desc: 'Chargé de la coordination et de l\'orientation de l\'association. Représente l\'AECC auprès des autorités et partenaires.', icon: 'fas fa-crown', color: '#B7222D', city: 'Beijing' },
-  { name: 'Cleve', role: 'Secrétaire Général', slug: 'cleve', desc: 'Chargé de l\'administration, de la rédaction des procès-verbaux et de la tenue des archives de l\'association.', icon: 'fas fa-file-alt', color: '#2563eb', city: 'Beijing' },
-  { name: 'Mabiala', role: 'Secrétaire Socio-culturel', slug: 'mabiala', desc: 'Assure la mobilisation, la communication, l\'accueil et le suivi des étudiants congolais.', icon: 'fas fa-bullhorn', color: '#7c3aed', city: 'Beijing' },
-  { name: 'Exauce', role: 'Trésorier Général', slug: 'exauce', desc: 'Gestionnaire des ressources financières et du patrimoine. Cosignataire des sorties de fonds avec le Président.', icon: 'fas fa-wallet', color: '#d97706', city: 'Beijing' },
-  { name: 'Cluivert', role: 'Responsable Technique', slug: 'cluivert', desc: 'Gère le site web, les réseaux sociaux, les outils numériques et l\'infrastructure technique de l\'AECC.', icon: 'fas fa-cogs', color: '#059669', city: 'Beijing' },
+  { name: 'Rinel', role: 'Président', desc: 'Chargé de la coordination et de l\'orientation de l\'association. Représente l\'AECC auprès des autorités et partenaires.', icon: 'fas fa-crown', color: '#B7222D', city: 'Beijing' },
+  { name: 'Cleve', role: 'Secrétaire Général', desc: 'Chargé de l\'administration, de la rédaction des procès-verbaux et de la tenue des archives de l\'association.', icon: 'fas fa-file-alt', color: '#2563eb', city: 'Beijing' },
+  { name: 'Mabiala', role: 'Secrétaire Socio-culturel', desc: 'Assure la mobilisation, la communication, l\'accueil et le suivi des étudiants congolais.', icon: 'fas fa-bullhorn', color: '#7c3aed', city: 'Beijing' },
+  { name: 'Exauce', role: 'Trésorier Général', desc: 'Gestionnaire des ressources financières et du patrimoine. Cosignataire des sorties de fonds avec le Président.', icon: 'fas fa-wallet', color: '#d97706', city: 'Beijing' },
+  { name: 'Cluivert', role: 'Responsable Technique', desc: 'Gère le site web, les réseaux sociaux, les outils numériques et l\'infrastructure technique de l\'AECC.', icon: 'fas fa-cogs', color: '#059669', city: 'Beijing' },
 ];
 
 const COMMISSION_MEMBERS = [
-  { name: 'Gloire', role: 'Commissaire', slug: 'gloire', desc: 'Veille à la bonne gestion des finances, au bon fonctionnement des instances et à l\'exécution des activités de l\'association.', icon: 'fas fa-gavel', color: '#dc2626', city: 'Beijing' },
-  { name: 'David', role: 'Rapporteur', slug: 'david', desc: 'Rédige les rapports de la commission, assiste le Commissaire et présente les conclusions à l\'Assemblée Générale.', icon: 'fas fa-pen-fancy', color: '#0891b2', city: 'Beijing' },
+  { name: 'Gloire', role: 'Commissaire', desc: 'Veille à la bonne gestion des finances, au bon fonctionnement des instances et à l\'exécution des activités de l\'association.', icon: 'fas fa-gavel', color: '#dc2626', city: 'Beijing' },
+  { name: 'David', role: 'Rapporteur', desc: 'Rédige les rapports de la commission, assiste le Commissaire et présente les conclusions à l\'Assemblée Générale.', icon: 'fas fa-pen-fancy', color: '#0891b2', city: 'Beijing' },
 ];
 
 const SCHOLARSHIPS = [
@@ -100,7 +100,7 @@ export default function Home() {
           </div>
           <div className="office-grid">
             {BUREAU_MEMBERS.map((member, i) => (
-              <Link key={i} to={`/equipe/${member.slug}`} className="office-card office-card-link">
+              <Link key={i} to={`/equipe/${member.name.toLowerCase()}`} className="office-card office-card-link">
                 <div className="office-avatar" style={{ background: `linear-gradient(135deg, ${member.color}, ${member.color}cc)` }}>
                   <i className={member.icon}></i>
                 </div>
@@ -123,7 +123,7 @@ export default function Home() {
           </div>
           <div className="office-grid office-grid-sm">
             {COMMISSION_MEMBERS.map((member, i) => (
-              <Link key={i} to={`/equipe/${member.slug}`} className="office-card office-card-link">
+              <Link key={i} to={`/equipe/${member.name.toLowerCase()}`} className="office-card office-card-link">
                 <div className="office-avatar" style={{ background: `linear-gradient(135deg, ${member.color}, ${member.color}cc)` }}>
                   <i className={member.icon}></i>
                 </div>

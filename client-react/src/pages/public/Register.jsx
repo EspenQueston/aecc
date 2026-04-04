@@ -366,17 +366,6 @@ export default function Register() {
                         </select>
                       </div>
                     </div>
-                    <div className="form-row">
-                      <div className="form-group">
-                        <label>N° Passeport <span className="required">*</span></label>
-                        <input name="passportNumber" value={regForm.passportNumber} onChange={handleRegChange} pattern="^OA\d{7}$" placeholder="OA1234567" maxLength={9} required />
-                        <span className="form-hint"><i className="fas fa-info-circle"></i> Format: OA + 7 chiffres</span>
-                      </div>
-                      <div className="form-group">
-                        <label>Téléphone <span className="required">*</span></label>
-                        <input name="phoneNumber" value={regForm.phoneNumber} onChange={handleRegChange} placeholder="+86 138 0000 0000" required />
-                      </div>
-                    </div>
                     <div className="form-group">
                       <label>WeChat ID <span className="required">*</span></label>
                       <input name="wechatId" value={regForm.wechatId} onChange={handleRegChange} placeholder="Votre identifiant WeChat" required />
@@ -390,7 +379,19 @@ export default function Register() {
                 {regStep === 2 && (
                   <div className="form-step animate-in">
                     <h3><i className="fas fa-map-marker-alt"></i> Séjour & Études</h3>
-                    <p className="form-step-desc">Localisation en Chine et informations académiques</p>
+                    <p className="form-step-desc">Passeport, localisation et informations académiques</p>
+
+                    <div className="form-row">
+                      <div className="form-group">
+                        <label>N° Passeport <span className="required">*</span></label>
+                        <input name="passportNumber" value={regForm.passportNumber} onChange={handleRegChange} pattern="^OA\d{7}$" placeholder="OA1234567" maxLength={9} required />
+                        <span className="form-hint"><i className="fas fa-info-circle"></i> Format: OA + 7 chiffres</span>
+                      </div>
+                      <div className="form-group">
+                        <label>Téléphone <span className="required">*</span></label>
+                        <input name="phoneNumber" value={regForm.phoneNumber} onChange={handleRegChange} placeholder="+86 138 0000 0000" required />
+                      </div>
+                    </div>
 
                     <div className="form-row">
                       <div className="form-group">

@@ -12,6 +12,7 @@ export default function PublicLayout() {
   const [nlEmail, setNlEmail] = useState('');
   const [nlStatus, setNlStatus] = useState(null);
   const [showWechat, setShowWechat] = useState(false);
+  const [wechatCopied, setWechatCopied] = useState(false);
   const navigate = useNavigate();
 
   function handleSearch(e) {
@@ -162,12 +163,15 @@ export default function PublicLayout() {
       <ScrollWidget />
 
       {showWechat && (
-        <div className="wechat-modal-overlay" onClick={() => setShowWechat(false)}>
+        <div className="wechat-modal-overlay" onClick={() => { setShowWechat(false); setWechatCopied(false); }}>
           <div className="wechat-modal" onClick={e => e.stopPropagation()}>
-            <button className="wechat-modal-close" onClick={() => setShowWechat(false)}><i className="fas fa-times"></i></button>
+            <button className="wechat-modal-close" onClick={() => { setShowWechat(false); setWechatCopied(false); }}><i className="fas fa-times"></i></button>
             <div className="wechat-modal-icon"><i className="fab fa-wechat"></i></div>
             <h3>WeChat ID</h3>
             <p className="wechat-id">18506959673</p>
+            <button className="wechat-copy-btn" onClick={() => { navigator.clipboard.writeText('18506959673'); setWechatCopied(true); setTimeout(() => setWechatCopied(false), 2000); }}>
+              <i className={`fas fa-${wechatCopied ? 'check' : 'copy'}`}></i> {wechatCopied ? 'Copié !' : 'Copier l\'ID'}
+            </button>
             <p className="wechat-hint">Scannez ou ajoutez cet ID sur WeChat pour nous contacter</p>
           </div>
         </div>
