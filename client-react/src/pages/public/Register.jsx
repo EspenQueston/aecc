@@ -172,7 +172,7 @@ export default function Register() {
 
   function validateStep(step) {
     if (step === 1) {
-      if (!regForm.firstName || !regForm.lastName || !regForm.dateOfBirth || !regForm.gender || !regForm.passportNumber || !regForm.phoneNumber || !regForm.wechatId) {
+      if (!regForm.firstName || !regForm.lastName || !regForm.dateOfBirth || !regForm.gender || !regForm.wechatId) {
         setError('Veuillez remplir tous les champs obligatoires');
         return false;
       }
@@ -185,14 +185,14 @@ export default function Register() {
         setError('Veuillez v\u00e9rifier votre date de naissance');
         return false;
       }
-      if (!/^OA\d{7}$/.test(regForm.passportNumber)) {
-        setError('Le num\u00e9ro de passeport doit commencer par OA suivi de 7 chiffres (ex: OA1234567)');
-        return false;
-      }
     }
     if (step === 2) {
-      if (!regForm.province || !regForm.city || !regForm.lastEntryDate || !regForm.university || !regForm.fieldOfStudy || !regForm.degreeLevel || !regForm.expectedGraduation || !regForm.scholarshipStatus) {
+      if (!regForm.passportNumber || !regForm.phoneNumber || !regForm.province || !regForm.city || !regForm.lastEntryDate || !regForm.university || !regForm.fieldOfStudy || !regForm.degreeLevel || !regForm.expectedGraduation || !regForm.scholarshipStatus) {
         setError('Veuillez remplir tous les champs obligatoires');
+        return false;
+      }
+      if (!/^OA\d{7}$/.test(regForm.passportNumber)) {
+        setError('Le num\u00e9ro de passeport doit commencer par OA suivi de 7 chiffres (ex: OA1234567)');
         return false;
       }
       if (regForm.scholarshipStatus === 'yes' && !regForm.scholarshipType) {
