@@ -13,16 +13,16 @@ export default function About() {
   ];
 
   const BUREAU_MEMBERS = [
-    { name: 'Cluivert Moukendi', role: 'Président', slug: 'cluivert-moukendi', desc: 'Chargé de la coordination et de l\'orientation de l\'association. Représente l\'AECC auprès des autorités et partenaires.', icon: 'fas fa-crown', color: '#B7222D' },
-    { name: 'Secrétaire Général', role: 'Secrétaire Général', slug: 'secretaire-general', desc: 'Chargé de l\'administration, de la rédaction des procès-verbaux et de la tenue des archives de l\'association.', icon: 'fas fa-file-alt', color: '#2563eb' },
-    { name: 'Secrétaire Socio-culturel', role: 'Secrétaire aux Relations Publiques et Affaires Socio-culturelles', slug: 'secretaire-socio-culturel', desc: 'Assure la mobilisation, la communication, l\'accueil et le suivi des étudiants congolais.', icon: 'fas fa-bullhorn', color: '#7c3aed' },
-    { name: 'Trésorier', role: 'Trésorier Général', slug: 'tresorier', desc: 'Gestionnaire des ressources financières et du patrimoine. Cosignataire des sorties de fonds avec le Président.', icon: 'fas fa-wallet', color: '#d97706' },
-    { name: 'Responsable Technique', role: 'Responsable Technique', slug: 'responsable-technique', desc: 'Gère le site web, les réseaux sociaux, les outils numériques et l\'infrastructure technique de l\'AECC.', icon: 'fas fa-cogs', color: '#059669' },
+    { name: 'Rinel', role: 'Président', slug: 'rinel', desc: 'Chargé de la coordination et de l\'orientation de l\'association. Représente l\'AECC auprès des autorités et partenaires.', icon: 'fas fa-crown', color: '#B7222D', city: 'Beijing' },
+    { name: 'Cleve', role: 'Secrétaire Général', slug: 'cleve', desc: 'Chargé de l\'administration, de la rédaction des procès-verbaux et de la tenue des archives de l\'association.', icon: 'fas fa-file-alt', color: '#2563eb', city: 'Beijing' },
+    { name: 'Mabiala', role: 'Secrétaire Socio-culturel', slug: 'mabiala', desc: 'Assure la mobilisation, la communication, l\'accueil et le suivi des étudiants congolais.', icon: 'fas fa-bullhorn', color: '#7c3aed', city: 'Beijing' },
+    { name: 'Exauce', role: 'Trésorier Général', slug: 'exauce', desc: 'Gestionnaire des ressources financières et du patrimoine. Cosignataire des sorties de fonds avec le Président.', icon: 'fas fa-wallet', color: '#d97706', city: 'Beijing' },
+    { name: 'Cluivert', role: 'Responsable Technique', slug: 'cluivert', desc: 'Gère le site web, les réseaux sociaux, les outils numériques et l\'infrastructure technique de l\'AECC.', icon: 'fas fa-cogs', color: '#059669', city: 'Beijing' },
   ];
 
   const COMMISSION_MEMBERS = [
-    { name: 'Commissaire', role: 'Commissaire', slug: 'commissaire', desc: 'Veille à la bonne gestion des finances, au bon fonctionnement des instances et à l\'exécution des activités de l\'association.', icon: 'fas fa-gavel', color: '#dc2626' },
-    { name: 'Rapporteur', role: 'Rapporteur', slug: 'rapporteur', desc: 'Rédige les rapports de la commission, assiste le Commissaire et présente les conclusions à l\'Assemblée Générale.', icon: 'fas fa-pen-fancy', color: '#0891b2' },
+    { name: 'Gloire', role: 'Commissaire', slug: 'gloire', desc: 'Veille à la bonne gestion des finances, au bon fonctionnement des instances et à l\'exécution des activités de l\'association.', icon: 'fas fa-gavel', color: '#dc2626', city: 'Beijing' },
+    { name: 'David', role: 'Rapporteur', slug: 'david', desc: 'Rédige les rapports de la commission, assiste le Commissaire et présente les conclusions à l\'Assemblée Générale.', icon: 'fas fa-pen-fancy', color: '#0891b2', city: 'Beijing' },
   ];
 
   const VALUES = [

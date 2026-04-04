@@ -1,20 +1,20 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { api } from '../../services/api';
 import NewsletterBlock from '../../components/common/NewsletterBlock';
 import ExpandableText from '../../components/common/ExpandableText';
 
 const BUREAU_MEMBERS = [
-  { name: 'Cluivert Moukendi', role: 'Président', slug: 'cluivert-moukendi', desc: 'Chargé de la coordination et de l\'orientation de l\'association. Représente l\'AECC auprès des autorités et partenaires.', icon: 'fas fa-crown', color: '#B7222D' },
-  { name: 'Secrétaire Général', role: 'Secrétaire Général', slug: 'secretaire-general', desc: 'Chargé de l\'administration, de la rédaction des procès-verbaux et de la tenue des archives de l\'association.', icon: 'fas fa-file-alt', color: '#2563eb' },
-  { name: 'Secrétaire Socio-culturel', role: 'Secrétaire aux Relations Publiques et Affaires Socio-culturelles', slug: 'secretaire-socio-culturel', desc: 'Assure la mobilisation, la communication, l\'accueil et le suivi des étudiants congolais.', icon: 'fas fa-bullhorn', color: '#7c3aed' },
-  { name: 'Trésorier', role: 'Trésorier Général', slug: 'tresorier', desc: 'Gestionnaire des ressources financières et du patrimoine. Cosignataire des sorties de fonds avec le Président.', icon: 'fas fa-wallet', color: '#d97706' },
-  { name: 'Responsable Technique', role: 'Responsable Technique', slug: 'responsable-technique', desc: 'Gère le site web, les réseaux sociaux, les outils numériques et l\'infrastructure technique de l\'AECC.', icon: 'fas fa-cogs', color: '#059669' },
+  { name: 'Rinel', role: 'Président', slug: 'rinel', desc: 'Chargé de la coordination et de l\'orientation de l\'association. Représente l\'AECC auprès des autorités et partenaires.', icon: 'fas fa-crown', color: '#B7222D', city: 'Beijing' },
+  { name: 'Cleve', role: 'Secrétaire Général', slug: 'cleve', desc: 'Chargé de l\'administration, de la rédaction des procès-verbaux et de la tenue des archives de l\'association.', icon: 'fas fa-file-alt', color: '#2563eb', city: 'Beijing' },
+  { name: 'Mabiala', role: 'Secrétaire Socio-culturel', slug: 'mabiala', desc: 'Assure la mobilisation, la communication, l\'accueil et le suivi des étudiants congolais.', icon: 'fas fa-bullhorn', color: '#7c3aed', city: 'Beijing' },
+  { name: 'Exauce', role: 'Trésorier Général', slug: 'exauce', desc: 'Gestionnaire des ressources financières et du patrimoine. Cosignataire des sorties de fonds avec le Président.', icon: 'fas fa-wallet', color: '#d97706', city: 'Beijing' },
+  { name: 'Cluivert', role: 'Responsable Technique', slug: 'cluivert', desc: 'Gère le site web, les réseaux sociaux, les outils numériques et l\'infrastructure technique de l\'AECC.', icon: 'fas fa-cogs', color: '#059669', city: 'Beijing' },
 ];
 
 const COMMISSION_MEMBERS = [
-  { name: 'Commissaire', role: 'Commissaire', slug: 'commissaire', desc: 'Veille à la bonne gestion des finances, au bon fonctionnement des instances et à l\'exécution des activités de l\'association.', icon: 'fas fa-gavel', color: '#dc2626' },
-  { name: 'Rapporteur', role: 'Rapporteur', slug: 'rapporteur', desc: 'Rédige les rapports de la commission, assiste le Commissaire et présente les conclusions à l\'Assemblée Générale.', icon: 'fas fa-pen-fancy', color: '#0891b2' },
+  { name: 'Gloire', role: 'Commissaire', slug: 'gloire', desc: 'Veille à la bonne gestion des finances, au bon fonctionnement des instances et à l\'exécution des activités de l\'association.', icon: 'fas fa-gavel', color: '#dc2626', city: 'Beijing' },
+  { name: 'David', role: 'Rapporteur', slug: 'david', desc: 'Rédige les rapports de la commission, assiste le Commissaire et présente les conclusions à l\'Assemblée Générale.', icon: 'fas fa-pen-fancy', color: '#0891b2', city: 'Beijing' },
 ];
 
 const SCHOLARSHIPS = [
@@ -35,6 +35,11 @@ export default function Home() {
   const [blogs, setBlogs] = useState([]);
   const [events, setEvents] = useState([]);
   const [stats, setStats] = useState({ students: 0, universities: 0, events: 0 });
+  const [expandedScholarship, setExpandedScholarship] = useState(null);
+  const [expandedActivity, setExpandedActivity] = useState(null);
+
+  const toggleScholarship = useCallback((e, i) => { e.preventDefault(); setExpandedScholarship(prev => prev === i ? null : i); }, []);
+  const toggleActivity = useCallback((e, i) => { e.preventDefault(); setExpandedActivity(prev => prev === i ? null : i); }, []);
 
   useEffect(() => { loadData(); }, []);
 
@@ -141,11 +146,14 @@ export default function Home() {
           </div>
           <Link to="/bourses" className="scholarships-grid clickable-section">
             {SCHOLARSHIPS.map((s, i) => (
-              <div key={i} className="scholarship-card">
+              <div key={i} className={`scholarship-card${expandedScholarship === i ? ' expanded' : ''}`}>
                 <div className="scholarship-icon">{s.icon}</div>
                 <h3>{s.name}</h3>
                 <p className="scholarship-desc">{s.desc}</p>
                 <p className="scholarship-detail"><i className="fas fa-info-circle"></i> {s.detail}</p>
+                <button className={`card-expand-toggle${expandedScholarship === i ? ' expanded' : ''}`} onClick={(e) => toggleScholarship(e, i)}>
+                  {expandedScholarship === i ? 'Moins' : 'Voir plus'} <i className="fas fa-chevron-down"></i>
+                </button>
               </div>
             ))}
           </Link>
@@ -250,12 +258,12 @@ export default function Home() {
             <p>Découvrez la richesse de notre vie communautaire en Chine</p>
           </div>
           <Link to="/activites" className="activities-grid clickable-section">
-            <div className="activity-card"><div className="activity-icon"><i className="fas fa-music"></i></div><h3>Soirées Culturelles</h3><p>Célébrations des fêtes congolaises, soirées musicales et gastronomiques</p></div>
-            <div className="activity-card"><div className="activity-icon"><i className="fas fa-futbol"></i></div><h3>Tournois Sportifs</h3><p>Compétitions de football, basketball entre différentes villes</p></div>
-            <div className="activity-card"><div className="activity-icon"><i className="fas fa-chalkboard-teacher"></i></div><h3>Séminaires Académiques</h3><p>Conférences, ateliers et partage d'expériences entre étudiants</p></div>
-            <div className="activity-card"><div className="activity-icon"><i className="fas fa-plane-departure"></i></div><h3>Accueil des Nouveaux</h3><p>Orientation et accompagnement des étudiants nouvellement arrivés</p></div>
-            <div className="activity-card"><div className="activity-icon"><i className="fas fa-heart"></i></div><h3>Actions Solidaires</h3><p>Collectes de fonds, soutien aux membres en difficulté</p></div>
-            <div className="activity-card"><div className="activity-icon"><i className="fas fa-network-wired"></i></div><h3>Networking Pro</h3><p>Rencontres avec des professionnels, mentorat et opportunités</p></div>
+            <div className={`activity-card${expandedActivity === 0 ? ' expanded' : ''}`}><div className="activity-icon"><i className="fas fa-music"></i></div><h3>Soirées Culturelles</h3><p>Célébrations des fêtes congolaises, soirées musicales et gastronomiques</p><button className={`card-expand-toggle${expandedActivity === 0 ? ' expanded' : ''}`} onClick={(e) => toggleActivity(e, 0)}>{expandedActivity === 0 ? 'Moins' : 'Voir plus'} <i className="fas fa-chevron-down"></i></button></div>
+            <div className={`activity-card${expandedActivity === 1 ? ' expanded' : ''}`}><div className="activity-icon"><i className="fas fa-futbol"></i></div><h3>Tournois Sportifs</h3><p>Compétitions de football, basketball entre différentes villes</p><button className={`card-expand-toggle${expandedActivity === 1 ? ' expanded' : ''}`} onClick={(e) => toggleActivity(e, 1)}>{expandedActivity === 1 ? 'Moins' : 'Voir plus'} <i className="fas fa-chevron-down"></i></button></div>
+            <div className={`activity-card${expandedActivity === 2 ? ' expanded' : ''}`}><div className="activity-icon"><i className="fas fa-chalkboard-teacher"></i></div><h3>Séminaires Académiques</h3><p>Conférences, ateliers et partage d'expériences entre étudiants</p><button className={`card-expand-toggle${expandedActivity === 2 ? ' expanded' : ''}`} onClick={(e) => toggleActivity(e, 2)}>{expandedActivity === 2 ? 'Moins' : 'Voir plus'} <i className="fas fa-chevron-down"></i></button></div>
+            <div className={`activity-card${expandedActivity === 3 ? ' expanded' : ''}`}><div className="activity-icon"><i className="fas fa-plane-departure"></i></div><h3>Accueil des Nouveaux</h3><p>Orientation et accompagnement des étudiants nouvellement arrivés</p><button className={`card-expand-toggle${expandedActivity === 3 ? ' expanded' : ''}`} onClick={(e) => toggleActivity(e, 3)}>{expandedActivity === 3 ? 'Moins' : 'Voir plus'} <i className="fas fa-chevron-down"></i></button></div>
+            <div className={`activity-card${expandedActivity === 4 ? ' expanded' : ''}`}><div className="activity-icon"><i className="fas fa-heart"></i></div><h3>Actions Solidaires</h3><p>Collectes de fonds, soutien aux membres en difficulté</p><button className={`card-expand-toggle${expandedActivity === 4 ? ' expanded' : ''}`} onClick={(e) => toggleActivity(e, 4)}>{expandedActivity === 4 ? 'Moins' : 'Voir plus'} <i className="fas fa-chevron-down"></i></button></div>
+            <div className={`activity-card${expandedActivity === 5 ? ' expanded' : ''}`}><div className="activity-icon"><i className="fas fa-network-wired"></i></div><h3>Networking Pro</h3><p>Rencontres avec des professionnels, mentorat et opportunités</p><button className={`card-expand-toggle${expandedActivity === 5 ? ' expanded' : ''}`} onClick={(e) => toggleActivity(e, 5)}>{expandedActivity === 5 ? 'Moins' : 'Voir plus'} <i className="fas fa-chevron-down"></i></button></div>
           </Link>
           <div className="section-footer">
             <Link to="/activites" className="btn btn-primary"><i className="fas fa-arrow-right"></i> Découvrir toutes les activités</Link>
