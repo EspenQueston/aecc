@@ -329,26 +329,26 @@ export default function Register() {
 
                 {regStep === 1 && (
                   <div className="form-step animate-in">
-                    <h3><i className="fas fa-user"></i> Informations personnelles</h3>
-                    <p className="form-step-desc">Renseignez vos informations d'identité</p>
+                    <h3><i className="fas fa-user"></i> Identité</h3>
+                    <p className="form-step-desc">Vos informations personnelles de base</p>
                     
                     <div className="form-row">
                       <div className="form-group">
                         <label>Prénom <span className="required">*</span></label>
-                        <input name="firstName" value={regForm.firstName} onChange={handleRegChange} placeholder="Votre prénom" required />
+                        <input name="firstName" value={regForm.firstName} onChange={handleRegChange} placeholder="Prénom" required />
                       </div>
                       <div className="form-group">
                         <label>Nom <span className="required">*</span></label>
-                        <input name="lastName" value={regForm.lastName} onChange={handleRegChange} placeholder="Votre nom de famille" required />
+                        <input name="lastName" value={regForm.lastName} onChange={handleRegChange} placeholder="Nom" required />
                       </div>
-                    </div>
-                    <div className="form-group">
-                      <label>Post-nom <span className="optional">(facultatif)</span></label>
-                      <input name="secondName" value={regForm.secondName} onChange={handleRegChange} placeholder="Votre post-nom" />
+                      <div className="form-group">
+                        <label>Post-nom <span className="optional">(opt.)</span></label>
+                        <input name="secondName" value={regForm.secondName} onChange={handleRegChange} placeholder="Post-nom" />
+                      </div>
                     </div>
                     <div className="form-row">
                       <div className="form-group">
-                        <label>Date de naissance <span className="required">*</span></label>
+                        <label>Naissance <span className="required">*</span></label>
                         <input type="date" name="dateOfBirth" value={regForm.dateOfBirth} onChange={handleRegChange} max={new Date().toISOString().split('T')[0]} required />
                         {dobAge !== null && (
                           <span className={`form-hint ${dobAge < 15 ? 'text-danger' : 'text-success'}`}>
@@ -359,7 +359,7 @@ export default function Register() {
                       <div className="form-group">
                         <label>Genre <span className="required">*</span></label>
                         <select name="gender" value={regForm.gender} onChange={handleRegChange} required>
-                          <option value="">— Sélectionner —</option>
+                          <option value="">— Choisir —</option>
                           <option value="male">Homme</option>
                           <option value="female">Femme</option>
                           <option value="other">Autre</option>
@@ -367,7 +367,7 @@ export default function Register() {
                       </div>
                     </div>
                     <div className="form-group">
-                      <label>WeChat ID <span className="required">*</span></label>
+                      <label><i className="fab fa-weixin"></i> WeChat ID <span className="required">*</span></label>
                       <input name="wechatId" value={regForm.wechatId} onChange={handleRegChange} placeholder="Votre identifiant WeChat" required />
                     </div>
                     <button type="button" className="btn btn-primary btn-block" onClick={() => validateStep(1) && setRegStep(2)}>
