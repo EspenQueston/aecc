@@ -571,8 +571,14 @@ button,input,select,textarea{font-family:inherit;font-size:inherit;border:none;o
   .office-avatar,.team-avatar{width:42px;height:42px;font-size:.9rem}
   .activity-icon,.value-icon{width:36px;height:36px;font-size:.85rem}
   .scholarship-icon{font-size:1.4rem}
-  .scholarship-card h3,.office-card h3,.team-card h3,.activity-card h3,.value-card h3,.service-card h3{font-size:.85rem;margin-bottom:.2rem}
-  .scholarship-desc,.office-card p,.team-card p,.activity-card p,.value-card p,.service-card p{font-size:.78rem;line-height:1.4}
+  .scholarship-card h3,.office-card h3,.team-card h3,.activity-card h3{font-size:.85rem;margin-bottom:.2rem}
+  .scholarship-desc,.office-card p,.team-card p,.activity-card p{font-size:.78rem;line-height:1.4}
+  .value-card,.service-card{padding:.7rem .6rem}
+  .value-icon{width:30px;height:30px;font-size:.8rem;margin-bottom:.4rem}
+  .value-card h3,.service-card h3{font-size:.82rem;margin-bottom:.2rem}
+  .value-card p,.service-card p{font-size:.72rem;line-height:1.35}
+  .values-grid,.services-grid{gap:.5rem}
+  .service-number{font-size:1rem;top:.3rem;right:.4rem}
   .cta-section{margin:0 -1rem}
   .cta-content{padding:1.2rem 1rem}
   .cta-content h2{font-size:1.05rem;margin-bottom:.3rem}
@@ -672,8 +678,8 @@ button,input,select,textarea{font-family:inherit;font-size:inherit;border:none;o
 .card-expand-btn.expanded i{transform:rotate(180deg)}
 @media(max-width:768px){
   .card-expand-btn{display:inline-flex}
-  .office-card p,.team-card p,.scholarship-desc,.activity-card p,.value-card p,.service-card p,.news-content p,.course-card p{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-  .office-card p.expanded,.team-card p.expanded,.scholarship-desc.expanded,.activity-card p.expanded,.value-card p.expanded,.service-card p.expanded,.news-content p.expanded,.course-card p.expanded{-webkit-line-clamp:unset;display:block}
+  .office-card p,.team-card p,.scholarship-desc,.activity-card p,.news-content p,.course-card p{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .office-card p.expanded,.team-card p.expanded,.scholarship-desc.expanded,.activity-card p.expanded,.news-content p.expanded,.course-card p.expanded{-webkit-line-clamp:unset;display:block}
 }
 
 /* ─── Logo Placeholder ─── */
@@ -1205,7 +1211,13 @@ button,input,select,textarea{font-family:inherit;font-size:inherit;border:none;o
 }
 @media(max-width:768px){
   .office-grid,.team-grid,.scholarships-grid,.activities-grid,.values-grid,.services-grid,.learning-grid,.links-grid,.features-grid{grid-template-columns:repeat(2,1fr)}
+  .values-grid,.services-grid{gap:.6rem}
   .scholarships-grid,.activities-grid{grid-template-columns:1fr}
+  .value-card,.service-card{padding:.8rem .7rem;text-align:center}
+  .value-icon{width:34px;height:34px;font-size:.85rem;margin-bottom:.5rem}
+  .value-card h3,.service-card h3{font-size:.85rem;margin-bottom:.25rem}
+  .value-card p,.service-card p{font-size:.76rem;line-height:1.4}
+  .service-number{font-size:1.2rem;top:.4rem;right:.5rem}
   .telegram-grid{grid-template-columns:1fr}
   .page-hero h1{font-size:1.6rem}
   .hero-trust{flex-wrap:wrap;gap:.8rem}
