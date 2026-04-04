@@ -111,7 +111,7 @@ export default function PublicLayout() {
               <h3><span className="footer-logo-frame"><img src="/logo.png" alt="AECC" onError={e => e.target.style.display='none'} /></span> AECC</h3>
               <p>Association des Étudiants Congolais en Chine — Créée le 1er Août 2000 à Pékin. Devise : Unité – Travail – Réussite.</p>
               <div className="social-links">
-                <button onClick={() => setShowWechat(true)} className="social-link-btn" aria-label="WeChat"><i className="fab fa-wechat"></i></button>
+                <button onClick={() => setShowWechat(true)} className="social-link-btn" aria-label="WeChat"><i className="fab fa-weixin"></i></button>
                 <a href="https://www.facebook.com/profile.php?id=61560764129668" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i className="fab fa-facebook"></i></a>
                 <a href="https://www.instagram.com/aecc242congochine/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i className="fab fa-instagram"></i></a>
               </div>

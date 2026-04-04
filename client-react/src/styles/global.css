@@ -171,11 +171,11 @@ button,input,select,textarea{font-family:inherit;font-size:inherit;border:none;o
 
 /* Step Progress */
 .step-progress{display:flex;align-items:center;justify-content:center;margin-bottom:1.5rem}
-.step-dot{width:36px;height:36px;border-radius:50%;background:var(--bg-alt);display:flex;flex-direction:column;align-items:center;justify-content:center;font-weight:600;font-size:.8rem;color:var(--text-light);transition:var(--transition);position:relative}
+.step-dot{width:34px;height:34px;border-radius:50%;background:var(--bg-alt);display:flex;flex-direction:column;align-items:center;justify-content:center;font-weight:600;font-size:.78rem;color:var(--text-light);transition:var(--transition);position:relative}
 .step-dot.active{background:var(--primary);color:#fff}
 .step-dot.done{background:var(--accent);color:#fff}
-.step-dot small{position:absolute;top:110%;font-size:.65rem;white-space:nowrap}
-.step-line{width:60px;height:2px;background:var(--border)}
+.step-dot small{position:absolute;top:110%;font-size:.6rem;white-space:nowrap}
+.step-line{width:40px;height:2px;background:var(--border)}
 .animate-in{animation:fadeSlideIn .3s ease}
 @keyframes fadeSlideIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 .form-step{margin-top:.5rem}
@@ -551,9 +551,9 @@ button,input,select,textarea{font-family:inherit;font-size:inherit;border:none;o
   .form-step h3{font-size:1.05rem}
   .form-step-desc{font-size:.85rem;margin-bottom:.8rem}
   .step-progress{margin-top:.6rem;margin-bottom:1.2rem}
-  .step-dot{width:30px;height:30px;font-size:.72rem}
-  .step-dot small{font-size:.58rem}
-  .step-line{width:40px}
+  .step-dot{width:28px;height:28px;font-size:.68rem}
+  .step-dot small{font-size:.52rem}
+  .step-line{width:28px}
   .form-actions{gap:.5rem;margin-top:.7rem}
   .form-actions .btn{flex:1;justify-content:center}
   .form-hint{font-size:.72rem;margin-top:.2rem}
@@ -673,8 +673,9 @@ button,input,select,textarea{font-family:inherit;font-size:inherit;border:none;o
   .form-step h3 i{font-size:.85rem}
   .form-step-desc{font-size:.8rem;margin-bottom:.8rem}
   .step-progress{margin-top:.6rem;margin-bottom:1.2rem;gap:0}
-  .step-dot{width:28px;height:28px;font-size:.7rem}
-  .step-dot small{font-size:.55rem}
+  .step-dot{width:26px;height:26px;font-size:.65rem}
+  .step-dot small{font-size:.5rem}
+  .step-line{width:22px}
   .step-line{width:32px;height:1.5px}
   .form-row{gap:.55rem}
   .form-actions{gap:.5rem;margin-top:.7rem}

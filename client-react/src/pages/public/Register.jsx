@@ -172,7 +172,7 @@ export default function Register() {
 
   function validateStep(step) {
     if (step === 1) {
-      if (!regForm.firstName || !regForm.lastName || !regForm.dateOfBirth || !regForm.gender || !regForm.wechatId) {
+      if (!regForm.firstName || !regForm.lastName || !regForm.dateOfBirth || !regForm.gender) {
         setError('Veuillez remplir tous les champs obligatoires');
         return false;
       }
@@ -182,21 +182,27 @@ export default function Register() {
         return false;
       }
       if (age > 65) {
-        setError('Veuillez v\u00e9rifier votre date de naissance');
+        setError('Veuillez vérifier votre date de naissance');
         return false;
       }
     }
     if (step === 2) {
-      if (!regForm.passportNumber || !regForm.phoneNumber || !regForm.province || !regForm.city || !regForm.lastEntryDate || !regForm.university || !regForm.fieldOfStudy || !regForm.degreeLevel || !regForm.expectedGraduation || !regForm.scholarshipStatus) {
+      if (!regForm.passportNumber || !regForm.phoneNumber || !regForm.wechatId || !regForm.province || !regForm.city || !regForm.lastEntryDate) {
         setError('Veuillez remplir tous les champs obligatoires');
         return false;
       }
       if (!/^OA\d{7}$/.test(regForm.passportNumber)) {
-        setError('Le num\u00e9ro de passeport doit commencer par OA suivi de 7 chiffres (ex: OA1234567)');
+        setError('Le numéro de passeport doit commencer par OA suivi de 7 chiffres (ex: OA1234567)');
+        return false;
+      }
+    }
+    if (step === 3) {
+      if (!regForm.university || !regForm.fieldOfStudy || !regForm.degreeLevel || !regForm.expectedGraduation || !regForm.scholarshipStatus) {
+        setError('Veuillez remplir tous les champs obligatoires');
         return false;
       }
       if (regForm.scholarshipStatus === 'yes' && !regForm.scholarshipType) {
-        setError('Veuillez s\u00e9lectionner le type de bourse');
+        setError('Veuillez sélectionner le type de bourse');
         return false;
       }
     }
@@ -318,19 +324,25 @@ export default function Register() {
                   <div className={`step-line ${regStep > 1 ? 'done' : ''}`}></div>
                   <div className={`step-dot ${regStep >= 2 ? 'active' : ''} ${regStep > 2 ? 'done' : ''}`}>
                     <span>{regStep > 2 ? <i className="fas fa-check"></i> : '2'}</span>
-                    <small>Séjour</small>
+                    <small>Contact</small>
                   </div>
                   <div className={`step-line ${regStep > 2 ? 'done' : ''}`}></div>
-                  <div className={`step-dot ${regStep >= 3 ? 'active' : ''}`}>
-                    <span>3</span>
+                  <div className={`step-dot ${regStep >= 3 ? 'active' : ''} ${regStep > 3 ? 'done' : ''}`}>
+                    <span>{regStep > 3 ? <i className="fas fa-check"></i> : '3'}</span>
+                    <small>Études</small>
+                  </div>
+                  <div className={`step-line ${regStep > 3 ? 'done' : ''}`}></div>
+                  <div className={`step-dot ${regStep >= 4 ? 'active' : ''}`}>
+                    <span>4</span>
                     <small>Compte</small>
                   </div>
                 </div>
 
+                {/* Step 1: Identité */}
                 {regStep === 1 && (
                   <div className="form-step animate-in">
-                    <h3><i className="fas fa-user"></i> Informations personnelles</h3>
-                    <p className="form-step-desc">Renseignez vos informations d'identité</p>
+                    <h3><i className="fas fa-user"></i> Identité</h3>
+                    <p className="form-step-desc">Vos informations personnelles</p>
                     
                     <div className="form-row">
                       <div className="form-group">
@@ -366,20 +378,17 @@ export default function Register() {
                         </select>
                       </div>
                     </div>
-                    <div className="form-group">
-                      <label>WeChat ID <span className="required">*</span></label>
-                      <input name="wechatId" value={regForm.wechatId} onChange={handleRegChange} placeholder="Votre identifiant WeChat" required />
-                    </div>
                     <button type="button" className="btn btn-primary btn-block" onClick={() => validateStep(1) && setRegStep(2)}>
                       Suivant <i className="fas fa-arrow-right"></i>
                     </button>
                   </div>
                 )}
 
+                {/* Step 2: Coordonnées & Séjour */}
                 {regStep === 2 && (
                   <div className="form-step animate-in">
-                    <h3><i className="fas fa-map-marker-alt"></i> Séjour & Études</h3>
-                    <p className="form-step-desc">Passeport, localisation et informations académiques</p>
+                    <h3><i className="fas fa-id-card"></i> Coordonnées & Séjour</h3>
+                    <p className="form-step-desc">Passeport, contact et localisation en Chine</p>
 
                     <div className="form-row">
                       <div className="form-group">
@@ -392,7 +401,10 @@ export default function Register() {
                         <input name="phoneNumber" value={regForm.phoneNumber} onChange={handleRegChange} placeholder="+86 138 0000 0000" required />
                       </div>
                     </div>
-
+                    <div className="form-group">
+                      <label>WeChat ID <span className="required">*</span></label>
+                      <input name="wechatId" value={regForm.wechatId} onChange={handleRegChange} placeholder="Votre identifiant WeChat" required />
+                    </div>
                     <div className="form-row">
                       <div className="form-group">
                         <label>Province en Chine <span className="required">*</span></label>
@@ -413,34 +425,51 @@ export default function Register() {
                       <label>Date d'entrée en Chine <span className="required">*</span></label>
                       <input type="date" name="lastEntryDate" value={regForm.lastEntryDate} onChange={handleRegChange} max={new Date().toISOString().split('T')[0]} required />
                     </div>
+                    <div className="form-actions">
+                      <button type="button" className="btn btn-outline" onClick={() => setRegStep(1)}>
+                        <i className="fas fa-arrow-left"></i> Précédent
+                      </button>
+                      <button type="button" className="btn btn-primary" onClick={() => validateStep(2) && setRegStep(3)}>
+                        Suivant <i className="fas fa-arrow-right"></i>
+                      </button>
+                    </div>
+                  </div>
+                )}
+
+                {/* Step 3: Études */}
+                {regStep === 3 && (
+                  <div className="form-step animate-in">
+                    <h3><i className="fas fa-graduation-cap"></i> Études</h3>
+                    <p className="form-step-desc">Informations académiques</p>
+
                     <div className="form-group">
                       <label>Université <span className="required">*</span></label>
                       <input name="university" value={regForm.university} onChange={handleRegChange} placeholder="Nom de votre université" required />
                     </div>
                     <div className="form-group">
                       <label>Filière / Spécialité <span className="required">*</span></label>
-                      <input name="fieldOfStudy" value={regForm.fieldOfStudy} onChange={handleRegChange} placeholder="Ex: Génie informatique, Médecine, Commerce international..." required />
-                    </div>
-                    <div className="form-group">
-                      <label>Niveau d'études <span className="required">*</span></label>
-                      <select name="degreeLevel" value={regForm.degreeLevel} onChange={handleRegChange} required>
-                        <option value="">— Sélectionner —</option>
-                        <option value="language">Cours de langue (汉语)</option>
-                        <option value="bachelor">Licence (本科)</option>
-                        <option value="master">Master (硕士)</option>
-                        <option value="phd">Doctorat (博士)</option>
-                        <option value="other">Autre</option>
-                      </select>
+                      <input name="fieldOfStudy" value={regForm.fieldOfStudy} onChange={handleRegChange} placeholder="Ex: Génie informatique, Médecine..." required />
                     </div>
                     <div className="form-row">
+                      <div className="form-group">
+                        <label>Niveau d'études <span className="required">*</span></label>
+                        <select name="degreeLevel" value={regForm.degreeLevel} onChange={handleRegChange} required>
+                          <option value="">— Sélectionner —</option>
+                          <option value="language">Cours de langue (汉语)</option>
+                          <option value="bachelor">Licence (本科)</option>
+                          <option value="master">Master (硕士)</option>
+                          <option value="phd">Doctorat (博士)</option>
+                          <option value="other">Autre</option>
+                        </select>
+                      </div>
                       <div className="form-group">
                         <label>Année d'admission <span className="optional">(facultatif)</span></label>
                         <input type="number" name="yearOfAdmission" value={regForm.yearOfAdmission} onChange={handleRegChange} min="2000" max={new Date().getFullYear() + 1} placeholder="Ex: 2023" />
                       </div>
-                      <div className="form-group">
-                        <label>Fin d'études prévue <span className="required">*</span></label>
-                        <input type="date" name="expectedGraduation" value={regForm.expectedGraduation} onChange={handleRegChange} required />
-                      </div>
+                    </div>
+                    <div className="form-group">
+                      <label>Fin d'études prévue <span className="required">*</span></label>
+                      <input type="date" name="expectedGraduation" value={regForm.expectedGraduation} onChange={handleRegChange} required />
                     </div>
                     <div className="form-group">
                       <label>Statut de bourse <span className="required">*</span></label>
@@ -470,23 +499,24 @@ export default function Register() {
                       <input name="studentId" value={regForm.studentId} onChange={handleRegChange} placeholder="Votre numéro d'étudiant" />
                     </div>
                     <div className="form-actions">
-                      <button type="button" className="btn btn-outline" onClick={() => setRegStep(1)}>
+                      <button type="button" className="btn btn-outline" onClick={() => setRegStep(2)}>
                         <i className="fas fa-arrow-left"></i> Précédent
                       </button>
-                      <button type="button" className="btn btn-primary" onClick={() => validateStep(2) && setRegStep(3)}>
+                      <button type="button" className="btn btn-primary" onClick={() => validateStep(3) && setRegStep(4)}>
                         Suivant <i className="fas fa-arrow-right"></i>
                       </button>
                     </div>
                   </div>
                 )}
 
-                {regStep === 3 && (
+                {/* Step 4: Compte */}
+                {regStep === 4 && (
                   <div className="form-step animate-in">
                     <h3><i className="fas fa-user-shield"></i> Créer votre compte</h3>
                     <p className="form-step-desc">Définissez vos identifiants de connexion</p>
 
                     <div className="reg-summary">
-                      <h4><i className="fas fa-clipboard-check"></i> Résumé de votre inscription</h4>
+                      <h4><i className="fas fa-clipboard-check"></i> Résumé</h4>
                       <div className="summary-grid">
                         <div className="summary-item"><span className="summary-label">Nom</span><span>{regForm.firstName} {regForm.lastName}</span></div>
                         <div className="summary-item"><span className="summary-label">Province</span><span>{regForm.province}</span></div>
@@ -522,7 +552,7 @@ export default function Register() {
                       )}
                     </div>
                     <div className="form-actions">
-                      <button type="button" className="btn btn-outline" onClick={() => setRegStep(2)}>
+                      <button type="button" className="btn btn-outline" onClick={() => setRegStep(3)}>
                         <i className="fas fa-arrow-left"></i> Précédent
                       </button>
                       <button type="submit" className="btn btn-primary btn-lg" disabled={loading}>
