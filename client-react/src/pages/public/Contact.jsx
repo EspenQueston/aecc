@@ -75,7 +75,7 @@ export default function Contact() {
                   <div className="contact-card-icon"><i className="fas fa-phone-alt"></i></div>
                   <div>
                     <h4>Téléphone</h4>
-                    <p>+86 138 0000 0000</p>
+                    <p>+86 18506959673</p>
                     <p className="text-hint">Lun-Ven, 9h-18h (heure de Pékin)</p>
                   </div>
                 </div>
@@ -93,11 +93,9 @@ export default function Contact() {
               <div className="contact-socials">
                 <h4>Suivez-nous</h4>
                 <div className="social-links">
-                  <a href="#" aria-label="Facebook"><i className="fab fa-facebook-f"></i></a>
-                  <a href="#" aria-label="Instagram"><i className="fab fa-instagram"></i></a>
-                  <a href="#" aria-label="WeChat"><i className="fab fa-weixin"></i></a>
-                  <a href="#" aria-label="YouTube"><i className="fab fa-youtube"></i></a>
-                  <a href="#" aria-label="Telegram"><i className="fab fa-telegram-plane"></i></a>
+                  <a href="https://www.facebook.com/profile.php?id=61560764129668" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i className="fab fa-facebook-f"></i></a>
+                  <a href="https://www.instagram.com/aecc242congochine/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i className="fab fa-instagram"></i></a>
+                  <button onClick={() => window.dispatchEvent(new Event('open-wechat-popup'))} className="social-link-btn" aria-label="WeChat"><i className="fab fa-weixin"></i></button>
                 </div>
               </div>
             </div>

@@ -1,5 +1,20 @@
 const dotenv = require('dotenv');
-dotenv.config({ path: require('path').resolve(__dirname, '../../.env') });
+const path = require('path');
+const fs = require('fs');
+
+const rootDir = path.resolve(__dirname, '../..');
+
+// Load .env.local first (dev overrides), then .env (production/default)
+const envLocal = path.join(rootDir, '.env.local');
+const envDefault = path.join(rootDir, '.env');
+
+if (fs.existsSync(envLocal) && process.env.NODE_ENV !== 'production') {
+  dotenv.config({ path: envLocal });
+  console.log('📦 Loaded .env.local (development mode)');
+} else {
+  dotenv.config({ path: envDefault });
+  console.log('🚀 Loaded .env (production mode)');
+}
 
 const isProduction = process.env.NODE_ENV === 'production';
 

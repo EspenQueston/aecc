@@ -1,7 +1,7 @@
 import { Link, NavLink, Outlet, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { api } from '../../services/api';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import ChatWidget from '../common/ChatWidget';
 import ScrollWidget from '../common/ScrollWidget';
 
@@ -14,6 +14,12 @@ export default function PublicLayout() {
   const [showWechat, setShowWechat] = useState(false);
   const [wechatCopied, setWechatCopied] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const handler = () => setShowWechat(true);
+    window.addEventListener('open-wechat-popup', handler);
+    return () => window.removeEventListener('open-wechat-popup', handler);
+  }, []);
 
   function handleSearch(e) {
     e.preventDefault();

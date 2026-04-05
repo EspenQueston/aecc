@@ -7,6 +7,9 @@
     "start": "node server/server.js",
     "server": "nodemon server/server.js",
     "dev": "nodemon server/server.js",
+    "dev:full": "concurrently \"npm run server\" \"npm run client\"",
+    "client": "cd client-react && npm run dev",
+    "prod:deploy": "git push origin main && ssh root@165.227.77.180 \"cd /var/www/aecc && git pull origin main && cd client-react && npm run build && cd .. && pm2 restart aecc\"",
     "db:init": "node server/scripts/init-database.js",
     "db:reset": "node server/scripts/init-database.js",
     "db:info": "node server/scripts/db-manager.js info",
@@ -23,9 +26,7 @@
     "migrate:wordpress": "node server/scripts/migrate-to-wordpress-complete.js",
     "create-admin": "node server/scripts/create-admin.js",
     "test": "jest --forceExit --detectOpenHandles",
-    "test:watch": "jest --watch --forceExit --detectOpenHandles",
-    "client": "cd client-react && npm run dev",
-    "dev:full": "concurrently \"npm run server\" \"npm run client\""
+    "test:watch": "jest --watch --forceExit --detectOpenHandles"
   },
   "keywords": [
     "congo",
