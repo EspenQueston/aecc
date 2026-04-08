@@ -1010,7 +1010,7 @@ button,input,select,textarea{font-family:inherit;font-size:inherit;border:none;o
 .learning-card-link:hover .learning-explore{opacity:1;transform:translateX(0)}
 .learning-file-badge{display:inline-flex;align-items:center;gap:.3rem;font-size:.75rem;font-weight:600;color:#1e40af;background:#dbeafe;padding:.15rem .5rem;border-radius:4px;margin-top:.3rem}
 /* Back link in page hero */
-.back-link{display:inline-flex;align-items:center;gap:.4rem;color:rgba(255,255,255,.8);font-size:.88rem;font-weight:500;margin-bottom:1.2rem;transition:var(--transition)}
+.back-link{display:inline-flex;align-items:center;gap:.4rem;color:rgba(255,255,255,.8);font-size:.88rem;font-weight:500;margin-bottom:1.2rem;margin-right:.75rem;transition:var(--transition)}
 .back-link:hover{color:#fff}
 /* Learning Detail Page */
 .learning-detail-content{max-width:800px;margin:0 auto;display:flex;flex-direction:column;gap:2rem}
