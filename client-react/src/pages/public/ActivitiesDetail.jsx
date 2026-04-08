@@ -92,7 +92,7 @@ export default function ActivitiesDetail() {
     <>
       <section className="page-hero">
         <div className="container">
-          <Link to="/" className="back-link"><i className="fas fa-arrow-left"></i> Accueil</Link>
+          <Link to="/" className="back-link"><i className="fas fa-arrow-left"></i> Retour</Link>
           <span className="section-badge">Vie Communautaire</span>
           <h1>Activités Sociales & Culturelles</h1>
           <p>Découvrez les différentes activités organisées par l'AECC pour enrichir la vie de ses membres</p>

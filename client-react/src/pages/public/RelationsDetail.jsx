@@ -77,7 +77,7 @@ export default function RelationsDetail() {
     <>
       <section className="page-hero">
         <div className="container">
-          <Link to="/" className="back-link"><i className="fas fa-arrow-left"></i> Accueil</Link>
+          <Link to="/" className="back-link"><i className="fas fa-arrow-left"></i> Retour</Link>
           <span className="section-badge">Coopération</span>
           <h1>Relations Sino-Congolaises & Éducation</h1>
           <p>L'histoire et l'avenir de la coopération entre le Congo et la Chine dans le domaine éducatif et culturel</p>

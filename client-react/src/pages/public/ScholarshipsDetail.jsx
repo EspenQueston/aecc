@@ -56,7 +56,7 @@ export default function ScholarshipsDetail() {
     <>
       <section className="page-hero">
         <div className="container">
-          <Link to="/" className="back-link"><i className="fas fa-arrow-left"></i> Accueil</Link>
+          <Link to="/" className="back-link"><i className="fas fa-arrow-left"></i> Retour</Link>
           <span className="section-badge">Bourses d'Études</span>
           <h1>Opportunités de Bourses en Chine</h1>
           <p>Guide complet des bourses disponibles pour les étudiants congolais</p>
