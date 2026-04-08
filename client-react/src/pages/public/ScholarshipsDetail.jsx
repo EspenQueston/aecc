@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const SCHOLARSHIPS = [
   {
@@ -52,11 +52,12 @@ const SCHOLARSHIPS = [
 ];
 
 export default function ScholarshipsDetail() {
+  const navigate = useNavigate();
   return (
     <>
       <section className="page-hero">
         <div className="container">
-          <Link to="/" className="back-link"><i className="fas fa-arrow-left"></i> Retour</Link>
+          <button onClick={() => navigate(-1)} className="back-link"><i className="fas fa-arrow-left"></i> Retour</button>
           <span className="section-badge">Bourses d'Études</span>
           <h1>Opportunités de Bourses en Chine</h1>
           <p>Guide complet des bourses disponibles pour les étudiants congolais</p>

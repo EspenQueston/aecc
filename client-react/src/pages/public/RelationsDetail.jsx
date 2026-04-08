@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const RELATIONS_SECTIONS = [
   {
@@ -73,11 +73,12 @@ const RELATIONS_SECTIONS = [
 ];
 
 export default function RelationsDetail() {
+  const navigate = useNavigate();
   return (
     <>
       <section className="page-hero">
         <div className="container">
-          <Link to="/" className="back-link"><i className="fas fa-arrow-left"></i> Retour</Link>
+          <button onClick={() => navigate(-1)} className="back-link"><i className="fas fa-arrow-left"></i> Retour</button>
           <span className="section-badge">Coopération</span>
           <h1>Relations Sino-Congolaises & Éducation</h1>
           <p>L'histoire et l'avenir de la coopération entre le Congo et la Chine dans le domaine éducatif et culturel</p>

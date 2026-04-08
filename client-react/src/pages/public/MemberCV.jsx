@@ -1,4 +1,4 @@
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 
 const ALL_MEMBERS = {
   'rinel': {
@@ -169,6 +169,7 @@ const ALL_MEMBERS = {
 
 export default function MemberCV() {
   const { slug } = useParams();
+  const navigate = useNavigate();
   const member = ALL_MEMBERS[slug];
 
   if (!member) {
@@ -189,7 +190,7 @@ export default function MemberCV() {
       {/* Hero */}
       <section className="page-hero" style={{ background: `linear-gradient(135deg, ${member.color} 0%, ${member.color}bb 100%)` }}>
         <div className="container">
-          <Link to="/#equipe" className="back-link"><i className="fas fa-arrow-left"></i> Retour</Link>
+          <button onClick={() => navigate(-1)} className="back-link"><i className="fas fa-arrow-left"></i> Retour</button>
           <span className="section-badge" style={{ background: 'rgba(255,255,255,.2)', color: '#fff' }}><i className={member.icon}></i> {member.structure}</span>
           <h1>{member.name}</h1>
           <p>{member.role}</p>

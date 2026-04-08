@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const ACTIVITIES = [
   {
@@ -88,11 +88,12 @@ const ACTIVITIES = [
 ];
 
 export default function ActivitiesDetail() {
+  const navigate = useNavigate();
   return (
     <>
       <section className="page-hero">
         <div className="container">
-          <Link to="/" className="back-link"><i className="fas fa-arrow-left"></i> Retour</Link>
+          <button onClick={() => navigate(-1)} className="back-link"><i className="fas fa-arrow-left"></i> Retour</button>
           <span className="section-badge">Vie Communautaire</span>
           <h1>Activités Sociales & Culturelles</h1>
           <p>Découvrez les différentes activités organisées par l'AECC pour enrichir la vie de ses membres</p>

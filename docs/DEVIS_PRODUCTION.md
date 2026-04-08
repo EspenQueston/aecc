@@ -40,9 +40,27 @@
 | MongoDB Community | Installé sur le même VPS | **$0** (inclus dans le VPS) |
 | Backup quotidien | Script `mongodump` → Cloudflare R2 ou S3 | ~$1-3/mois stockage |
 
+### Option C — MongoDB Atlas Serverless (⭐ Recommandé 2025-2026)
+
+> Modèle **pay-per-use** — vous ne payez que ce que vous utilisez, sans cluster actif 24h/24.
+
+| Métrique | Prix |
+|---|---|
+| Lectures | $0,10 / million d'opérations |
+| Écritures | $1,00 / million d'opérations |
+| Stockage | $0,25 / Go/mois |
+| **Estimé pour AECC (< 2 000 users)** | **~$5–15/mois** |
+
+**Avantages :**
+- Même API MongoDB → **zéro migration**, code inchangé
+- Pas de cluster actif 24h/24 → coût lié à l'usage réel
+- Scale automatique (pic de trafic → pas de crash)
+- Backups automatiques inclus
+- Migration vers M10 en 1 clic si le trafic explose
+
 **Recommandation pour 2 000 utilisateurs** :
-- **Court terme** (< 500 utilisateurs) : MongoDB auto-hébergé sur le VPS (économie de $57/mois)
-- **Moyen terme** (500-2 000) : Atlas M10 ($57/mois) — backups automatiques, monitoring intégré, réplication
+- **Court terme** (< 500 utilisateurs) : **MongoDB Atlas Serverless** (~$5-15/mois) — économie de $40-50/mois vs M10
+- **Moyen terme** (500-2 000) : Atlas Serverless ou Atlas M10 ($57/mois) selon la croissance du trafic
 - La base de données AECC avec 2 000 utilisateurs occupera environ **500 Mo – 1 Go** (12 collections)
 
 ---

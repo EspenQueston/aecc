@@ -74,10 +74,13 @@ button,input,select,textarea{font-family:inherit;font-size:inherit;border:none;o
 .logo-icon{font-size:1.4rem}
 .logo-text{letter-spacing:1px}
 .nav-links{display:flex;gap:.1rem;flex-wrap:nowrap}
-.nav-links a{padding:.45rem .7rem;border-radius:var(--radius-sm);font-weight:500;font-size:.84rem;color:var(--text);white-space:nowrap;transition:var(--transition)}
-.nav-links a:hover,.nav-links a.active{color:var(--primary);background:rgba(183,34,45,.06)}
+.nav-links a{padding:.45rem .7rem;border-radius:var(--radius-sm);font-weight:500;font-size:.84rem;color:var(--text);white-space:nowrap;transition:var(--transition);position:relative}
+.nav-links a:hover{color:var(--primary)}
+.nav-links a.active{color:var(--primary);font-weight:600}
+.nav-links a.active::after{content:'';position:absolute;bottom:2px;left:50%;transform:translateX(-50%);width:16px;height:2px;background:var(--primary);border-radius:2px}
 @media(max-width:768px){
-  .nav-links a.active{background:rgba(183,34,45,.08);border-left:3px solid var(--primary);border-radius:0 var(--radius-sm) var(--radius-sm) 0;padding-left:calc(.75rem - 3px)}
+  .nav-links a.active{font-weight:600;background:rgba(183,34,45,.07);border-radius:8px}
+  .nav-links a.active::after{display:none}
 }
 .nav-actions{display:flex;align-items:center;gap:.5rem;flex-shrink:0}
 .nav-search{display:flex;border:1.5px solid var(--border);border-radius:var(--radius);overflow:hidden;background:var(--bg)}
@@ -210,7 +213,7 @@ button,input,select,textarea{font-family:inherit;font-size:inherit;border:none;o
 .detail-body h2,.detail-body h3{margin:1.5rem 0 .8rem;color:var(--dark)}
 .detail-body p{margin-bottom:1rem}
 .detail-body img{border-radius:var(--radius);margin:1rem 0}
-.back-link{display:inline-flex;align-items:center;gap:.3rem;color:var(--primary);font-weight:500;margin-bottom:1.5rem}
+.back-link{display:inline-flex;align-items:center;gap:.3rem;color:var(--primary);font-weight:500;margin-bottom:1.5rem;background:none;border:none;cursor:pointer;padding:0;font-family:inherit;text-decoration:none}
 .back-link:hover{gap:.5rem}
 
 /* ─── Auth Pages ─── */
@@ -511,9 +514,10 @@ button,input,select,textarea{font-family:inherit;font-size:inherit;border:none;o
   .hero{min-height:400px}
   .hero-mobile-fallback{display:flex !important}
   .hero-3d{display:none}
-  .nav-links{display:none;position:absolute;top:var(--header-h);left:0;right:0;background:var(--white);flex-direction:column;padding:1rem 1.5rem;box-shadow:var(--shadow-md);gap:.4rem}
-  .nav-links.active{display:flex}
-  .nav-links a{font-size:1rem;padding:.75rem 1rem;border-bottom:1px solid rgba(0,0,0,.05)}
+  .nav-links{display:none;position:absolute;top:var(--header-h);left:0;right:0;background:#fff;flex-direction:column;padding:.5rem .8rem .85rem;box-shadow:0 8px 28px rgba(0,0,0,.1);gap:.15rem;border-top:2px solid var(--primary)}
+  .nav-links.active{display:flex;animation:navMenuIn .15s ease}
+  @keyframes navMenuIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+  .nav-links a{font-size:.95rem;padding:.75rem 1rem;border-bottom:none;border-radius:8px}
   .nav-links li:last-child a{border-bottom:none}
   .nav-search{display:none}
   .mobile-menu-btn{display:block;font-size:1.3rem;padding:.3rem}
@@ -1010,7 +1014,7 @@ button,input,select,textarea{font-family:inherit;font-size:inherit;border:none;o
 .learning-card-link:hover .learning-explore{opacity:1;transform:translateX(0)}
 .learning-file-badge{display:inline-flex;align-items:center;gap:.3rem;font-size:.75rem;font-weight:600;color:#1e40af;background:#dbeafe;padding:.15rem .5rem;border-radius:4px;margin-top:.3rem}
 /* Back link in page hero */
-.back-link{display:inline-flex;align-items:center;gap:.4rem;color:rgba(255,255,255,.8);font-size:.88rem;font-weight:500;margin-bottom:1.2rem;margin-right:.75rem;transition:var(--transition)}
+.back-link{display:inline-flex;align-items:center;gap:.4rem;color:rgba(255,255,255,.8);font-size:.88rem;font-weight:500;margin-bottom:1.2rem;transition:var(--transition);background:none;border:none;cursor:pointer;padding:0;font-family:inherit}
 .back-link:hover{color:#fff}
 /* Learning Detail Page */
 .learning-detail-content{max-width:800px;margin:0 auto;display:flex;flex-direction:column;gap:2rem}
@@ -1915,7 +1919,7 @@ button,input,select,textarea{font-family:inherit;font-size:inherit;border:none;o
    ═══════════════════════════════════════════ */
 
 /* Back link */
-.back-link{display:inline-flex;align-items:center;gap:.5rem;color:rgba(255,255,255,.85);font-size:.9rem;font-weight:500;text-decoration:none;margin-bottom:1.5rem;transition:var(--transition)}
+.back-link{display:inline-flex;align-items:center;gap:.5rem;color:rgba(255,255,255,.85);font-size:.9rem;font-weight:500;text-decoration:none;margin-bottom:1.5rem;transition:var(--transition);background:none;border:none;cursor:pointer;padding:0;font-family:inherit}
 .back-link:hover{color:#fff;gap:.7rem}
 
 /* Hero */
