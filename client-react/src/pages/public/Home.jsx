@@ -1,8 +1,9 @@
-import { useState, useEffect, useCallback } from 'react';
-import { Link } from 'react-router-dom';
+import { useState, useEffect, useCallback, useRef } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { api } from '../../services/api';
 import NewsletterBlock from '../../components/common/NewsletterBlock';
 import ExpandableText from '../../components/common/ExpandableText';
+import HeroBanner3D from '../../components/home/HeroBanner3D';
 
 const BUREAU_MEMBERS = [
   { name: 'Rinel', role: 'Président', desc: 'Chargé de la coordination et de l\'orientation de l\'association. Représente l\'AECC auprès des autorités et partenaires.', icon: 'fas fa-crown', color: '#B7222D', city: 'Beijing' },
@@ -41,6 +42,28 @@ export default function Home() {
   const toggleScholarship = useCallback((e, i) => { e.preventDefault(); setExpandedScholarship(prev => prev === i ? null : i); }, []);
   const toggleActivity = useCallback((e, i) => { e.preventDefault(); setExpandedActivity(prev => prev === i ? null : i); }, []);
 
+  const navigate = useNavigate();
+  const newsRef = useRef(null);
+  const activitiesRef = useRef(null);
+
+  // Scroll-reveal observer for cards
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const cards = entry.target.querySelectorAll('.news-card, .activity-card');
+          cards.forEach((card, i) => {
+            setTimeout(() => card.classList.add('card-visible'), i * 100);
+          });
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    if (newsRef.current) observer.observe(newsRef.current);
+    if (activitiesRef.current) observer.observe(activitiesRef.current);
+    return () => observer.disconnect();
+  }, []);
+
   useEffect(() => { loadData(); }, []);
 
   async function loadData() {
@@ -59,8 +82,11 @@ export default function Home() {
 
   return (
     <>
-      {/* Hero Section */}
-      <section className="hero">
+      {/* 3D Hero Banner (desktop) */}
+      <HeroBanner3D />
+
+      {/* Old Hero (mobile only — production banner) */}
+      <section className="hero hero-mobile-fallback">
         <div className="hero-overlay"></div>
         <div className="container hero-content">
           <span className="hero-badge"><i className="fas fa-star"></i> Bienvenue à l'AECC</span>
@@ -171,9 +197,9 @@ export default function Home() {
             <h2>Relations Sino-Congolaises & Éducation</h2>
             <p>Restez informés sur les dernières nouvelles concernant le Congo, la Chine et l'éducation</p>
           </div>
-          <Link to="/relations" className="news-grid clickable-section">
+          <div className="news-grid" ref={newsRef}>
             {NEWS_ITEMS.map((item, i) => (
-              <div key={i} className="news-card">
+              <div key={i} className="news-card card-animate" onClick={() => navigate('/relations')} role="button" tabIndex={0} onKeyDown={(e) => e.key === 'Enter' && navigate('/relations')}>
                 <div className="news-icon"><i className={item.icon}></i></div>
                 <div className="news-content">
                   <span className="news-category">{item.category}</span>
@@ -182,7 +208,7 @@ export default function Home() {
                 </div>
               </div>
             ))}
-          </Link>
+          </div>
           <div className="section-footer">
             <Link to="/relations" className="btn btn-primary"><i className="fas fa-globe"></i> En savoir plus</Link>
           </div>
@@ -257,14 +283,14 @@ export default function Home() {
             <h2>Activités Sociales & Culturelles</h2>
             <p>Découvrez la richesse de notre vie communautaire en Chine</p>
           </div>
-          <Link to="/activites" className="activities-grid clickable-section">
-            <div className={`activity-card${expandedActivity === 0 ? ' expanded' : ''}`}><div className="activity-icon"><i className="fas fa-music"></i></div><h3>Soirées Culturelles</h3><p>Célébrations des fêtes congolaises, soirées musicales et gastronomiques</p><button className={`card-expand-toggle${expandedActivity === 0 ? ' expanded' : ''}`} onClick={(e) => toggleActivity(e, 0)}>{expandedActivity === 0 ? 'Moins' : 'Voir plus'} <i className="fas fa-chevron-down"></i></button></div>
-            <div className={`activity-card${expandedActivity === 1 ? ' expanded' : ''}`}><div className="activity-icon"><i className="fas fa-futbol"></i></div><h3>Tournois Sportifs</h3><p>Compétitions de football, basketball entre différentes villes</p><button className={`card-expand-toggle${expandedActivity === 1 ? ' expanded' : ''}`} onClick={(e) => toggleActivity(e, 1)}>{expandedActivity === 1 ? 'Moins' : 'Voir plus'} <i className="fas fa-chevron-down"></i></button></div>
-            <div className={`activity-card${expandedActivity === 2 ? ' expanded' : ''}`}><div className="activity-icon"><i className="fas fa-chalkboard-teacher"></i></div><h3>Séminaires Académiques</h3><p>Conférences, ateliers et partage d'expériences entre étudiants</p><button className={`card-expand-toggle${expandedActivity === 2 ? ' expanded' : ''}`} onClick={(e) => toggleActivity(e, 2)}>{expandedActivity === 2 ? 'Moins' : 'Voir plus'} <i className="fas fa-chevron-down"></i></button></div>
-            <div className={`activity-card${expandedActivity === 3 ? ' expanded' : ''}`}><div className="activity-icon"><i className="fas fa-plane-departure"></i></div><h3>Accueil des Nouveaux</h3><p>Orientation et accompagnement des étudiants nouvellement arrivés</p><button className={`card-expand-toggle${expandedActivity === 3 ? ' expanded' : ''}`} onClick={(e) => toggleActivity(e, 3)}>{expandedActivity === 3 ? 'Moins' : 'Voir plus'} <i className="fas fa-chevron-down"></i></button></div>
-            <div className={`activity-card${expandedActivity === 4 ? ' expanded' : ''}`}><div className="activity-icon"><i className="fas fa-heart"></i></div><h3>Actions Solidaires</h3><p>Collectes de fonds, soutien aux membres en difficulté</p><button className={`card-expand-toggle${expandedActivity === 4 ? ' expanded' : ''}`} onClick={(e) => toggleActivity(e, 4)}>{expandedActivity === 4 ? 'Moins' : 'Voir plus'} <i className="fas fa-chevron-down"></i></button></div>
-            <div className={`activity-card${expandedActivity === 5 ? ' expanded' : ''}`}><div className="activity-icon"><i className="fas fa-network-wired"></i></div><h3>Networking Pro</h3><p>Rencontres avec des professionnels, mentorat et opportunités</p><button className={`card-expand-toggle${expandedActivity === 5 ? ' expanded' : ''}`} onClick={(e) => toggleActivity(e, 5)}>{expandedActivity === 5 ? 'Moins' : 'Voir plus'} <i className="fas fa-chevron-down"></i></button></div>
-          </Link>
+          <div className="activities-grid" ref={activitiesRef}>
+            <div className={`activity-card card-animate${expandedActivity === 0 ? ' expanded' : ''}`} onClick={() => navigate('/activites')} role="button" tabIndex={0}><div className="activity-icon"><i className="fas fa-music"></i></div><h3>Soirées Culturelles</h3><p>Célébrations des fêtes congolaises, soirées musicales et gastronomiques</p><button className={`card-expand-toggle${expandedActivity === 0 ? ' expanded' : ''}`} onClick={(e) => toggleActivity(e, 0)}>{expandedActivity === 0 ? 'Moins' : 'Voir plus'} <i className="fas fa-chevron-down"></i></button></div>
+            <div className={`activity-card card-animate${expandedActivity === 1 ? ' expanded' : ''}`} onClick={() => navigate('/activites')} role="button" tabIndex={0}><div className="activity-icon"><i className="fas fa-futbol"></i></div><h3>Tournois Sportifs</h3><p>Compétitions de football, basketball entre différentes villes</p><button className={`card-expand-toggle${expandedActivity === 1 ? ' expanded' : ''}`} onClick={(e) => toggleActivity(e, 1)}>{expandedActivity === 1 ? 'Moins' : 'Voir plus'} <i className="fas fa-chevron-down"></i></button></div>
+            <div className={`activity-card card-animate${expandedActivity === 2 ? ' expanded' : ''}`} onClick={() => navigate('/activites')} role="button" tabIndex={0}><div className="activity-icon"><i className="fas fa-chalkboard-teacher"></i></div><h3>Séminaires Académiques</h3><p>Conférences, ateliers et partage d'expériences entre étudiants</p><button className={`card-expand-toggle${expandedActivity === 2 ? ' expanded' : ''}`} onClick={(e) => toggleActivity(e, 2)}>{expandedActivity === 2 ? 'Moins' : 'Voir plus'} <i className="fas fa-chevron-down"></i></button></div>
+            <div className={`activity-card card-animate${expandedActivity === 3 ? ' expanded' : ''}`} onClick={() => navigate('/activites')} role="button" tabIndex={0}><div className="activity-icon"><i className="fas fa-plane-departure"></i></div><h3>Accueil des Nouveaux</h3><p>Orientation et accompagnement des étudiants nouvellement arrivés</p><button className={`card-expand-toggle${expandedActivity === 3 ? ' expanded' : ''}`} onClick={(e) => toggleActivity(e, 3)}>{expandedActivity === 3 ? 'Moins' : 'Voir plus'} <i className="fas fa-chevron-down"></i></button></div>
+            <div className={`activity-card card-animate${expandedActivity === 4 ? ' expanded' : ''}`} onClick={() => navigate('/activites')} role="button" tabIndex={0}><div className="activity-icon"><i className="fas fa-heart"></i></div><h3>Actions Solidaires</h3><p>Collectes de fonds, soutien aux membres en difficulté</p><button className={`card-expand-toggle${expandedActivity === 4 ? ' expanded' : ''}`} onClick={(e) => toggleActivity(e, 4)}>{expandedActivity === 4 ? 'Moins' : 'Voir plus'} <i className="fas fa-chevron-down"></i></button></div>
+            <div className={`activity-card card-animate${expandedActivity === 5 ? ' expanded' : ''}`} onClick={() => navigate('/activites')} role="button" tabIndex={0}><div className="activity-icon"><i className="fas fa-network-wired"></i></div><h3>Networking Pro</h3><p>Rencontres avec des professionnels, mentorat et opportunités</p><button className={`card-expand-toggle${expandedActivity === 5 ? ' expanded' : ''}`} onClick={(e) => toggleActivity(e, 5)}>{expandedActivity === 5 ? 'Moins' : 'Voir plus'} <i className="fas fa-chevron-down"></i></button></div>
+          </div>
           <div className="section-footer">
             <Link to="/activites" className="btn btn-primary"><i className="fas fa-arrow-right"></i> Découvrir toutes les activités</Link>
           </div>

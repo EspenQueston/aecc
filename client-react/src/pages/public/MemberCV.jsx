@@ -41,14 +41,20 @@ const ALL_MEMBERS = {
     languages: ['Français', 'Anglais', 'Chinois'],
   },
   'mabiala': {
-    name: 'Mabiala',
+    name: 'Roland Naguydem Mabiala',
     role: 'Secrétaire Socio-culturel',
     structure: 'Bureau Exécutif',
     icon: 'fas fa-bullhorn',
     color: '#7c3aed',
     photo: null,
-    bio: 'Secrétaire chargé aux relations publiques et aux affaires socio-culturelles de l\'AECC. Il a pour mission d\'assurer la mobilisation et la communication, d\'accueillir et suivre les étudiants congolais (Art. 13). Il assure l\'intérim du Secrétaire Général en cas d\'absence.',
-    education: [],
+    bio: 'Doctorant en Éducation Internationale de la Langue Chinoise à Beijing Foreign Studies University. Diplômé d\'un Master en Enseignement du Chinois (Beijing Institute of Technology, 2019) et d\'un Master en Linguistique Appliquée (Université Marien Ngouabi, 2016). Ancien directeur administratif et enseignant à l\'Institut Confucius de Pointe-Noire (2019-2023). Chercheur spécialisé en didactique du chinois, politiques linguistiques et multilinguisme.',
+    education: [
+      { degree: 'Doctorat en Éducation Internationale de la Langue Chinoise', university: 'Beijing Foreign Studies University', year: '2023 – 2027' },
+      { degree: 'Master en Enseignement du Chinois Langue Étrangère', university: 'Beijing Institute of Technology', year: '2019' },
+      { degree: 'Master en Linguistique Appliquée', university: 'Université Marien Ngouabi', year: '2016' },
+      { degree: 'Licence en Linguistique Appliquée', university: 'Université Marien Ngouabi', year: '2014' },
+      { degree: 'Certificat Économie Numérique — Innovation & Entrepreneuriat', university: 'Tsinghua University', year: '2019' },
+    ],
     responsibilities: [
       'Assurer la mobilisation et la communication de l\'Association (Art. 13)',
       'Accueillir et suivre les étudiants congolais',
@@ -56,8 +62,19 @@ const ALL_MEMBERS = {
       'Rendre compte de ses activités au Secrétaire Général',
       'Assurer l\'intérim du Secrétaire Général en cas d\'absence ou de démission',
     ],
-    contact: { email: 'communication@aecc.org', wechat: null },
-    languages: ['Français', 'Anglais', 'Chinois'],
+    workExperience: [
+      { title: 'Directeur administratif & Enseignant de chinois', company: 'Institut Confucius, Pointe-Noire (Congo)', period: '2019 – 2023' },
+      { title: 'Stagiaire — Section consulaire', company: 'Ambassade du Congo à Beijing', period: '2018 – 2019' },
+      { title: 'Enseignant de chinois et français', company: 'Lycée Nganga Edouard, Congo', period: '2015 – 2016' },
+    ],
+    publications: [
+      'Acquisition des compléments potentiels chinois par les apprenants francophones africains — Sinolingua',
+      'Initiatives et défis de l\'enseignement du chinois dans les politiques linguistiques au Congo-Brazzaville — African Language and Culture Studies',
+      'Idéologies et pratiques linguistiques des enseignants africains en formation en Chine — International Journal of Bilingual Education and Bilingualism',
+      'Approche CLIL pour l\'enseignement du chinois dans les universités congolaises — International Chinese Language Education Communications',
+    ],
+    contact: { email: 'mabialaroland@hotmail.com', wechat: '18810511978' },
+    languages: ['Français (natif)', 'Anglais (avancé)', 'Chinois (avancé)', 'Russe (débutant)'],
   },
   'exauce': {
     name: 'Exauce',
@@ -79,15 +96,18 @@ const ALL_MEMBERS = {
     languages: ['Français', 'Anglais', 'Chinois'],
   },
   'cluivert': {
-    name: 'Cluivert',
+    name: 'Cluivert Moukendi',
     role: 'Responsable Technique',
     structure: 'Bureau Exécutif',
     icon: 'fas fa-cogs',
     color: '#059669',
     photo: null,
-    bio: 'Responsable Technique de l\'AECC. Il gère l\'ensemble de l\'infrastructure numérique de l\'association : développement et maintenance du site web, réseaux sociaux et tous les outils technologiques.',
+    bio: 'Passionné d\'intelligence artificielle et de data science. Diplômé d\'un Bachelor en Informatique de Beihang University (2024), actuellement en Master IA. Développeur web fullstack et spécialiste en marketing digital avec une expérience freelance de 2 ans. Gère l\'ensemble de l\'infrastructure numérique de l\'AECC.',
     education: [
-      { degree: 'Master en Informatique', university: 'Université de Pékin', year: '2023 – 2026' },
+      { degree: 'Master en Intelligence Artificielle', university: 'Beihang University, Beijing', year: '2024 – 2027' },
+      { degree: 'Bachelor en Informatique (Computer Science & Technology)', university: 'Beihang University, Beijing', year: '2020 – 2024' },
+      { degree: 'Programme de Langue Chinoise', university: 'Huaqiao University, Xiamen', year: '2019 – 2020' },
+      { degree: 'Baccalauréat Scientifique', university: 'Lycée Victor Augagneur, Congo', year: '2018' },
     ],
     responsibilities: [
       'Développer et maintenir le site web de l\'AECC',
@@ -97,8 +117,13 @@ const ALL_MEMBERS = {
       'Proposer des solutions technologiques pour améliorer le fonctionnement',
       'Assurer la sécurité des données des membres',
     ],
-    contact: { email: 'technique@aecc.org', wechat: '18506959673' },
-    languages: ['Français', 'Anglais', 'Chinois (HSK 5)', 'Lingala'],
+    workExperience: [
+      { title: 'Professeur de Mathématiques en ligne', company: 'Home Supervision (en ligne)', period: 'Déc. 2023 – Oct. 2024' },
+      { title: 'Développeur Web Freelance & Marketing Digital', company: 'Freelance', period: 'Fév. 2021 – Sep. 2023' },
+    ],
+    skills: ['Python', 'Java', 'JavaScript', 'React', 'Node.js', 'Django', 'Ruby on Rails', 'Next.js', 'Machine Learning', 'Deep Learning', 'SQL', 'MongoDB', 'Git/GitHub', 'C/C++'],
+    contact: { email: 'cluivertmoukendi@gmail.com', wechat: '18506959673' },
+    languages: ['Français (natif)', 'Anglais (avancé)', 'Chinois (HSK 5)', 'Italien (débutant)'],
   },
   'gloire': {
     name: 'Gloire',
@@ -225,13 +250,50 @@ export default function MemberCV() {
 
               {/* Responsibilities */}
               <div className="cv-card">
-                <h3><i className="fas fa-tasks" style={{ color: member.color }}></i> Responsabilités</h3>
+                <h3><i className="fas fa-tasks" style={{ color: member.color }}></i> Responsabilités AECC</h3>
                 <ul className="cv-responsibilities">
                   {member.responsibilities.map((r, i) => (
                     <li key={i}><i className="fas fa-check" style={{ color: member.color }}></i> {r}</li>
                   ))}
                 </ul>
               </div>
+
+              {/* Work Experience */}
+              {member.workExperience && member.workExperience.length > 0 && (
+                <div className="cv-card">
+                  <h3><i className="fas fa-briefcase" style={{ color: member.color }}></i> Expérience Professionnelle</h3>
+                  {member.workExperience.map((exp, i) => (
+                    <div key={i} className="cv-edu-item">
+                      <h4>{exp.title}</h4>
+                      <p>{exp.company} — <em>{exp.period}</em></p>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {/* Skills */}
+              {member.skills && member.skills.length > 0 && (
+                <div className="cv-card">
+                  <h3><i className="fas fa-code" style={{ color: member.color }}></i> Compétences Techniques</h3>
+                  <div className="cv-tags">
+                    {member.skills.map((s, i) => (
+                      <span key={i} className="cv-tag" style={{ background: `${member.color}12`, color: member.color, border: `1px solid ${member.color}30` }}>{s}</span>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Publications */}
+              {member.publications && member.publications.length > 0 && (
+                <div className="cv-card">
+                  <h3><i className="fas fa-book" style={{ color: member.color }}></i> Publications</h3>
+                  <ul className="cv-responsibilities">
+                    {member.publications.map((p, i) => (
+                      <li key={i}><i className="fas fa-file-alt" style={{ color: member.color }}></i> {p}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
             </div>
           </div>
         </div>

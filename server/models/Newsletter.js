@@ -20,4 +20,7 @@ const NewsletterSchema = new mongoose.Schema({
   }
 });
 
+// Production indexes
+NewsletterSchema.index({ active: 1, subscribedAt: -1 });
+
 module.exports = mongoose.model('Newsletter', NewsletterSchema);

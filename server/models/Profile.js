@@ -49,4 +49,7 @@ const ProfileSchema = new mongoose.Schema({
   }
 });
 
+// Production indexes
+ProfileSchema.index({ user: 1 }, { unique: true });
+
 module.exports = mongoose.model('Profile', ProfileSchema);

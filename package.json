@@ -26,7 +26,9 @@
     "migrate:wordpress": "node server/scripts/migrate-to-wordpress-complete.js",
     "create-admin": "node server/scripts/create-admin.js",
     "test": "jest --forceExit --detectOpenHandles",
-    "test:watch": "jest --watch --forceExit --detectOpenHandles"
+    "test:watch": "jest --watch --forceExit --detectOpenHandles",
+    "test:load": "node server/scripts/load-test.js",
+    "test:load:prod": "node server/scripts/load-test.js https://scholarquest.shop 30 100"
   },
   "keywords": [
     "congo",
@@ -39,6 +41,7 @@
   "license": "MIT",
   "dependencies": {
     "@aws-sdk/client-s3": "^3.1024.0",
+    "@sentry/node": "^10.47.0",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
@@ -54,6 +57,7 @@
     "speakeasy": "^2.0.0"
   },
   "devDependencies": {
+    "autocannon": "^8.0.0",
     "concurrently": "^8.2.1",
     "jest": "^30.3.0",
     "mongodb-memory-server": "^11.0.1",

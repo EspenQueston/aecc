@@ -37,5 +37,7 @@ const LearningResourceSchema = new mongoose.Schema({
 
 LearningResourceSchema.index({ type: 1, status: 1 });
 LearningResourceSchema.index({ title: 'text', description: 'text' });
+LearningResourceSchema.index({ slug: 1 }, { unique: true, sparse: true });
+LearningResourceSchema.index({ featured: 1, status: 1 });
 
 module.exports = mongoose.model('LearningResource', LearningResourceSchema);

@@ -6,8 +6,12 @@ const connectDB = require('./config/db');
 const { port, nodeEnv, corsOrigins } = require('./config/keys');
 const errorHandler = require('./middleware/errorHandler');
 const { apiLimiter, authLimiter, contactLimiter } = require('./middleware/rateLimiter');
+const { initSentry, sentryErrorHandler } = require('./config/sentry');
 
 const app = express();
+
+// Initialize Sentry (must be before routes)
+initSentry(app);
 
 // Connect to MongoDB
 connectDB();
@@ -55,6 +59,9 @@ app.use(express.static(clientBuild));
 app.get('*', (req, res) => {
   res.sendFile(path.join(clientBuild, 'index.html'));
 });
+
+// Sentry error handler (must be before custom errorHandler)
+app.use(sentryErrorHandler());
 
 // Centralized error handler
 app.use(errorHandler);

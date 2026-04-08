@@ -41,4 +41,8 @@ const ContactSchema = new mongoose.Schema({
   }
 });
 
+// Production indexes
+ContactSchema.index({ status: 1, createdAt: -1 });
+ContactSchema.index({ email: 1 });
+
 module.exports = mongoose.model('Contact', ContactSchema);

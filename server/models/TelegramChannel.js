@@ -35,4 +35,9 @@ const TelegramChannelSchema = new mongoose.Schema({
   status: { type: String, default: 'active', enum: ['active', 'inactive'] }
 }, { timestamps: true });
 
+// Production indexes
+TelegramChannelSchema.index({ category: 1, status: 1 });
+TelegramChannelSchema.index({ featured: 1 });
+TelegramChannelSchema.index({ language: 1 });
+
 module.exports = mongoose.model('TelegramChannel', TelegramChannelSchema);

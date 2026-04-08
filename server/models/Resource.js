@@ -71,4 +71,9 @@ ResourceSchema.pre('save', function(next) {
   next();
 });
 
+// Production indexes
+ResourceSchema.index({ type: 1, category: 1 });
+ResourceSchema.index({ user: 1 });
+ResourceSchema.index({ createdAt: -1 });
+
 module.exports = mongoose.model('Resource', ResourceSchema);

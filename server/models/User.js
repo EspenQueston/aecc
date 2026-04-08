@@ -146,4 +146,10 @@ UserSchema.methods.matchPassword = async function(enteredPassword) {
   return await bcrypt.compare(enteredPassword, this.password);
 };
 
+// Production indexes
+UserSchema.index({ role: 1, createdAt: -1 });
+UserSchema.index({ university: 1 });
+UserSchema.index({ emailVerificationToken: 1 }, { sparse: true });
+UserSchema.index({ passwordResetToken: 1 }, { sparse: true });
+
 module.exports = mongoose.model('User', UserSchema);

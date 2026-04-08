@@ -61,4 +61,9 @@ const EventSchema = new mongoose.Schema({
   }
 });
 
+// Production indexes
+EventSchema.index({ type: 1, startDate: -1 });
+EventSchema.index({ organizer: 1 });
+EventSchema.index({ createdAt: -1 });
+
 module.exports = mongoose.model('Event', EventSchema);
