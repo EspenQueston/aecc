@@ -213,7 +213,7 @@ button,input,select,textarea{font-family:inherit;font-size:inherit;border:none;o
 .detail-body h2,.detail-body h3{margin:1.5rem 0 .8rem;color:var(--dark)}
 .detail-body p{margin-bottom:1rem}
 .detail-body img{border-radius:var(--radius);margin:1rem 0}
-.back-link{display:inline-flex;align-items:center;gap:.3rem;color:var(--primary);font-weight:500;margin-bottom:1.5rem;background:none;border:none;cursor:pointer;padding:0;font-family:inherit;text-decoration:none}
+.back-link{display:inline-flex;align-items:center;gap:.3rem;color:var(--primary);font-weight:500;margin-bottom:1.5rem;margin-right:.75rem;background:none;border:none;cursor:pointer;padding:0;font-family:inherit;text-decoration:none;position:relative;z-index:1}
 .back-link:hover{gap:.5rem}
 
 /* ─── Auth Pages ─── */
@@ -627,9 +627,9 @@ button,input,select,textarea{font-family:inherit;font-size:inherit;border:none;o
   .auth-subtitle{font-size:.82rem;margin-bottom:.6rem}
   .auth-tabs{gap:.3rem;margin-bottom:.7rem}
   .auth-tab{padding:.5rem .4rem;font-size:.82rem}
-  .form-group{margin-bottom:.45rem}
-  .form-group label{font-size:.8rem;margin-bottom:.2rem}
-  .form-group input,.form-group select,.form-group textarea{padding:.5rem .75rem;font-size:.88rem;border-radius:10px}
+  .form-group{margin-bottom:.85rem}
+  .form-group label{font-size:.8rem;margin-bottom:.35rem}
+  .form-group input,.form-group select,.form-group textarea{padding:.6rem .75rem;font-size:.88rem;border-radius:10px}
   .form-step h3{font-size:.98rem}
   .form-step-desc{font-size:.8rem;margin-bottom:.5rem}
   .step-progress{margin-top:.4rem;margin-bottom:.8rem}
@@ -750,10 +750,10 @@ button,input,select,textarea{font-family:inherit;font-size:inherit;border:none;o
   .auth-tabs{gap:.2rem;margin-bottom:.5rem}
   .auth-tab{padding:.4rem .35rem;font-size:.78rem}
   .auth-tab i{margin-right:.1rem;font-size:.68rem}
-  .form-group{margin-bottom:.35rem}
-  .form-group label{font-size:.76rem;margin-bottom:.15rem}
+  .form-group{margin-bottom:.7rem}
+  .form-group label{font-size:.76rem;margin-bottom:.3rem}
   .form-group label i{font-size:.68rem;margin-right:.15rem}
-  .form-group input,.form-group select,.form-group textarea{padding:.45rem .6rem;font-size:.82rem;border-radius:10px}
+  .form-group input,.form-group select,.form-group textarea{padding:.55rem .65rem;font-size:.82rem;border-radius:10px}
   .input-with-icon input{padding-right:2rem}
   .input-icon-btn{width:1.6rem;font-size:.75rem}
   .form-step h3{font-size:.88rem;gap:.3rem}
@@ -1014,7 +1014,7 @@ button,input,select,textarea{font-family:inherit;font-size:inherit;border:none;o
 .learning-card-link:hover .learning-explore{opacity:1;transform:translateX(0)}
 .learning-file-badge{display:inline-flex;align-items:center;gap:.3rem;font-size:.75rem;font-weight:600;color:#1e40af;background:#dbeafe;padding:.15rem .5rem;border-radius:4px;margin-top:.3rem}
 /* Back link in page hero */
-.back-link{display:inline-flex;align-items:center;gap:.4rem;color:rgba(255,255,255,.8);font-size:.88rem;font-weight:500;margin-bottom:1.2rem;transition:var(--transition);background:none;border:none;cursor:pointer;padding:0;font-family:inherit}
+.back-link{display:inline-flex;align-items:center;gap:.4rem;color:rgba(255,255,255,.8);font-size:.88rem;font-weight:500;margin-bottom:1.2rem;margin-right:.75rem;transition:var(--transition);background:none;border:none;cursor:pointer;padding:0;font-family:inherit;position:relative;z-index:1}
 .back-link:hover{color:#fff}
 /* Learning Detail Page */
 .learning-detail-content{max-width:800px;margin:0 auto;display:flex;flex-direction:column;gap:2rem}
@@ -1919,7 +1919,7 @@ button,input,select,textarea{font-family:inherit;font-size:inherit;border:none;o
    ═══════════════════════════════════════════ */
 
 /* Back link */
-.back-link{display:inline-flex;align-items:center;gap:.5rem;color:rgba(255,255,255,.85);font-size:.9rem;font-weight:500;text-decoration:none;margin-bottom:1.5rem;transition:var(--transition);background:none;border:none;cursor:pointer;padding:0;font-family:inherit}
+.back-link{display:inline-flex;align-items:center;gap:.5rem;color:rgba(255,255,255,.85);font-size:.9rem;font-weight:500;text-decoration:none;margin-bottom:1.5rem;margin-right:.75rem;transition:var(--transition);background:none;border:none;cursor:pointer;padding:0;font-family:inherit;position:relative;z-index:1}
 .back-link:hover{color:#fff;gap:.7rem}
 
 /* Hero */

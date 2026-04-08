@@ -12,14 +12,24 @@
 | Bande passante | 4 To/mois inclus | Inclus |
 | Datacenter | Frankfurt (EU) ou Singapore (Asie) | — |
 
-### Option B — Hetzner (Alternative économique)
+### Option B — Alibaba Cloud ECS (⭐ Recommandé si utilisateurs en Chine)
+
+> Alibaba Cloud est le **#1 cloud en Chine** (46% de parts de marché). Datacenters en Chine continentale = latence < 30ms pour les utilisateurs à Beijing, Shanghai, etc.
 
 | Ressource | Spécification | Prix/mois |
 |---|---|---|
-| **CPX21** | 3 vCPU, 4 Go RAM, 80 Go SSD | **€5,39** (~$6) |
-| **CPX31** | 4 vCPU, 8 Go RAM, 160 Go SSD | **€10,49** (~$11) |
-| Bande passante | 20 To/mois inclus | Inclus |
-| Datacenter | Falkenstein/Nuremberg (Allemagne) | — |
+| **ecs.t6-c1m2.large** | 2 vCPU, 4 Go RAM, 40 Go SSD | **~$18** |
+| **ecs.c6.xlarge** | 4 vCPU, 8 Go RAM, 80 Go SSD | **~$38** |
+| Bande passante | 1-5 Mbps fixe (Chine) ou pay-per-traffic | Variable |
+| Datacenter | **Beijing, Shanghai, Shenzhen, Hangzhou** | — |
+
+**Avantages clés :**
+- Datacenters en **Chine continentale** → latence 10-30ms pour les étudiants en Chine
+- Pas de blocage par le Great Firewall (contrairement à DigitalOcean/Hetzner bloqués en Chine)
+- API compatible, supporte Node.js + MongoDB
+- Object Storage (OSS) intégré = alternative R2 avec CDN Chine natif
+
+**⚠️ Contrainte :** Un VPS hébergé en Chine nécessite un **ICP filing** (enregistrement auprès du MIIT). Alternative : datacenter **Hong Kong** (pas d'ICP requis, latence ~50ms vers la Chine continentale)
 
 ---
 
@@ -87,14 +97,20 @@
 - Protection DDoS illimitée
 - SSL/TLS gratuit (certificat auto-renouvelé)
 
-## 5. Stockage Fichiers (Images, CVs, Documents)
+## 5. Stockage Fichiers (Images, CVs, Documents, Learning Files)
 
 | Service | Spécification | Prix/mois |
 |---|---|---|
-| **Cloudflare R2** (actuel) | 10 Go gratuits, puis $0,015/Go/mois. Pas de frais de sortie (egress) | **$0 – $3** |
+| **Cloudflare R2** (actuel) | 10 Go gratuits, puis $0,015/Go/mois. Pas de frais de sortie (egress) | **$0 – $5** |
 | AWS S3 | $0,023/Go/mois + frais egress | **$3 – $10** |
 
-**Recommandation** : Cloudflare R2 — les 10 Go gratuits couvrent largement les uploads de l'AECC. Pas de frais de bande passante sortante (contrairement à S3).
+**Cas d'usage AECC — Section Learning :**
+- Fichiers PDF, vidéos, documents : **max 1,5 Go par fichier**
+- Estimation stockage Learning : ~20-50 fichiers × 500 Mo moyen = **10-25 Go**
+- Coût R2 au-delà du tier gratuit (10 Go) : ~$0,15-0,23/Go/mois → **~$2-5/mois**
+- **Aucun frais de bande passante sortante** (contrairement à S3 : ~$0,09/Go)
+
+**Recommandation** : Cloudflare R2 reste le meilleur choix. Pour les fichiers Learning volumineux (≤ 1,5 Go), R2 n'impose aucune limite de taille par fichier et ne facture pas l'egress.
 
 ---
 
@@ -210,19 +226,20 @@
 | Monitoring (UptimeRobot + Sentry) | $0 | $0 |
 | **TOTAL** | **$85.80/mois** | **$1,041.60/an** |
 
-### Scénario Hetzner Économique (2 000+ utilisateurs)
+### Scénario Alibaba Cloud (⭐ Optimisé Chine, 2 000+ utilisateurs)
 
 | Service | Prix/mois | Prix/an |
 |---|---|---|
-| VPS Hetzner CPX31 (8 Go RAM) | ~$11 | ~$132 |
-| MongoDB auto-hébergé | $0 | $0 |
+| VPS Alibaba ECS 4 Go RAM (Hong Kong) | ~$18 | ~$216 |
+| MongoDB Atlas Serverless | ~$10 | ~$120 |
 | Cloudflare Free | $0 | $0 |
-| Cloudflare R2 | $0 | $0 |
+| Cloudflare R2 (stockage fichiers ≤ 1.5 Go) | $0 – $5 | $0 – $60 |
 | Nom de domaine | — | $12 |
 | Brevo (email) | $0 | $0 |
 | Monitoring | $0 | $0 |
-| Backup (Hetzner snapshot) | ~$2.20 | ~$26.40 |
-| **TOTAL** | **~$13.20/mois** | **~$170.40/an** |
+| **TOTAL** | **~$28–33/mois** | **~$348–408/an** |
+
+> **Note** : Si datacenter en Chine continentale (avec ICP filing), les prix sont similaires mais la latence est divisée par 2 pour les utilisateurs en Chine.
 
 ---
 
