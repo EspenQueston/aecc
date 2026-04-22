@@ -99,12 +99,90 @@ export default function PublicLayout() {
               )}
             </div>
 
-            <button className="mobile-menu-btn" onClick={() => setMenuOpen(!menuOpen)}>
-              <i className={`fas ${menuOpen ? 'fa-times' : 'fa-bars'}`}></i>
+            <button className={`mobile-menu-btn${menuOpen ? ' open' : ''}`} onClick={() => setMenuOpen(!menuOpen)} aria-label="Menu">
+              <span className="mhb-bar" />
+              <span className="mhb-bar" />
+              <span className="mhb-bar" />
             </button>
           </nav>
         </div>
       </header>
+
+      {/* Mobile Drawer */}
+      <div className={`mobile-drawer${menuOpen ? ' open' : ''}`} onClick={e => { if (e.target.classList.contains('mobile-drawer-overlay')) setMenuOpen(false); }}>
+        <div className="mobile-drawer-overlay" />
+        <div className="mobile-drawer-panel">
+          <div className="mobile-drawer-header">
+            <Link to="/" className="mobile-drawer-logo" onClick={() => setMenuOpen(false)}>
+              <div className="logo-upload-frame">
+                <img src="/logo.png" alt="AECC" onError={e => { e.target.style.display = 'none'; }} />
+              </div>
+              <span>AECC</span>
+            </Link>
+            <button className="mobile-drawer-close" onClick={() => setMenuOpen(false)} aria-label="Fermer">
+              <i className="fas fa-times"></i>
+            </button>
+          </div>
+          <nav className="mobile-drawer-nav">
+            <NavLink to="/" end className="mobile-drawer-link" onClick={() => setMenuOpen(false)}>
+              <span className="mdr-icon"><i className="fas fa-home"></i></span>
+              <span className="mdr-text">Accueil</span>
+              <i className="fas fa-chevron-right mdr-arrow"></i>
+            </NavLink>
+            <NavLink to="/about" className="mobile-drawer-link" onClick={() => setMenuOpen(false)}>
+              <span className="mdr-icon"><i className="fas fa-info-circle"></i></span>
+              <span className="mdr-text">À propos</span>
+              <i className="fas fa-chevron-right mdr-arrow"></i>
+            </NavLink>
+            <NavLink to="/blogs" className="mobile-drawer-link" onClick={() => setMenuOpen(false)}>
+              <span className="mdr-icon"><i className="fas fa-newspaper"></i></span>
+              <span className="mdr-text">Blog</span>
+              <i className="fas fa-chevron-right mdr-arrow"></i>
+            </NavLink>
+            <NavLink to="/resources" className="mobile-drawer-link" onClick={() => setMenuOpen(false)}>
+              <span className="mdr-icon"><i className="fas fa-book"></i></span>
+              <span className="mdr-text">Ressources</span>
+              <i className="fas fa-chevron-right mdr-arrow"></i>
+            </NavLink>
+            <NavLink to="/events" className="mobile-drawer-link" onClick={() => setMenuOpen(false)}>
+              <span className="mdr-icon"><i className="fas fa-calendar-alt"></i></span>
+              <span className="mdr-text">Événements</span>
+              <i className="fas fa-chevron-right mdr-arrow"></i>
+            </NavLink>
+            <NavLink to="/learning" className="mobile-drawer-link" onClick={() => setMenuOpen(false)}>
+              <span className="mdr-icon"><i className="fas fa-graduation-cap"></i></span>
+              <span className="mdr-text">Apprentissage</span>
+              <i className="fas fa-chevron-right mdr-arrow"></i>
+            </NavLink>
+            <NavLink to="/contact" className="mobile-drawer-link" onClick={() => setMenuOpen(false)}>
+              <span className="mdr-icon"><i className="fas fa-envelope"></i></span>
+              <span className="mdr-text">Contact</span>
+              <i className="fas fa-chevron-right mdr-arrow"></i>
+            </NavLink>
+          </nav>
+          <div className="mobile-drawer-footer">
+            {user ? (
+              <>
+                <Link to="/profile" className="mobile-drawer-auth-btn" onClick={() => setMenuOpen(false)}>
+                  <i className="fas fa-user-circle"></i> {user.firstName}
+                </Link>
+                {isAdmin && (
+                  <Link to="/admin" className="mobile-drawer-auth-btn mobile-drawer-admin-btn" onClick={() => setMenuOpen(false)}>
+                    <i className="fas fa-cog"></i> Admin
+                  </Link>
+                )}
+                <button onClick={() => { logout(); setMenuOpen(false); }} className="mobile-drawer-logout-btn">
+                  <i className="fas fa-sign-out-alt"></i> Déconnexion
+                </button>
+              </>
+            ) : (
+              <Link to="/register" className="mobile-drawer-auth-btn" onClick={() => setMenuOpen(false)}>
+                <i className="fas fa-sign-in-alt"></i> Connexion / Inscription
+              </Link>
+            )}
+          </div>
+        </div>
+      </div>
 
       <main>
         <Outlet />
