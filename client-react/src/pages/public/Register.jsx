@@ -2,6 +2,7 @@ import { useState, useMemo, useEffect } from 'react';
 import { useNavigate, Link, useLocation } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import CHINA_PROVINCES from '../../data/chinaProvinces';
+import AuthDotMap from '../../components/auth/AuthDotMap';
 
 export default function Register() {
   const { login } = useAuth();
@@ -219,22 +220,23 @@ export default function Register() {
         <div className="container">
         <div className="auth-wrapper">
           <div className="auth-sidebar-panel">
-            <div className="auth-sidebar-content">
+            <AuthDotMap />
+            <div className="auth-sidebar-overlay">
               <div className="auth-sidebar-logo">
-                <span className="logo-flag">🇨🇬</span>
+                <div className="auth-logo-img-wrap">
+                  <img src="/logo.png" alt="AECC" onError={e => { e.target.style.display='none'; e.target.nextSibling.style.display='flex'; }} />
+                  <div className="auth-logo-fallback">🇨🇬</div>
+                </div>
                 <h2>AECC</h2>
+                <p>Congo — Chine</p>
               </div>
-              <p>Rejoignez la plus grande communauté d'étudiants congolais en Chine</p>
+              <h3 className="auth-sidebar-title">Bienvenue dans la communauté</h3>
+              <p className="auth-sidebar-sub">Rejoignez la plus grande communauté d'étudiants congolais en Chine</p>
               <div className="auth-features">
                 <div className="auth-feature"><i className="fas fa-users"></i><span>+500 étudiants membres</span></div>
                 <div className="auth-feature"><i className="fas fa-university"></i><span>+50 universités couvertes</span></div>
                 <div className="auth-feature"><i className="fas fa-calendar-alt"></i><span>Événements exclusifs</span></div>
-                <div className="auth-feature"><i className="fas fa-book"></i><span>Ressources académiques</span></div>
                 <div className="auth-feature"><i className="fas fa-hands-helping"></i><span>Entraide communautaire</span></div>
-                <div className="auth-feature"><i className="fas fa-shield-alt"></i><span>Données sécurisées</span></div>
-              </div>
-              <div className="auth-sidebar-footer">
-                <p><i className="fas fa-lock"></i> Vos informations sont protégées et confidentielles</p>
               </div>
             </div>
           </div>

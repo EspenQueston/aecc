@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import { api } from '../../services/api';
 import { useToast } from '../../components/common/ConfirmToast';
+import PageHero from '../../components/common/PageHero';
 
 function maskValue(value, type) {
   if (!value) return '—';
@@ -70,12 +71,13 @@ export default function Profile() {
 
   return (
     <>
-      <section className="page-hero page-hero-sm">
-        <div className="container">
-          <h1>Mon Profil</h1>
-          <p>Gérez vos informations personnelles et académiques</p>
-        </div>
-      </section>
+      <PageHero
+        badge="Compte"
+        title="Mon Profil"
+        subtitle="Gérez vos informations personnelles et académiques"
+        icon="fas fa-user-circle"
+        size="sm"
+      />
 
       <section className="section">
         <div className="container">

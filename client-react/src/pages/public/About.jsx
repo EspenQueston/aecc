@@ -1,6 +1,9 @@
 import { Link } from 'react-router-dom';
 import NewsletterBlock from '../../components/common/NewsletterBlock';
 import ExpandableText from '../../components/common/ExpandableText';
+import PageHero from '../../components/common/PageHero';
+import GlowCard from '../../components/common/GlowCard';
+import TeamTabs from '../../components/home/TeamTabs';
 
 export default function About() {
   const TIMELINE = [
@@ -37,13 +40,12 @@ export default function About() {
   return (
     <>
       {/* Hero Banner */}
-      <section className="page-hero">
-        <div className="container">
-          <span className="section-badge">À Propos</span>
-          <h1>Qui sommes-nous ?</h1>
-          <p>Découvrez l'histoire, la mission et l'équipe derrière l'AECC</p>
-        </div>
-      </section>
+      <PageHero
+        badge="À Propos"
+        title="Qui sommes-nous ?"
+        subtitle="Découvrez l’histoire, la mission et l’équipe derrière l’AECC"
+        icon="fas fa-info-circle"
+      />
 
       {/* Mission & Vision */}
       <section className="section">
@@ -63,71 +65,30 @@ export default function About() {
         </div>
       </section>
 
-      {/* Values */}
-      <section className="section section-alt">
+      {/* Values — GlowCard */}
+      <section className="gc-section section">
         <div className="container">
           <div className="section-header">
             <span className="section-badge">Nos Principes</span>
             <h2>Nos Valeurs Fondamentales</h2>
             <p>Les piliers qui guident toutes nos actions et décisions</p>
           </div>
-          <div className="values-grid">
+          <div className="gc-grid">
             {VALUES.map((v, i) => (
-              <div key={i} className="value-card">
-                <div className="value-icon"><i className={v.icon}></i></div>
-                <h3>{v.title}</h3>
-                <p>{v.desc}</p>
-              </div>
+              <GlowCard key={i} glowColor={['red','green','blue','purple','orange','gold'][i]}>
+                <div className="gc-card">
+                  <div className="gc-icon"><i className={v.icon}></i></div>
+                  <h3>{v.title}</h3>
+                  <p>{v.desc}</p>
+                </div>
+              </GlowCard>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Bureau Exécutif */}
-      <section className="section">
-        <div className="container">
-          <div className="section-header">
-            <span className="section-badge">Notre Équipe</span>
-            <h2>Bureau Exécutif de l'AECC</h2>
-            <p>Les membres dévoués qui dirigent et coordonnent les activités de l'association</p>
-          </div>
-          <div className="office-grid">
-            {BUREAU_MEMBERS.map((member, i) => (
-              <Link key={i} to={`/equipe/${member.name.toLowerCase()}`} className="office-card office-card-link">
-                <div className="office-avatar" style={{ background: `linear-gradient(135deg, ${member.color}, ${member.color}cc)` }}>
-                  <i className={member.icon}></i>
-                </div>
-                <h3>{member.name}</h3>
-                <span className="office-role">{member.role}</span>
-                <ExpandableText text={member.desc} />
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Commission de Contrôle */}
-      <section className="section section-alt">
-        <div className="container">
-          <div className="section-header">
-            <span className="section-badge">Contrôle & Discipline</span>
-            <h2>Commission de Contrôle, d'Évaluation et de Discipline</h2>
-            <p>Organe indépendant garant de la bonne gestion et du respect des Statuts de l'association</p>
-          </div>
-          <div className="office-grid office-grid-sm">
-            {COMMISSION_MEMBERS.map((member, i) => (
-              <Link key={i} to={`/equipe/${member.name.toLowerCase()}`} className="office-card office-card-link">
-                <div className="office-avatar" style={{ background: `linear-gradient(135deg, ${member.color}, ${member.color}cc)` }}>
-                  <i className={member.icon}></i>
-                </div>
-                <h3>{member.name}</h3>
-                <span className="office-role">{member.role}</span>
-                <ExpandableText text={member.desc} />
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Notre Organisation — Bureau + Commission tabs */}
+      <TeamTabs />
 
       {/* Timeline */}
       <section className="section section-alt">
@@ -152,45 +113,31 @@ export default function About() {
         </div>
       </section>
 
-      {/* What We Do */}
-      <section className="section">
+      {/* Services — GlowCard */}
+      <section className="gc-section section">
         <div className="container">
           <div className="section-header">
             <span className="section-badge">Nos Services</span>
-            <h2>Ce que l'AECC vous offre</h2>
+            <h2>Ce que l’AECC vous offre</h2>
             <p>Un accompagnement complet pour réussir votre séjour en Chine</p>
           </div>
-          <div className="services-grid">
-            <div className="service-card">
-              <div className="service-number">01</div>
-              <h3>Accueil & Orientation</h3>
-              <p>Accompagnement des nouveaux arrivants : accueil à l'aéroport, aide à l'installation, guide de survie en Chine.</p>
-            </div>
-            <div className="service-card">
-              <div className="service-number">02</div>
-              <h3>Soutien Académique</h3>
-              <p>Tutorat, groupes d'étude, ateliers de rédaction scientifique et préparation aux examens HSK.</p>
-            </div>
-            <div className="service-card">
-              <div className="service-number">03</div>
-              <h3>Vie Sociale & Culturelle</h3>
-              <p>Organisation de fêtes, soirées culturelles, tournois sportifs et sorties de découverte.</p>
-            </div>
-            <div className="service-card">
-              <div className="service-number">04</div>
-              <h3>Développement Professionnel</h3>
-              <p>Ateliers CV, préparation aux entretiens, networking et mise en relation avec des employeurs.</p>
-            </div>
-            <div className="service-card">
-              <div className="service-number">05</div>
-              <h3>Assistance Administrative</h3>
-              <p>Aide pour les démarches de visa, résidence, assurance et autres formalités administratives.</p>
-            </div>
-            <div className="service-card">
-              <div className="service-number">06</div>
-              <h3>Solidarité & Urgences</h3>
-              <p>Fonds de solidarité, assistance en cas d'urgence médicale et soutien psychologique.</p>
-            </div>
+          <div className="gc-grid">
+            {[
+              { num: '01', title: 'Accueil & Orientation', desc: 'Accompagnement des nouveaux arrivants : accueil à l’aéroport, aide à l’installation, guide de survie en Chine.', glow: 'red' },
+              { num: '02', title: 'Soutien Académique', desc: 'Tutorat, groupes d’étude, ateliers de rédaction scientifique et préparation aux examens HSK.', glow: 'blue' },
+              { num: '03', title: 'Vie Sociale & Culturelle', desc: 'Organisation de fêtes, soirées culturelles, tournois sportifs et sorties de découverte.', glow: 'green' },
+              { num: '04', title: 'Développement Professionnel', desc: 'Ateliers CV, préparation aux entretiens, networking et mise en relation avec des employeurs.', glow: 'purple' },
+              { num: '05', title: 'Assistance Administrative', desc: 'Aide pour les démarches de visa, résidence, assurance et autres formalités administratives.', glow: 'orange' },
+              { num: '06', title: 'Solidarité & Urgences', desc: 'Fonds de solidarité, assistance en cas d’urgence médicale et soutien psychologique.', glow: 'gold' },
+            ].map((s, i) => (
+              <GlowCard key={i} glowColor={s.glow}>
+                <div className="gc-card">
+                  <div className="gc-num">{s.num}</div>
+                  <h3>{s.title}</h3>
+                  <p>{s.desc}</p>
+                </div>
+              </GlowCard>
+            ))}
           </div>
         </div>
       </section>

@@ -111,54 +111,94 @@ export default function PublicLayout() {
       </main>
 
       <footer className="main-footer">
+        <div className="footer-top-bar" />
         <div className="container">
           <div className="footer-grid">
+
+            {/* Brand column */}
             <div className="footer-brand">
-              <h3><span className="footer-logo-frame"><img src="/logo.png" alt="AECC" onError={e => e.target.style.display='none'} /></span> AECC</h3>
-              <p>Association des Étudiants Congolais en Chine — Créée le 1er Août 2000 à Pékin. Devise : Unité – Travail – Réussite.</p>
-              <div className="social-links">
-                <button onClick={() => setShowWechat(true)} className="social-link-btn" aria-label="WeChat"><i className="fab fa-weixin"></i></button>
-                <a href="https://www.facebook.com/profile.php?id=61560764129668" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i className="fab fa-facebook"></i></a>
-                <a href="https://www.instagram.com/aecc242congochine/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i className="fab fa-instagram"></i></a>
+              <div className="footer-brand-logo">
+                <span className="footer-logo-frame">
+                  <img src="/logo.png" alt="AECC" onError={e => e.target.style.display = 'none'} />
+                </span>
+                <span>AECC</span>
               </div>
+              <p>Association des Étudiants Congolais en Chine — Créée le 1er Août 2000 à Pékin. Devise : Unité – Travail – Réussite.</p>
+              {nlStatus && <p style={{ fontSize: '.82rem', color: nlStatus.type === 'success' ? '#10b981' : '#ef4444' }}>{nlStatus.msg}</p>}
+              <form onSubmit={handleNewsletter} className="newsletter-form" style={{ marginBottom: '1.2rem' }}>
+                <input type="email" placeholder="Votre email…" value={nlEmail} onChange={e => setNlEmail(e.target.value)} required />
+                <button type="submit" className="btn btn-primary btn-sm">
+                  <i className="fas fa-paper-plane"></i>
+                </button>
+              </form>
+              <ul className="social-links">
+                <li>
+                  <button onClick={() => setShowWechat(true)} className="social-link-btn" aria-label="WeChat">
+                    <i className="fab fa-weixin"></i>
+                  </button>
+                </li>
+                <li>
+                  <a href="https://www.facebook.com/profile.php?id=61560764129668" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                    <i className="fab fa-facebook"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.instagram.com/aecc242congochine/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                    <i className="fab fa-instagram"></i>
+                  </a>
+                </li>
+              </ul>
             </div>
+
+            {/* Navigation column */}
             <div className="footer-links">
-              <h4>Navigation</h4>
+              <p className="footer-col-title">Navigation</p>
               <ul>
                 <li><Link to="/about">À propos</Link></li>
                 <li><Link to="/events">Événements</Link></li>
                 <li><Link to="/resources">Ressources</Link></li>
                 <li><Link to="/blogs">Blog</Link></li>
+                <li><Link to="/contact">Contact</Link></li>
               </ul>
             </div>
+
+            {/* Discover column */}
             <div className="footer-links">
-              <h4>Découvrir</h4>
+              <p className="footer-col-title">Découvrir</p>
               <ul>
                 <li><Link to="/bourses">Bourses d'Études</Link></li>
                 <li><Link to="/activites">Activités Sociales</Link></li>
                 <li><Link to="/relations">Relations Sino-Congolaises</Link></li>
-                <li><Link to="/learning">Domaines d'Apprentissage</Link></li>
+                <li><Link to="/learning">Apprentissage</Link></li>
+                <li><Link to="/register">Rejoindre l'AECC</Link></li>
               </ul>
             </div>
-            <div className="footer-links">
-              <h4>Support</h4>
-              <ul>
-                <li><Link to="/contact">Contact & FAQ</Link></li>
-                <li><Link to="/register">S'inscrire</Link></li>
+
+            {/* Contact column */}
+            <div className="footer-contact-col">
+              <p className="footer-col-title">Contactez-nous</p>
+              <ul className="footer-contact-list">
+                <li>
+                  <a href="mailto:aecc242@gmail.com" className="footer-contact-item">
+                    <i className="fas fa-envelope" style={{ color: 'var(--primary-light)' }}></i>
+                    <span>aecc242@gmail.com</span>
+                  </a>
+                </li>
+                <li>
+                  <button onClick={() => setShowWechat(true)} className="footer-contact-item footer-contact-btn">
+                    <i className="fab fa-weixin" style={{ color: '#07C160' }}></i>
+                    <span>WeChat: 18506959673</span>
+                  </button>
+                </li>
+                <li className="footer-contact-item footer-address-item">
+                  <i className="fas fa-map-marker-alt" style={{ color: 'var(--primary-light)' }}></i>
+                  <address>Beijing, République Populaire de Chine</address>
+                </li>
               </ul>
             </div>
-            <div className="footer-newsletter">
-              <h4>Newsletter</h4>
-              <p>Recevez nos dernières actualités</p>
-              {nlStatus && <p style={{ fontSize: '.82rem', color: nlStatus.type === 'success' ? '#10b981' : '#ef4444' }}>{nlStatus.msg}</p>}
-              <form onSubmit={handleNewsletter} className="newsletter-form">
-                <input type="email" placeholder="Votre email" value={nlEmail} onChange={e => setNlEmail(e.target.value)} required />
-                <button type="submit" className="btn btn-primary btn-sm">
-                  <i className="fas fa-paper-plane"></i>
-                </button>
-              </form>
-            </div>
+
           </div>
+
           <div className="footer-bottom">
             <p>&copy; {new Date().getFullYear()} AECC — Association des Étudiants Congolais en Chine. Tous droits réservés.</p>
           </div>

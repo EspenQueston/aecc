@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { api } from '../../services/api';
+import PageHero from '../../components/common/PageHero';
 
 const TYPE_LABELS = {
   seminar: { label: 'Séminaire', icon: 'fas fa-chalkboard-teacher', color: '#2563eb' },
@@ -56,13 +57,12 @@ export default function Events() {
 
   return (
     <>
-      <section className="page-hero">
-        <div className="container">
-          <span className="section-badge">Événements</span>
-          <h1>Nos Événements & Activités</h1>
-          <p>Participez aux rencontres, séminaires et activités culturelles de la communauté</p>
-        </div>
-      </section>
+      <PageHero
+        badge="Événements"
+        title="Nos Événements & Activités"
+        subtitle="Participez aux rencontres, séminaires et activités culturelles de la communauté"
+        icon="fas fa-calendar-alt"
+      />
 
       <section className="section">
         <div className="container">

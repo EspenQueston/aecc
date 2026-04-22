@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { api } from '../../services/api';
+import PageHero from '../../components/common/PageHero';
 
 const CATEGORIES = ['Actualités', 'Vie Étudiante', 'Bourses', 'Culture', 'Conseils', 'Témoignages'];
 const PLACEHOLDER_IMGS = [
@@ -56,13 +57,12 @@ export default function Blogs() {
 
   return (
     <>
-      <section className="page-hero">
-        <div className="container">
-          <span className="section-badge">Blog</span>
-          <h1>Articles & Actualités</h1>
-          <p>Témoignages, guides et actualités de la communauté étudiante congolaise en Chine</p>
-        </div>
-      </section>
+      <PageHero
+        badge="Blog"
+        title="Articles & Actualités"
+        subtitle="Témoignages, guides et actualités de la communauté étudiante congolaise en Chine"
+        icon="fas fa-newspaper"
+      />
 
       <section className="section">
         <div className="container">

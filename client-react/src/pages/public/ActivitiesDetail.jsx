@@ -1,4 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom';
+import PageHero from '../../components/common/PageHero';
 
 const ACTIVITIES = [
   {
@@ -91,14 +92,13 @@ export default function ActivitiesDetail() {
   const navigate = useNavigate();
   return (
     <>
-      <section className="page-hero">
-        <div className="container">
-          <button onClick={() => navigate(-1)} className="back-link"><i className="fas fa-arrow-left"></i> Retour</button>
-          <span className="section-badge">Vie Communautaire</span>
-          <h1>Activités Sociales & Culturelles</h1>
-          <p>Découvrez les différentes activités organisées par l'AECC pour enrichir la vie de ses membres</p>
-        </div>
-      </section>
+      <PageHero
+        badge="Vie Communautaire"
+        title="Activités Sociales & Culturelles"
+        subtitle="Découvrez les différentes activités organisées par l’AECC pour enrichir la vie de ses membres"
+        icon="fas fa-heart"
+        back={() => navigate(-1)}
+      />
 
       {ACTIVITIES.map((a, i) => (
         <section key={i} className={`section ${i % 2 === 1 ? 'section-alt' : ''}`}>

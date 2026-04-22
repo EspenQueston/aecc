@@ -12,7 +12,7 @@
 | Bande passante | 4 To/mois inclus | Inclus |
 | Datacenter | Frankfurt (EU) ou Singapore (Asie) | — |
 
-### Option B — Alibaba Cloud ECS (⭐ Recommandé si utilisateurs en Chine)
+### Option B — Alibaba Cloud ECS 
 
 > Alibaba Cloud est le **#1 cloud en Chine** (46% de parts de marché). Datacenters en Chine continentale = latence < 30ms pour les utilisateurs à Beijing, Shanghai, etc.
 

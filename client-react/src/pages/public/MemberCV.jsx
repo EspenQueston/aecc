@@ -1,4 +1,5 @@
 import { useParams, Link, useNavigate } from 'react-router-dom';
+import PageHero from '../../components/common/PageHero';
 
 const ALL_MEMBERS = {
   'rinel': {
@@ -188,14 +189,14 @@ export default function MemberCV() {
   return (
     <>
       {/* Hero */}
-      <section className="page-hero" style={{ background: `linear-gradient(135deg, ${member.color} 0%, ${member.color}bb 100%)` }}>
-        <div className="container">
-          <button onClick={() => navigate(-1)} className="back-link"><i className="fas fa-arrow-left"></i> Retour</button>
-          <span className="section-badge" style={{ background: 'rgba(255,255,255,.2)', color: '#fff' }}><i className={member.icon}></i> {member.structure}</span>
-          <h1>{member.name}</h1>
-          <p>{member.role}</p>
-        </div>
-      </section>
+      <PageHero
+        badge={member.structure}
+        title={member.name}
+        subtitle={member.role}
+        icon={member.icon}
+        accent={member.color}
+        back={() => navigate(-1)}
+      />
 
       {/* CV Content */}
       <section className="section">

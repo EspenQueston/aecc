@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { api } from '../../services/api';
+import PageHero from '../../components/common/PageHero';
 
 const CATEGORY_LABELS = {
   Academic: { label: 'Académique', icon: 'fas fa-book', color: '#2563eb' },
@@ -54,13 +55,12 @@ export default function Resources() {
 
   return (
     <>
-      <section className="page-hero">
-        <div className="container">
-          <span className="section-badge">Ressources</span>
-          <h1>Bibliothèque de Ressources</h1>
-          <p>Guides, outils et documents essentiels pour les étudiants congolais en Chine</p>
-        </div>
-      </section>
+      <PageHero
+        badge="Ressources"
+        title="Bibliothèque de Ressources"
+        subtitle="Guides, outils et documents essentiels pour les étudiants congolais en Chine"
+        icon="fas fa-book"
+      />
 
       <section className="section">
         <div className="container">

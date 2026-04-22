@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { api } from '../../services/api';
 import NewsletterBlock from '../../components/common/NewsletterBlock';
+import PageHero from '../../components/common/PageHero';
 
 const CATEGORY_LABELS = {
   general: 'Général',
@@ -38,13 +39,12 @@ export default function Contact() {
 
   return (
     <>
-      <section className="page-hero">
-        <div className="container">
-          <span className="section-badge">Contact</span>
-          <h1>Contactez-nous</h1>
-          <p>Nous sommes là pour répondre à toutes vos questions</p>
-        </div>
-      </section>
+      <PageHero
+        badge="Contact"
+        title="Contactez-nous"
+        subtitle="Nous sommes là pour répondre à toutes vos questions"
+        icon="fas fa-envelope"
+      />
 
       <section className="section">
         <div className="container">
@@ -55,38 +55,42 @@ export default function Contact() {
               <p className="contact-intro">N'hésitez pas à nous contacter par email, WeChat ou via le formulaire ci-contre. Nous répondons généralement sous 24-48h.</p>
               
               <div className="contact-info-cards">
-                <div className="contact-info-card">
+                <a href="mailto:contact@aecc.org" className="contact-info-card contact-info-link">
                   <div className="contact-card-icon"><i className="fas fa-envelope"></i></div>
                   <div>
                     <h4>Email</h4>
                     <p>contact@aecc.org</p>
                     <p>cluivertmoukendi@gmail.com</p>
                   </div>
-                </div>
-                <div className="contact-info-card">
+                  <i className="fas fa-chevron-right contact-card-chevron"></i>
+                </a>
+                <button type="button" className="contact-info-card contact-info-link" onClick={() => window.dispatchEvent(new Event('open-wechat-popup'))}>
                   <div className="contact-card-icon"><i className="fab fa-weixin"></i></div>
                   <div>
                     <h4>WeChat</h4>
                     <p>AECC_Official</p>
                     <p className="text-hint">Scannez notre QR code pour nous ajouter</p>
                   </div>
-                </div>
-                <div className="contact-info-card">
+                  <i className="fas fa-chevron-right contact-card-chevron"></i>
+                </button>
+                <a href="tel:+8618506959673" className="contact-info-card contact-info-link">
                   <div className="contact-card-icon"><i className="fas fa-phone-alt"></i></div>
                   <div>
                     <h4>Téléphone</h4>
                     <p>+86 18506959673</p>
                     <p className="text-hint">Lun-Ven, 9h-18h (heure de Pékin)</p>
                   </div>
-                </div>
-                <div className="contact-info-card">
+                  <i className="fas fa-chevron-right contact-card-chevron"></i>
+                </a>
+                <a href="https://maps.google.com/?q=Beijing,China" target="_blank" rel="noopener noreferrer" className="contact-info-card contact-info-link">
                   <div className="contact-card-icon"><i className="fas fa-map-marker-alt"></i></div>
                   <div>
                     <h4>Siège</h4>
                     <p>Beijing, République Populaire de Chine</p>
                     <p className="text-hint">Avec des représentants dans toute la Chine</p>
                   </div>
-                </div>
+                  <i className="fas fa-chevron-right contact-card-chevron"></i>
+                </a>
               </div>
 
               {/* Social Links */}

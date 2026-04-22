@@ -23,6 +23,8 @@ export default function BlogDetails() {
   const [blog, setBlog] = useState(null);
   const [loading, setLoading] = useState(true);
   const [progress, setProgress] = useState(0);
+  const [showWechat, setShowWechat] = useState(false);
+  const [wechatCopied, setWechatCopied] = useState(false);
   const articleRef = useRef(null);
 
   useEffect(() => {
@@ -68,69 +70,96 @@ export default function BlogDetails() {
 
   return (
     <>
-      {/* Reading progress bar */}
       <div className="blog-progress-bar" style={{ width: `${progress}%` }} />
 
-      <article className="blog-detail-wrapper" ref={articleRef}>
-        {/* Hero banner */}
-        {img && (
-          <div className="blog-detail-hero">
-            <img src={img} alt={blog.title} />
-            <div className="blog-detail-hero-overlay">
-              <div className="container">
-                <Link to="/blogs" className="back-link"><i className="fas fa-arrow-left"></i> Retour au blog</Link>
+      <div className="bd-page">
+        <div className="container bd-container">
+          <Link to="/blogs" className="bd-back"><i className="fas fa-arrow-left"></i> Retour aux articles</Link>
+
+          <article ref={articleRef} className="bd-article">
+            <header className="bd-header">
+              <span className="bd-category">{blog.category || 'Article'}</span>
+              <h1 className="bd-title">{blog.title}</h1>
+
+              <div className="bd-meta">
+                <div className="bd-author">
+                  <div className="bd-avatar">
+                    <i className="fas fa-user-circle"></i>
+                  </div>
+                  <div className="bd-author-info">
+                    <strong>{blog.author || 'Équipe AECC'}</strong>
+                    <span>{new Date(blog.createdAt).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })} • {readInfo.minutes} min de lecture</span>
+                  </div>
+                </div>
+                <div className="bd-stats">
+                  <span title="Vues"><i className="fas fa-eye"></i> {blog.views || 0}</span>
+                </div>
               </div>
-            </div>
-          </div>
-        )}
 
-        <div className="container" style={{ maxWidth: 780 }}>
-          {!img && (
-            <div style={{ paddingTop: '2rem' }}>
-              <Link to="/blogs" className="btn btn-ghost btn-sm"><i className="fas fa-arrow-left"></i> Retour au blog</Link>
-            </div>
-          )}
+              {img && (
+                <figure className="bd-featured">
+                  <img src={img} alt={blog.title} />
+                  <div className="bd-featured-overlay" />
+                </figure>
+              )}
+            </header>
 
-          {/* Article header */}
-          <header className="blog-detail-header">
-            <span className="card-category">{blog.category || 'Article'}</span>
-            <h1>{blog.title}</h1>
-            <div className="blog-detail-meta">
-              <span><i className="fas fa-user-circle"></i> {blog.author || 'AECC'}</span>
-              <span><i className="fas fa-calendar-alt"></i> {new Date(blog.createdAt).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })}</span>
-              <span><i className="fas fa-clock"></i> {readInfo.minutes} min de lecture</span>
-              <span><i className="fas fa-eye"></i> {blog.views || 0} vues</span>
-            </div>
-          </header>
+            <div className="bd-layout">
+              <main className="bd-content bd-content--full">
+                {htmlContent ? (
+                  <div className="bd-html" dangerouslySetInnerHTML={{ __html: blog.content }} />
+                ) : (
+                  <div className="bd-html">
+                    {blog.content.split('\n').map((para, i) =>
+                      para.trim() ? <p key={i}>{para}</p> : null
+                    )}
+                  </div>
+                )}
 
-          {/* Article body */}
-          <div className="blog-detail-body">
-            {htmlContent ? (
-              <div dangerouslySetInnerHTML={{ __html: blog.content }} />
-            ) : (
-              blog.content.split('\n').map((para, i) =>
-                para.trim() ? <p key={i}>{para}</p> : null
-              )
-            )}
-          </div>
+                {blog.tags && blog.tags.length > 0 && (
+                  <div className="bd-tags">
+                    <i className="fas fa-tags"></i>
+                    {blog.tags.map((t, i) => <span key={i} className="bd-tag">{t.term_id?.name || t}</span>)}
+                  </div>
+                )}
 
-          {/* Tags */}
-          {blog.tags && blog.tags.length > 0 && (
-            <div className="blog-detail-tags">
-              {blog.tags.map((t, i) => <span key={i} className="tag"><i className="fas fa-hashtag"></i> {t.term_id?.name || t}</span>)}
-            </div>
-          )}
+                <div className="bd-author-box">
+                  <div className="bd-author-box-avatar">
+                    <i className="fas fa-bullhorn"></i>
+                  </div>
+                  <div className="bd-author-box-info">
+                    <h4>{blog.author || 'Équipe AECC'}</h4>
+                    <p>L'Association des Étudiants Congolais en Chine a pour mission de rassembler, d'orienter et de soutenir la communauté étudiante congolaise en Chine.</p>
+                    <div className="bd-author-socials">
+                      <button onClick={() => setShowWechat(true)}><i className="fab fa-weixin"></i> WeChat</button>
+                      <a href="https://www.facebook.com/profile.php?id=61560764129668" target="_blank" rel="noopener noreferrer"><i className="fab fa-facebook"></i> Facebook</a>
+                      <a href="https://www.instagram.com/aecc242congochine/" target="_blank" rel="noopener noreferrer"><i className="fab fa-instagram"></i> Instagram</a>
+                    </div>
+                  </div>
+                </div>
 
-          {/* Footer */}
-          <div className="blog-detail-footer">
-            <div className="blog-detail-footer-info">
-              <span><i className="fas fa-align-left"></i> {readInfo.words.toLocaleString('fr-FR')} mots</span>
-              <span><i className="fas fa-clock"></i> ~{readInfo.minutes} min</span>
+                <div className="bd-footer">
+                  <Link to="/blogs" className="btn btn-outline"><i className="fas fa-arrow-left"></i> Explorer d'autres articles</Link>
+                </div>
+              </main>
             </div>
-            <Link to="/blogs" className="btn btn-primary btn-sm"><i className="fas fa-arrow-left"></i> Tous les articles</Link>
+          </article>
+        </div>
+      </div>
+
+      {showWechat && (
+        <div className="wechat-modal-overlay" onClick={() => { setShowWechat(false); setWechatCopied(false); }}>
+          <div className="wechat-modal" onClick={e => e.stopPropagation()}>
+            <button className="wechat-modal-close" onClick={() => { setShowWechat(false); setWechatCopied(false); }}><i className="fas fa-times"></i></button>
+            <div className="wechat-modal-icon"><i className="fab fa-wechat"></i></div>
+            <h3>WeChat ID</h3>
+            <p className="wechat-id">18506959673</p>
+            <button className="wechat-copy-btn" onClick={() => { navigator.clipboard.writeText('18506959673'); setWechatCopied(true); setTimeout(() => setWechatCopied(false), 2000); }}>
+              <i className={`fas fa-${wechatCopied ? 'check' : 'copy'}`}></i> {wechatCopied ? 'Copié !' : 'Copier l\'ID'}
+            </button>
           </div>
         </div>
-      </article>
+      )}
     </>
   );
 }

@@ -1,4 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom';
+import PageHero from '../../components/common/PageHero';
 
 const SCHOLARSHIPS = [
   {
@@ -55,14 +56,13 @@ export default function ScholarshipsDetail() {
   const navigate = useNavigate();
   return (
     <>
-      <section className="page-hero">
-        <div className="container">
-          <button onClick={() => navigate(-1)} className="back-link"><i className="fas fa-arrow-left"></i> Retour</button>
-          <span className="section-badge">Bourses d'Études</span>
-          <h1>Opportunités de Bourses en Chine</h1>
-          <p>Guide complet des bourses disponibles pour les étudiants congolais</p>
-        </div>
-      </section>
+      <PageHero
+        badge="Bourses d’Études"
+        title="Opportunités de Bourses en Chine"
+        subtitle="Guide complet des bourses disponibles pour les étudiants congolais"
+        icon="fas fa-graduation-cap"
+        back={() => navigate(-1)}
+      />
 
       {SCHOLARSHIPS.map((s, i) => (
         <section key={i} className={`section ${i % 2 === 1 ? 'section-alt' : ''}`}>

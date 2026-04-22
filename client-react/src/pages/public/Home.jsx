@@ -4,6 +4,8 @@ import { api } from '../../services/api';
 import NewsletterBlock from '../../components/common/NewsletterBlock';
 import ExpandableText from '../../components/common/ExpandableText';
 import HeroBanner3D from '../../components/home/HeroBanner3D';
+import CardFeatureTabs from '../../components/home/CardFeatureTabs';
+import TeamTabs from '../../components/home/TeamTabs';
 
 const BUREAU_MEMBERS = [
   { name: 'Rinel', role: 'Président', desc: 'Chargé de la coordination et de l\'orientation de l\'association. Représente l\'AECC auprès des autorités et partenaires.', icon: 'fas fa-crown', color: '#B7222D', city: 'Beijing' },
@@ -116,51 +118,11 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Bureau Exécutif */}
-      <section className="section">
-        <div className="container">
-          <div className="section-header">
-            <span className="section-badge">Notre Équipe</span>
-            <h2>Bureau Exécutif de l'AECC</h2>
-            <p>Les membres dévoués qui dirigent et coordonnent les activités de l'association</p>
-          </div>
-          <div className="office-grid">
-            {BUREAU_MEMBERS.map((member, i) => (
-              <Link key={i} to={`/equipe/${member.name.toLowerCase()}`} className="office-card office-card-link">
-                <div className="office-avatar" style={{ background: `linear-gradient(135deg, ${member.color}, ${member.color}cc)` }}>
-                  <i className={member.icon}></i>
-                </div>
-                <h3>{member.name}</h3>
-                <span className="office-role">{member.role}</span>
-                <ExpandableText text={member.desc} />
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Card Feature Tabs */}
+      <CardFeatureTabs />
 
-      {/* Commission de Contrôle, d'Évaluation et de Discipline */}
-      <section className="section section-alt">
-        <div className="container">
-          <div className="section-header">
-            <span className="section-badge">Contrôle & Discipline</span>
-            <h2>Commission de Contrôle, d'Évaluation et de Discipline</h2>
-            <p>Organe indépendant garant de la bonne gestion et du respect des Statuts de l'association</p>
-          </div>
-          <div className="office-grid office-grid-sm">
-            {COMMISSION_MEMBERS.map((member, i) => (
-              <Link key={i} to={`/equipe/${member.name.toLowerCase()}`} className="office-card office-card-link">
-                <div className="office-avatar" style={{ background: `linear-gradient(135deg, ${member.color}, ${member.color}cc)` }}>
-                  <i className={member.icon}></i>
-                </div>
-                <h3>{member.name}</h3>
-                <span className="office-role">{member.role}</span>
-                <ExpandableText text={member.desc} />
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Notre Organisation — Bureau + Commission tabs */}
+      <TeamTabs />
 
       {/* Scholarships Section */}
       <section className="section">

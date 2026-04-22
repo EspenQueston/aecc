@@ -1,6 +1,8 @@
 const Event = require('../models/Event');
 const Resource = require('../models/Resource');
 const Profile = require('../models/Profile');
+const LearningResource = require('../models/LearningResource');
+const TelegramChannel = require('../models/TelegramChannel');
 const WordPressBlogService = require('../models/wordpress/WordPressBlogService');
 
 // @desc    Unified search across all content types
@@ -123,8 +125,58 @@ exports.search = async (req, res) => {
       };
     }
 
+    // Search learning resources (formations, YouTube, useful links)
+    if (!type || type === 'learning') {
+      const learningFilter = {
+        status: 'active',
+        $or: [
+          { title: searchRegex },
+          { description: searchRegex },
+          { longDescription: searchRegex }
+        ]
+      };
+      const [learningItems, learningTotal] = await Promise.all([
+        LearningResource.find(learningFilter)
+          .sort({ order: 1, featured: -1 })
+          .skip((pageNum - 1) * limitNum)
+          .limit(limitNum)
+          .select('title description type icon color slug url level featured'),
+        LearningResource.countDocuments(learningFilter)
+      ]);
+      results.learning = {
+        data: learningItems.map(l => ({ ...l.toObject(), type: 'learning' })),
+        total: learningTotal
+      };
+    }
+
+    // Search Telegram channels
+    if (!type || type === 'learning') {
+      const channelFilter = {
+        status: 'active',
+        $or: [
+          { name: searchRegex },
+          { description: searchRegex },
+          { category: searchRegex }
+        ]
+      };
+      const [channels, channelTotal] = await Promise.all([
+        TelegramChannel.find(channelFilter)
+          .sort({ featured: -1, name: 1 })
+          .skip((pageNum - 1) * limitNum)
+          .limit(limitNum)
+          .select('name description url category icon language featured'),
+        TelegramChannel.countDocuments(channelFilter)
+      ]);
+      // Merge into learning results
+      const combined = [...(results.learning?.data || []), ...channels.map(c => ({ ...c.toObject(), type: 'telegram' }))];
+      results.learning = {
+        data: combined,
+        total: (results.learning?.total || 0) + channelTotal
+      };
+    }
+
     // Calculate total across all types
-    const totalResults = Object.values(results).reduce((sum, r) => sum + r.total, 0);
+    const totalResults = Object.values(results).reduce((sum, r) => sum + (r.total || 0), 0);
 
     res.json({
       success: true,
@@ -137,3 +189,5 @@ exports.search = async (req, res) => {
     res.status(500).json({ msg: 'Server Error' });
   }
 };
+
+// ── end of search controller ──

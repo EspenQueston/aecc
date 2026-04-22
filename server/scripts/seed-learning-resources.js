@@ -105,10 +105,10 @@ const RESOURCES = [
 
   // ── Liens Utiles ──
   {
-    type: 'useful-link', title: 'ScholarQuest (Bizkeyz)',
-    description: 'Recherche de bourses internationales', url: 'https://bizkeyz.com',
+    type: 'useful-link', title: 'ScholarQuest',
+    description: 'Recherche de bourses internationales', url: 'https://scholarquest.xyz',
     icon: 'fas fa-search', color: '#2563eb', highlight: true, featured: true, order: 1,
-    longDescription: "ScholarQuest (Bizkeyz) est une plateforme africaine dédiée à la recherche de bourses d'études internationales. Elle centralise les opportunités de financement pour les étudiants africains.\n\nLa plateforme couvre les bourses CSC, les bourses européennes, et bien d'autres programmes de financement.",
+    longDescription: "ScholarQuest est une plateforme africaine dédiée à la recherche de bourses d'études internationales. Elle centralise les opportunités de financement pour les étudiants africains.\n\nLa plateforme couvre les bourses CSC, les bourses européennes, et bien d'autres programmes de financement.",
     advantages: ['Moteur de recherche dédié aux bourses', 'Informations actualisées régulièrement', 'Focus sur les étudiants africains', 'Guide étape par étape pour les candidatures', 'Newsletter avec les nouvelles opportunités'],
     disadvantages: ['Certaines informations peuvent être en retard', 'Pas toutes les bourses sont couvertes', 'Interface en cours d\'amélioration'],
     details: ['Couvre les bourses dans 50+ pays', 'Section spéciale pour les bourses en Chine', 'Conseils pour les lettres de motivation', 'Communauté active sur les réseaux sociaux']

@@ -18,6 +18,7 @@ import EventDetails from './pages/public/EventDetails';
 import Learning from './pages/public/Learning';
 import LearningDetail from './pages/public/LearningDetail';
 import MemberCV from './pages/public/MemberCV';
+import Equipe from './pages/public/Equipe';
 import ScholarshipsDetail from './pages/public/ScholarshipsDetail';
 import ActivitiesDetail from './pages/public/ActivitiesDetail';
 import RelationsDetail from './pages/public/RelationsDetail';
@@ -59,6 +60,7 @@ function App() {
             <Route path="/events/:id" element={<EventDetails />} />
             <Route path="/learning" element={<Learning />} />
             <Route path="/learning/resource/:slug" element={<LearningDetail />} />
+            <Route path="/equipe" element={<Equipe />} />
             <Route path="/equipe/:slug" element={<MemberCV />} />
             <Route path="/bourses" element={<ScholarshipsDetail />} />
             <Route path="/activites" element={<ActivitiesDetail />} />
