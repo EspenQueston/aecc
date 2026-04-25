@@ -21,7 +21,7 @@ const SCHOLARSHIPS = [
     coverage: 'Partielle à complète',
     deadline: 'Variable selon la province',
     description: 'Les gouvernements provinciaux chinois offrent des bourses aux étudiants internationaux inscrits dans les universités de leur province. Les conditions et montants varient considérablement.',
-    benefits: ['Exemption partielle ou totale des frais de scolarité', 'Allocation mensuelle (1 000 – 2 500 RMB)', 'Certaines incluent le logement gratuit', 'Prime d\'excellence académique annuelle'],
+    benefits: ['Exemption partielle ou totale des frais de scolarité', 'Allocation mensuelle (1 000 – 5 000 RMB)', 'Certaines incluent le logement gratuit', 'Prime d\'excellence académique annuelle'],
     requirements: ['Être inscrit dans une université de la province', 'Bons résultats académiques', 'Pas de bourse CSC en cours', 'Recommandation de l\'université'],
     steps: ['Se renseigner auprès du bureau des affaires internationales de votre université', 'Préparer un dossier académique complet', 'Soumettre la candidature via l\'université', 'Certaines provinces exigent un entretien'],
     link: null
