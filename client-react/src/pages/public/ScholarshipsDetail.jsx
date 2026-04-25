@@ -9,7 +9,7 @@ const SCHOLARSHIPS = [
     coverage: 'Complète',
     deadline: 'Janvier – Avril (annuelle)',
     description: 'La bourse du gouvernement chinois (CSC) est le programme de bourses le plus prestigieux et le plus complet pour les étudiants internationaux. Elle couvre tous les frais et offre une allocation mensuelle.',
-    benefits: ['Frais de scolarité 100% couverts', 'Hébergement sur le campus gratuit', 'Allocation mensuelle : 3 000 RMB (licence), 3 500 RMB (master), 4 000 RMB (doctorat)', 'Assurance médicale complète', 'Frais d\'inscription exemptés'],
+    benefits: ['Frais de scolarité 100% couverts', 'Hébergement sur le campus gratuit', 'Allocation mensuelle : 2 500 RMB (licence), 3 000 RMB (master), 3 500 RMB (doctorat)', 'Assurance médicale complète', 'Frais d\'inscription exemptés'],
     requirements: ['Diplôme requis selon le niveau (bac, licence, master)', 'Limite d\'âge : 25 ans (licence), 35 ans (master), 40 ans (doctorat)', 'Bonne santé physique et mentale', 'Lettres de recommandation (2 professeurs)', 'Plan d\'études détaillé en anglais ou chinois', 'Certificat HSK (selon le programme)'],
     steps: ['Créer un compte sur campuschina.org', 'Contacter directement les universités pour une lettre d\'admission', 'Remplir le formulaire de candidature CSC en ligne', 'Soumettre les documents via l\'ambassade de Chine ou l\'université', 'Attendre les résultats (mai-juillet)'],
     link: 'https://www.csc.edu.cn'
