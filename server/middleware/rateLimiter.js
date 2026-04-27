@@ -1,11 +1,17 @@
 const rateLimit = require('express-rate-limit');
 
+const isDev = process.env.NODE_ENV === 'development';
+
+// In development, bypass all rate limits
+const skipInDev = () => isDev;
+
 // General API rate limiter
 const apiLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
   max: 500,
   standardHeaders: true,
   legacyHeaders: false,
+  skip: skipInDev,
   message: { msg: 'Too many requests, please try again after 15 minutes.' }
 });
 
@@ -15,6 +21,7 @@ const authLimiter = rateLimit({
   max: 50,
   standardHeaders: true,
   legacyHeaders: false,
+  skip: skipInDev,
   message: { msg: 'Too many login attempts, please try again after 15 minutes.' }
 });
 
@@ -24,6 +31,7 @@ const contactLimiter = rateLimit({
   max: 5,
   standardHeaders: true,
   legacyHeaders: false,
+  skip: skipInDev,
   message: { msg: 'Too many submissions, please try again later.' }
 });
 
@@ -33,6 +41,7 @@ const twoFactorLimiter = rateLimit({
   max: 5,
   standardHeaders: true,
   legacyHeaders: false,
+  skip: skipInDev,
   message: { msg: 'Too many 2FA attempts, please try again after 1 minute.' }
 });
 
@@ -42,6 +51,7 @@ const commentLimiter = rateLimit({
   max: 10,
   standardHeaders: true,
   legacyHeaders: false,
+  skip: skipInDev,
   message: { msg: 'Too many comments, please try again later.' }
 });
 

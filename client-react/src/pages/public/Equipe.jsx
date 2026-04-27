@@ -135,9 +135,14 @@ function MemberCard({ member, index }) {
           Voir le profil <i className="fas fa-arrow-right"></i>
         </span>
         {member.email && (
-          <a href={`mailto:${member.email}`} className="eq-email-btn" onClick={e => e.stopPropagation()} title={member.email}>
+          <button
+            className="eq-email-btn"
+            onClick={e => { e.preventDefault(); e.stopPropagation(); window.location.href = `mailto:${member.email}`; }}
+            title={member.email}
+            type="button"
+          >
             <i className="fas fa-envelope"></i>
-          </a>
+          </button>
         )}
       </div>
     </Link>
