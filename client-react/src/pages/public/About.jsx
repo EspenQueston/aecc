@@ -51,12 +51,12 @@ export default function About() {
       <section className="section">
         <div className="container">
           <div className="mission-vision-grid">
-            <div className="mv-card">
+            <div className="mv-card reveal-left">
               <div className="mv-icon"><i className="fas fa-bullseye"></i></div>
               <h2>Notre Mission</h2>
               <p>L'AECC a été fondée le 1er août 2000 à Beijing pour créer un réseau solide entre les étudiants congolais poursuivant leurs études en Chine. Notre mission est de faciliter l'intégration, promouvoir l'entraide et renforcer les liens communautaires. Nous nous engageons à accompagner chaque étudiant dans son parcours académique, professionnel et personnel en Chine.</p>
             </div>
-            <div className="mv-card">
+            <div className="mv-card reveal-right" style={{'--reveal-delay':'.15s'}}>
               <div className="mv-icon"><i className="fas fa-eye"></i></div>
               <h2>Notre Vision</h2>
               <p>Devenir la référence incontournable pour tous les étudiants congolais en Chine, en offrant une plateforme complète d'information, de ressources et de mise en relation. Nous aspirons à former une génération de leaders congolais enrichis par leur expérience en Chine et prêts à contribuer au développement de notre pays.</p>
@@ -68,7 +68,7 @@ export default function About() {
       {/* Values — GlowCard */}
       <section className="gc-section section">
         <div className="container">
-          <div className="section-header">
+          <div className="section-header reveal">
             <span className="section-badge">Nos Principes</span>
             <h2>Nos Valeurs Fondamentales</h2>
             <p>Les piliers qui guident toutes nos actions et décisions</p>
@@ -76,7 +76,7 @@ export default function About() {
           <div className="gc-grid">
             {VALUES.map((v, i) => (
               <GlowCard key={i} glowColor={['red','green','blue','purple','orange','gold'][i]}>
-                <div className="gc-card">
+                <div className="gc-card reveal" style={{'--reveal-delay':`${i * 0.08}s`}}>
                   <div className="gc-icon"><i className={v.icon}></i></div>
                   <h3>{v.title}</h3>
                   <p>{v.desc}</p>
@@ -93,7 +93,7 @@ export default function About() {
       {/* Timeline */}
       <section className="section section-alt">
         <div className="container">
-          <div className="section-header">
+          <div className="section-header reveal">
             <span className="section-badge">Notre Parcours</span>
             <h2>Chronologie de l'AECC</h2>
             <p>Les étapes clés de notre développement</p>
@@ -102,7 +102,7 @@ export default function About() {
             {TIMELINE.map((item, i) => (
               <div key={i} className={`timeline-item ${i % 2 === 0 ? 'left' : 'right'}`}>
                 <div className="timeline-dot"></div>
-                <div className="timeline-card">
+                <div className={`timeline-card ${i % 2 === 0 ? 'reveal-left' : 'reveal-right'}`} style={{'--reveal-delay':`${i * 0.1}s`}}>
                   <span className="timeline-year">{item.year}</span>
                   <h3>{item.title}</h3>
                   <p>{item.desc}</p>
@@ -116,7 +116,7 @@ export default function About() {
       {/* Services — GlowCard */}
       <section className="gc-section section">
         <div className="container">
-          <div className="section-header">
+          <div className="section-header reveal">
             <span className="section-badge">Nos Services</span>
             <h2>Ce que l’AECC vous offre</h2>
             <p>Un accompagnement complet pour réussir votre séjour en Chine</p>
@@ -131,7 +131,7 @@ export default function About() {
               { num: '06', title: 'Solidarité & Urgences', desc: 'Fonds de solidarité, assistance en cas d’urgence médicale et soutien psychologique.', glow: 'gold' },
             ].map((s, i) => (
               <GlowCard key={i} glowColor={s.glow}>
-                <div className="gc-card">
+                <div className="gc-card reveal" style={{'--reveal-delay':`${i * 0.08}s`}}>
                   <div className="gc-num">{s.num}</div>
                   <h3>{s.title}</h3>
                   <p>{s.desc}</p>

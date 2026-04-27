@@ -1,5 +1,6 @@
 import { Link, NavLink, Outlet, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
+import { useTheme } from '../../context/ThemeContext';
 import { api } from '../../services/api';
 import { useState, useEffect } from 'react';
 import ChatWidget from '../common/ChatWidget';
@@ -7,6 +8,7 @@ import ScrollWidget from '../common/ScrollWidget';
 
 export default function PublicLayout() {
   const { user, isAdmin, logout } = useAuth();
+  const { theme, toggleTheme } = useTheme();
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [nlEmail, setNlEmail] = useState('');
@@ -75,8 +77,12 @@ export default function PublicLayout() {
                   value={searchQuery}
                   onChange={e => setSearchQuery(e.target.value)}
                 />
-                <button type="submit"><i className="fas fa-search"></i></button>
+                <button type="submit" aria-label="Rechercher"><i className="fas fa-search"></i></button>
               </form>
+
+              <button className="btn btn-ghost btn-sm theme-toggle-btn" onClick={toggleTheme} aria-label="Mode Sombre/Clair">
+                <i className={theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon'}></i>
+              </button>
 
               {user ? (
                 <div className="nav-user">

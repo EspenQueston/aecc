@@ -146,25 +146,38 @@ const ALL_MEMBERS = {
     contact: { email: 'discipline@aecc.org', wechat: null },
     languages: ['Français', 'Anglais', 'Chinois'],
   },
-  'david': {
-    name: 'David',
+  'diba-grace': {
+    name: 'Diba Grace',
     role: 'Rapporteur',
     structure: 'Commission de Contrôle, d\'Évaluation et de Discipline',
     icon: 'fas fa-pen-fancy',
     color: '#0891b2',
     photo: null,
-    bio: 'Rapporteur de la C.C.E.D de l\'AECC. Il assiste le Commissaire dans ses fonctions, rédige les rapports d\'activité de la commission et présente les conclusions lors des assemblées. En cas de démission du Commissaire, le Rapporteur devient Commissaire (Art. 19 du R.I.).',
-    education: [],
+    bio: 'Étudiante en troisième année de Bachelor of Arts in International Chinese Education à Beijing Foreign Studies University. Expérience d\'enseignement de l\'anglais au collège (Qingzhou) et du français au primaire (Nongmin School), avec une forte capacité d\'adaptation pédagogique en contexte interculturel.',
+    education: [
+      { degree: 'Bachelor of Arts in International Chinese Education', university: 'Beijing Foreign Studies University', year: 'En cours (3e année)' },
+    ],
     responsibilities: [
       'Rédiger les rapports et comptes rendus de la commission',
       'Assister le Commissaire dans le suivi de la gestion',
       'Présenter les conclusions de la commission en Assemblée Générale',
-      'Documenter les décisions et sanctions prises',
+      'Documenter les décisions et recommandations de la commission',
       'Archiver les dossiers de la commission',
-      'Devenir Commissaire en cas de démission de celui-ci (Art. 19 R.I.)',
+      'Contribuer à la clarté, à la rigueur et à la traçabilité des travaux de la commission',
     ],
-    contact: { email: 'discipline@aecc.org', wechat: null },
-    languages: ['Français', 'Anglais', 'Chinois'],
+    workExperience: [
+      { title: 'Enseignante d\'anglais (collège)', company: 'Qingzhou', period: 'Expérience pédagogique' },
+      { title: 'Enseignante de français (primaire)', company: 'Nongmin School', period: 'Expérience pédagogique' },
+    ],
+    skills: [
+      'Instruction en langues étrangères',
+      'Adaptabilité pédagogique',
+      'Communication interculturelle',
+      'Méthodologie d\'enseignement',
+      'Second Language Acquisition',
+    ],
+    contact: { email: 'dibawang@hotmail.com', wechat: '18810511839' },
+    languages: ['Français', 'Anglais', 'Espagnol', 'Chinois'],
   },
 };
 

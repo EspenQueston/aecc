@@ -25,6 +25,7 @@
     "db:clear-profiles": "node server/scripts/db-manager.js clear profiles",
     "migrate:wordpress": "node server/scripts/migrate-to-wordpress-complete.js",
     "create-admin": "node server/scripts/create-admin.js",
+    "seed-team": "node server/scripts/seed-team.js",
     "test": "jest --forceExit --detectOpenHandles",
     "test:watch": "jest --watch --forceExit --detectOpenHandles",
     "test:load": "node server/scripts/load-test.js",

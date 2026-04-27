@@ -46,8 +46,10 @@ import AdminLearning from './pages/admin/AdminLearning';
 
 function ScrollReveal() {
   const { pathname } = useLocation();
+
   useEffect(() => {
-    const SELECTOR = '.reveal,.reveal-fade,.reveal-left,.reveal-right,.reveal-scale';
+    const SELECTOR = '.reveal, .reveal-fade, .reveal-left, .reveal-right, .reveal-scale';
+    
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach(entry => {
@@ -59,11 +61,35 @@ function ScrollReveal() {
       },
       { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
     );
-    const id = setTimeout(() => {
-      document.querySelectorAll(SELECTOR).forEach(el => observer.observe(el));
-    }, 60);
-    return () => { clearTimeout(id); observer.disconnect(); };
+
+    const observeElements = () => {
+      document.querySelectorAll(SELECTOR).forEach(el => {
+        if (!el.classList.contains('revealed')) {
+          observer.observe(el);
+        }
+      });
+    };
+
+    // Initial check
+    const id = setTimeout(observeElements, 60);
+
+    // Continually check for new elements (fixes React dynamic rendering bugs)
+    const mutationObserver = new MutationObserver(() => {
+      observeElements();
+    });
+
+    mutationObserver.observe(document.body, {
+      childList: true,
+      subtree: true
+    });
+
+    return () => { 
+      clearTimeout(id); 
+      observer.disconnect(); 
+      mutationObserver.disconnect();
+    };
   }, [pathname]);
+  
   return null;
 }
 

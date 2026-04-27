@@ -1,126 +1,257 @@
 # AECC — Association des Étudiants Congolais en Chine
 
-Plateforme communautaire pour les étudiants congolais (RDC) en Chine. Recensement des étudiants, blogs, événements, ressources partagées et gestion administrative.
+Plateforme web communautaire pour les étudiants congolais en Chine : recensement, entraide, ressources, événements, blog, apprentissage et administration.
 
-## Stack technique
+---
 
-| Couche | Technologie |
-|--------|------------|
-| **Runtime** | Node.js |
-| **Backend** | Express 4.18 |
-| **Base de données** | MongoDB (Mongoose 7.5) |
-| **Auth** | JWT + bcryptjs |
-| **Uploads** | Multer (stockage disque) |
-| **Validation** | express-validator |
-| **Frontend** | HTML / CSS / JavaScript (vanilla) |
+## Vue d’ensemble
 
-## Fonctionnalités
+Le projet est structuré en **2 applications principales** :
 
-- **Inscription** multi-étapes avec upload de documents (passeport, visa, admission)
-- **Blogs** WordPress-style avec catégories, tags, commentaires
-- **Événements** avec filtres (type, date, lieu) et pagination
-- **Ressources** partagées (documents, vidéos, bourses, liens Telegram)
-- **Profils** étendus (compétences, réseaux sociaux)
-- **Contact** formulaire avec gestion admin
-- **Newsletter** abonnement/désabonnement
-- **Admin panel** complet (dashboard, CRUD, settings)
+- **Backend API** : `server/` (Node.js + Express + MongoDB)
+- **Frontend web** : `client-react/` (React + Vite)
 
-## Démarrage rapide
+Le backend sert les endpoints `/api/*` et, en production, sert aussi le build React (`client-react/dist`).
 
-### Prérequis
+---
 
-- Node.js v16+
+## Stack technique (réelle)
+
+### Backend
+- Node.js
+- Express 4
+- MongoDB + Mongoose
+- JWT + bcryptjs
+- express-validator
+- Multer (upload local + option Cloudflare R2)
+- helmet, cors, express-rate-limit
+- Nodemailer
+- Sentry (`@sentry/node`)
+
+### Frontend
+- React 19
+- React Router 7
+- Vite 6
+- Recharts
+- Markdown editor (`@uiw/react-md-editor`, `react-markdown`)
+- Sentry (`@sentry/react`)
+
+### Ops / Dev
+- PM2 (`ecosystem.config.js`)
+- Nginx (reverse proxy)
+- GitHub Actions (tests + checks syntax)
+
+---
+
+## Architecture du repository
+
+```text
+congolese-students-china/
+├─ server/
+│  ├─ config/                # DB, clés/env, sentry
+│  ├─ controllers/           # logique métier API
+│  ├─ middleware/            # auth, adminAuth, upload, rate limit, errors
+│  ├─ models/                # modèles Mongoose (core + modules)
+│  ├─ routes/api/            # routes REST (/api/*)
+│  ├─ scripts/               # scripts DB, seed, migration, maintenance
+│  ├─ tests/                 # tests Jest/Supertest
+│  └─ server.js              # entrypoint backend
+├─ client-react/
+│  ├─ src/                   # app React
+│  ├─ public/
+│  └─ vite.config.js
+├─ docs/                     # documentation projet
+├─ uploads/                  # fichiers uploadés localement (runtime)
+├─ backups/                  # backups JSON DB (scripts)
+├─ ecosystem.config.js       # PM2 prod + staging
+└─ package.json              # scripts backend/root
+```
+
+---
+
+## Prérequis
+
+- Node.js **18+** (20 LTS recommandé)
+- npm
 - MongoDB (local ou Atlas)
 
-### Installation
+---
+
+## Installation
+
+Depuis la racine du projet :
 
 ```bash
-git clone <repository-url>
-cd congolese-students-china
 npm install
+cd client-react && npm install
 ```
 
-### Configuration
+---
 
-Créer un fichier `.env` à la racine :
+## Configuration (.env)
+
+Créer un fichier `.env` à la racine du projet.
+
+Exemple minimal pour développement local :
 
 ```env
-MONGO_URI=mongodb://localhost:27017/congolese_students
-JWT_SECRET=votre_secret_jwt_securise
+NODE_ENV=development
 PORT=5000
-CORS_ORIGINS=http://localhost:5000,http://localhost:3000
+MONGO_URI=mongodb://127.0.0.1:27017/congolese_students
+JWT_SECRET=change_me_with_a_long_random_secret_min_32_chars
+CORS_ORIGINS=http://localhost:5173,http://localhost:5000,http://127.0.0.1:5000
+
+# Admin whitelist (séparés par virgule)
+ADMIN_EMAILS=admin@aecc.org
+
+# Email (obligatoire en production)
+EMAIL_HOST=smtp.gmail.com
+EMAIL_PORT=587
+EMAIL_USER=
+EMAIL_PASS=
+EMAIL_FROM=AECC <noreply@aecc.org>
+
+# Sentry (optionnel)
+SENTRY_DSN=
+VITE_SENTRY_DSN=
+
+# Optionnel: Cloudflare R2
+R2_ACCESS_KEY_ID=
+R2_SECRET_ACCESS_KEY=
+R2_ENDPOINT=
+R2_BUCKET=
+R2_PUBLIC_URL=
 ```
 
-### Lancement
+> En développement, le projet peut aussi charger `.env.local` (prioritaire hors production).
+
+---
+
+## Démarrage en développement
+
+### Option A (recommandée) : 2 terminaux
+
+Terminal 1 (API) :
 
 ```bash
-# Développement (avec nodemon)
 npm run dev
+```
 
-# Production
+Terminal 2 (React/Vite) :
+
+```bash
+npm run client
+```
+
+- API : `http://localhost:5000`
+- Front React : `http://localhost:5173`
+
+### Option B : commande unique
+
+```bash
+npm run dev:full
+```
+
+---
+
+## Build et exécution production
+
+1. Build frontend :
+
+```bash
+cd client-react && npm run build
+```
+
+2. Démarrer le backend :
+
+```bash
+cd ..
 npm start
 ```
 
-Le serveur démarre sur `http://localhost:5000`.
+Le backend servira automatiquement le build React (`client-react/dist`).
 
-## Structure du projet
+---
 
-```
-├── server/                    # Backend (Node.js + Express)
-│   ├── server.js              # Point d'entrée
-│   ├── config/
-│   │   ├── db.js              # Connexion MongoDB
-│   │   └── keys.js            # Config centralisée
-│   ├── controllers/           # Logique métier (10 controllers)
-│   ├── middleware/
-│   │   ├── auth.js            # Vérification JWT
-│   │   ├── adminAuth.js       # JWT + rôle admin + whitelist
-│   │   ├── errorHandler.js    # Gestion d'erreurs centralisée
-│   │   └── upload.js          # Config Multer
-│   ├── models/                # Schémas Mongoose (7 modèles)
-│   ├── routes/api/            # Routes API (10 fichiers)
-│   ├── scripts/               # Scripts utilitaires DB
-│   └── utils/
-│
-├── client/                    # Frontend (HTML/CSS/JS)
-│   ├── *.html                 # Pages publiques (12 pages)
-│   ├── css/                   # Stylesheets (18 fichiers)
-│   ├── js/                    # Scripts frontend (10 fichiers)
-│   └── admin/                 # Panneau d'administration
-│
-├── uploads/                   # Fichiers uploadés
-├── backups/                   # Sauvegardes DB
-└── docs/                      # Documentation
-```
+## Scripts npm (racine)
 
-## Scripts npm
+### App
+- `npm start` : démarrer le serveur (production)
+- `npm run dev` : démarrer API avec nodemon
+- `npm run client` : démarrer frontend Vite (`client-react`)
+- `npm run dev:full` : backend + frontend en parallèle
 
-| Commande | Description |
-|----------|-------------|
-| `npm start` | Lancer le serveur en production |
-| `npm run dev` | Lancer avec nodemon (dev) |
-| `npm run create-admin` | Créer un utilisateur admin |
-| `npm run db:init` | Initialiser la base de données |
-| `npm run db:backup` | Sauvegarder la base |
-| `npm run db:restore` | Restaurer une sauvegarde |
-| `npm run migrate:wordpress` | Migrer vers le système blog WordPress |
+### Base de données / administration
+- `npm run db:init`
+- `npm run db:reset`
+- `npm run db:info`
+- `npm run db:backup`
+- `npm run db:restore`
+- `npm run db:list-backups`
+- `npm run db:list-users`
+- `npm run db:create-admin`
+- `npm run db:clear-users`
+- `npm run db:clear-blogs`
+- `npm run db:clear-events`
+- `npm run db:clear-resources`
+- `npm run db:clear-profiles`
+- `npm run create-admin`
 
-## API
+### Tests / performance
+- `npm test`
+- `npm run test:watch`
+- `npm run test:load`
+- `npm run test:load:prod`
 
-Toutes les routes API sont préfixées par `/api/`. Voir [PROJECT_TRACKER.md](PROJECT_TRACKER.md) pour la liste complète des endpoints.
+---
 
-| Ressource | Base URL |
-|-----------|----------|
-| Auth | `/api/auth` |
-| Users | `/api/users` |
-| Blogs | `/api/blogs` |
-| Events | `/api/events` |
-| Profiles | `/api/profile` |
-| Resources | `/api/resources` |
-| Contact | `/api/contact` |
-| Newsletter | `/api/newsletter` |
-| System | `/api/system` |
-| Upload | `/api/upload` |
+## API (résumé)
+
+Préfixe global : `/api`
+
+Routes principales :
+- `/api/auth`
+- `/api/users`
+- `/api/blogs`
+- `/api/events`
+- `/api/profile`
+- `/api/resources`
+- `/api/learning`
+- `/api/contact`
+- `/api/newsletter`
+- `/api/search`
+- `/api/faq`
+- `/api/chat`
+- `/api/settings`
+- `/api/system`
+- `/api/upload`
+
+---
+
+## Sécurité et observabilité
+
+- JWT auth (`x-auth-token` ou `Authorization: Bearer ...` selon middleware)
+- Whitelist admin par email (`ADMIN_EMAILS`)
+- Rate limiting (`apiLimiter`, `authLimiter`, etc.)
+- Headers de sécurité via Helmet
+- Gestion d’erreurs centralisée
+- Sentry frontend/backend (si DSN configuré)
+
+---
+
+## Déploiement
+
+Voir la documentation détaillée :
+- `docs/DEVIS_PRODUCTION.md` (guide de déploiement et exploitation)
+- `deploy.sh` (script d’installation serveur, à adapter à votre contexte)
+
+---
+
+## Statut actuel
+
+Le projet est actif, en production et en évolution. Certaines suites de tests nécessitent un alignement avec les flux actuels (notamment vérification email à l’inscription).
+
+---
 
 ## Licence
 

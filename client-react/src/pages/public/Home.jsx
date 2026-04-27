@@ -17,7 +17,7 @@ const BUREAU_MEMBERS = [
 
 const COMMISSION_MEMBERS = [
   { name: 'Gloire', role: 'Commissaire', desc: 'Veille à la bonne gestion des finances, au bon fonctionnement des instances et à l\'exécution des activités de l\'association.', icon: 'fas fa-gavel', color: '#dc2626', city: 'Beijing' },
-  { name: 'David', role: 'Rapporteur', desc: 'Rédige les rapports de la commission, assiste le Commissaire et présente les conclusions à l\'Assemblée Générale.', icon: 'fas fa-pen-fancy', color: '#0891b2', city: 'Beijing' },
+  { name: 'Diba Grace', role: 'Rapporteur', desc: 'Rédige les rapports de la commission, assiste le Commissaire et présente les conclusions à l\'Assemblée Générale.', icon: 'fas fa-pen-fancy', color: '#0891b2', city: 'Beijing' },
 ];
 
 const SCHOLARSHIPS = [
@@ -72,7 +72,7 @@ export default function Home() {
     const [blogsRes, eventsRes, statsRes] = await Promise.allSettled([
       api.get('/blogs?limit=3'),
       api.get('/events?limit=3'),
-      api.get('/system/stats')
+      api.get('/system/public-stats')
     ]);
     if (blogsRes.status === 'fulfilled') setBlogs(blogsRes.value.data || []);
     if (eventsRes.status === 'fulfilled') setEvents(eventsRes.value.data || []);
@@ -110,10 +110,10 @@ export default function Home() {
       <section className="stats-section">
         <div className="container">
           <div className="stats-grid">
-            <div className="stat-card"><div className="stat-icon" style={{color: '#B7222D', background: 'rgba(183,34,45,0.08)'}}><i className="fas fa-users"></i></div><div className="stat-info"><h3>{stats.students || 500}+</h3><p>Étudiants Membres</p></div></div>
-            <div className="stat-card"><div className="stat-icon" style={{color: '#0E7C42', background: 'rgba(14,124,66,0.08)'}}><i className="fas fa-university"></i></div><div className="stat-info"><h3>{stats.universities || 50}+</h3><p>Universités en Chine</p></div></div>
-            <div className="stat-card"><div className="stat-icon" style={{color: '#2563eb', background: 'rgba(37,99,235,0.08)'}}><i className="fas fa-map-marked-alt"></i></div><div className="stat-info"><h3>31</h3><p>Provinces Couvertes</p></div></div>
-            <div className="stat-card"><div className="stat-icon" style={{color: '#d97706', background: 'rgba(217,119,6,0.08)'}}><i className="fas fa-calendar-check"></i></div><div className="stat-info"><h3>{stats.events || 20}+</h3><p>Événements Organisés</p></div></div>
+            <div className="stat-card reveal" style={{'--reveal-delay':'0s'}}><div className="stat-icon" style={{color: '#B7222D', background: 'rgba(183,34,45,0.08)'}}><i className="fas fa-users"></i></div><div className="stat-info"><h3>{stats.students || 500}+</h3><p>Étudiants Membres</p></div></div>
+            <div className="stat-card reveal" style={{'--reveal-delay':'.1s'}}><div className="stat-icon" style={{color: '#0E7C42', background: 'rgba(14,124,66,0.08)'}}><i className="fas fa-university"></i></div><div className="stat-info"><h3>{stats.universities || 50}+</h3><p>Universités en Chine</p></div></div>
+            <div className="stat-card reveal" style={{'--reveal-delay':'.2s'}}><div className="stat-icon" style={{color: '#2563eb', background: 'rgba(37,99,235,0.08)'}}><i className="fas fa-map-marked-alt"></i></div><div className="stat-info"><h3>31</h3><p>Provinces Couvertes</p></div></div>
+            <div className="stat-card reveal" style={{'--reveal-delay':'.3s'}}><div className="stat-icon" style={{color: '#d97706', background: 'rgba(217,119,6,0.08)'}}><i className="fas fa-calendar-check"></i></div><div className="stat-info"><h3>{stats.events || 20}+</h3><p>Événements Organisés</p></div></div>
           </div>
         </div>
       </section>
@@ -127,14 +127,14 @@ export default function Home() {
       {/* Scholarships Section */}
       <section className="section">
         <div className="container">
-          <div className="section-header">
+          <div className="section-header reveal">
             <span className="section-badge">Bourses d'Études</span>
             <h2>Opportunités de Bourses en Chine</h2>
             <p>Découvrez les différentes bourses disponibles pour les étudiants congolais</p>
           </div>
           <Link to="/bourses" className="scholarships-grid clickable-section">
             {SCHOLARSHIPS.map((s, i) => (
-              <div key={i} className={`scholarship-card${expandedScholarship === i ? ' expanded' : ''}`}>
+              <div key={i} className={`scholarship-card reveal${expandedScholarship === i ? ' expanded' : ''}`} style={{'--reveal-delay':`${i * 0.1}s`}}>
                 <div className="scholarship-icon">{s.icon}</div>
                 <h3>{s.name}</h3>
                 <p className="scholarship-desc">{s.desc}</p>
@@ -154,14 +154,14 @@ export default function Home() {
       {/* News & Relations Section */}
       <section className="section section-alt">
         <div className="container">
-          <div className="section-header">
+          <div className="section-header reveal">
             <span className="section-badge">Actualités</span>
             <h2>Relations Sino-Congolaises & Éducation</h2>
             <p>Restez informés sur les dernières nouvelles concernant le Congo, la Chine et l'éducation</p>
           </div>
           <div className="news-grid" ref={newsRef}>
             {NEWS_ITEMS.map((item, i) => (
-              <div key={i} className="news-card card-animate" onClick={() => navigate('/relations')} role="button" tabIndex={0} onKeyDown={(e) => e.key === 'Enter' && navigate('/relations')}>
+              <div key={i} className="news-card card-animate reveal" style={{'--reveal-delay':`${i * 0.1}s`}} onClick={() => navigate('/relations')} role="button" tabIndex={0} onKeyDown={(e) => e.key === 'Enter' && navigate('/relations')}>
                 <div className="news-icon"><i className={item.icon}></i></div>
                 <div className="news-content">
                   <span className="news-category">{item.category}</span>
@@ -181,14 +181,14 @@ export default function Home() {
       {blogs.length > 0 && (
         <section className="section section-alt">
           <div className="container">
-            <div className="section-header">
+            <div className="section-header reveal">
               <span className="section-badge">Blog</span>
               <h2>Derniers Articles</h2>
               <p>Actualités et témoignages de notre communauté</p>
             </div>
             <div className="cards-grid">
-              {blogs.map(blog => (
-                <div key={blog._id} className="card">
+              {blogs.map((blog, bi) => (
+                <div key={blog._id} className="card reveal" style={{'--reveal-delay':`${bi * 0.1}s`}}>
                   {blog.featuredImage && blog.featuredImage !== 'no-image.jpg' && <img src={blog.featuredImage} alt={blog.title} className="card-img" />}
                   <div className="card-body">
                     <span className="card-category">{blog.category || 'Article'}</span>
@@ -211,14 +211,14 @@ export default function Home() {
       {events.length > 0 && (
         <section className="section">
           <div className="container">
-            <div className="section-header">
+            <div className="section-header reveal">
               <span className="section-badge">Événements</span>
               <h2>Prochaines Activités</h2>
               <p>Participez à nos rencontres, séminaires et activités culturelles</p>
             </div>
             <div className="cards-grid">
-              {events.map(event => (
-                <div key={event._id} className="card">
+              {events.map((event, ei) => (
+                <div key={event._id} className="card reveal" style={{'--reveal-delay':`${ei * 0.1}s`}}>
                   <div className="card-body">
                     <span className="card-category">{event.type || 'general'}</span>
                     <h3>{event.title}</h3>
@@ -240,18 +240,18 @@ export default function Home() {
       {/* Activities Showcase */}
       <section className="section section-alt">
         <div className="container">
-          <div className="section-header">
+          <div className="section-header reveal">
             <span className="section-badge">Vie Communautaire</span>
             <h2>Activités Sociales & Culturelles</h2>
             <p>Découvrez la richesse de notre vie communautaire en Chine</p>
           </div>
           <div className="activities-grid" ref={activitiesRef}>
-            <div className={`activity-card card-animate${expandedActivity === 0 ? ' expanded' : ''}`} onClick={() => navigate('/activites')} role="button" tabIndex={0}><div className="activity-icon"><i className="fas fa-music"></i></div><h3>Soirées Culturelles</h3><p>Célébrations des fêtes congolaises, soirées musicales et gastronomiques</p><button className={`card-expand-toggle${expandedActivity === 0 ? ' expanded' : ''}`} onClick={(e) => toggleActivity(e, 0)}>{expandedActivity === 0 ? 'Moins' : 'Voir plus'} <i className="fas fa-chevron-down"></i></button></div>
-            <div className={`activity-card card-animate${expandedActivity === 1 ? ' expanded' : ''}`} onClick={() => navigate('/activites')} role="button" tabIndex={0}><div className="activity-icon"><i className="fas fa-futbol"></i></div><h3>Tournois Sportifs</h3><p>Compétitions de football, basketball entre différentes villes</p><button className={`card-expand-toggle${expandedActivity === 1 ? ' expanded' : ''}`} onClick={(e) => toggleActivity(e, 1)}>{expandedActivity === 1 ? 'Moins' : 'Voir plus'} <i className="fas fa-chevron-down"></i></button></div>
-            <div className={`activity-card card-animate${expandedActivity === 2 ? ' expanded' : ''}`} onClick={() => navigate('/activites')} role="button" tabIndex={0}><div className="activity-icon"><i className="fas fa-chalkboard-teacher"></i></div><h3>Séminaires Académiques</h3><p>Conférences, ateliers et partage d'expériences entre étudiants</p><button className={`card-expand-toggle${expandedActivity === 2 ? ' expanded' : ''}`} onClick={(e) => toggleActivity(e, 2)}>{expandedActivity === 2 ? 'Moins' : 'Voir plus'} <i className="fas fa-chevron-down"></i></button></div>
-            <div className={`activity-card card-animate${expandedActivity === 3 ? ' expanded' : ''}`} onClick={() => navigate('/activites')} role="button" tabIndex={0}><div className="activity-icon"><i className="fas fa-plane-departure"></i></div><h3>Accueil des Nouveaux</h3><p>Orientation et accompagnement des étudiants nouvellement arrivés</p><button className={`card-expand-toggle${expandedActivity === 3 ? ' expanded' : ''}`} onClick={(e) => toggleActivity(e, 3)}>{expandedActivity === 3 ? 'Moins' : 'Voir plus'} <i className="fas fa-chevron-down"></i></button></div>
-            <div className={`activity-card card-animate${expandedActivity === 4 ? ' expanded' : ''}`} onClick={() => navigate('/activites')} role="button" tabIndex={0}><div className="activity-icon"><i className="fas fa-heart"></i></div><h3>Actions Solidaires</h3><p>Collectes de fonds, soutien aux membres en difficulté</p><button className={`card-expand-toggle${expandedActivity === 4 ? ' expanded' : ''}`} onClick={(e) => toggleActivity(e, 4)}>{expandedActivity === 4 ? 'Moins' : 'Voir plus'} <i className="fas fa-chevron-down"></i></button></div>
-            <div className={`activity-card card-animate${expandedActivity === 5 ? ' expanded' : ''}`} onClick={() => navigate('/activites')} role="button" tabIndex={0}><div className="activity-icon"><i className="fas fa-network-wired"></i></div><h3>Networking Pro</h3><p>Rencontres avec des professionnels, mentorat et opportunités</p><button className={`card-expand-toggle${expandedActivity === 5 ? ' expanded' : ''}`} onClick={(e) => toggleActivity(e, 5)}>{expandedActivity === 5 ? 'Moins' : 'Voir plus'} <i className="fas fa-chevron-down"></i></button></div>
+            <div className={`activity-card card-animate reveal${expandedActivity === 0 ? ' expanded' : ''}`} style={{'--reveal-delay':'0s'}} onClick={() => navigate('/activites')} role="button" tabIndex={0}><div className="activity-icon"><i className="fas fa-music"></i></div><h3>Soirées Culturelles</h3><p>Célébrations des fêtes congolaises, soirées musicales et gastronomiques</p><button className={`card-expand-toggle${expandedActivity === 0 ? ' expanded' : ''}`} onClick={(e) => toggleActivity(e, 0)}>{expandedActivity === 0 ? 'Moins' : 'Voir plus'} <i className="fas fa-chevron-down"></i></button></div>
+            <div className={`activity-card card-animate reveal${expandedActivity === 1 ? ' expanded' : ''}`} style={{'--reveal-delay':'.1s'}} onClick={() => navigate('/activites')} role="button" tabIndex={0}><div className="activity-icon"><i className="fas fa-futbol"></i></div><h3>Tournois Sportifs</h3><p>Compétitions de football, basketball entre différentes villes</p><button className={`card-expand-toggle${expandedActivity === 1 ? ' expanded' : ''}`} onClick={(e) => toggleActivity(e, 1)}>{expandedActivity === 1 ? 'Moins' : 'Voir plus'} <i className="fas fa-chevron-down"></i></button></div>
+            <div className={`activity-card card-animate reveal${expandedActivity === 2 ? ' expanded' : ''}`} style={{'--reveal-delay':'.2s'}} onClick={() => navigate('/activites')} role="button" tabIndex={0}><div className="activity-icon"><i className="fas fa-chalkboard-teacher"></i></div><h3>Séminaires Académiques</h3><p>Conférences, ateliers et partage d'expériences entre étudiants</p><button className={`card-expand-toggle${expandedActivity === 2 ? ' expanded' : ''}`} onClick={(e) => toggleActivity(e, 2)}>{expandedActivity === 2 ? 'Moins' : 'Voir plus'} <i className="fas fa-chevron-down"></i></button></div>
+            <div className={`activity-card card-animate reveal${expandedActivity === 3 ? ' expanded' : ''}`} style={{'--reveal-delay':'.3s'}} onClick={() => navigate('/activites')} role="button" tabIndex={0}><div className="activity-icon"><i className="fas fa-plane-departure"></i></div><h3>Accueil des Nouveaux</h3><p>Orientation et accompagnement des étudiants nouvellement arrivés</p><button className={`card-expand-toggle${expandedActivity === 3 ? ' expanded' : ''}`} onClick={(e) => toggleActivity(e, 3)}>{expandedActivity === 3 ? 'Moins' : 'Voir plus'} <i className="fas fa-chevron-down"></i></button></div>
+            <div className={`activity-card card-animate reveal${expandedActivity === 4 ? ' expanded' : ''}`} style={{'--reveal-delay':'.4s'}} onClick={() => navigate('/activites')} role="button" tabIndex={0}><div className="activity-icon"><i className="fas fa-heart"></i></div><h3>Actions Solidaires</h3><p>Collectes de fonds, soutien aux membres en difficulté</p><button className={`card-expand-toggle${expandedActivity === 4 ? ' expanded' : ''}`} onClick={(e) => toggleActivity(e, 4)}>{expandedActivity === 4 ? 'Moins' : 'Voir plus'} <i className="fas fa-chevron-down"></i></button></div>
+            <div className={`activity-card card-animate reveal${expandedActivity === 5 ? ' expanded' : ''}`} style={{'--reveal-delay':'.5s'}} onClick={() => navigate('/activites')} role="button" tabIndex={0}><div className="activity-icon"><i className="fas fa-network-wired"></i></div><h3>Networking Pro</h3><p>Rencontres avec des professionnels, mentorat et opportunités</p><button className={`card-expand-toggle${expandedActivity === 5 ? ' expanded' : ''}`} onClick={(e) => toggleActivity(e, 5)}>{expandedActivity === 5 ? 'Moins' : 'Voir plus'} <i className="fas fa-chevron-down"></i></button></div>
           </div>
           <div className="section-footer">
             <Link to="/activites" className="btn btn-primary"><i className="fas fa-arrow-right"></i> Découvrir toutes les activités</Link>
@@ -265,7 +265,7 @@ export default function Home() {
       {/* CTA Section */}
       <section className="section cta-section">
         <div className="container">
-          <div className="cta-content">
+          <div className="cta-content reveal-fade">
             <h2>Prêt à rejoindre la plus grande communauté congolaise en Chine ?</h2>
             <p>Inscrivez-vous gratuitement et accédez à un réseau de centaines d'étudiants, des ressources exclusives et des événements inspirants</p>
             <div className="cta-buttons">

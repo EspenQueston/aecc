@@ -1,4 +1,6 @@
-import { useState, useEffect, useRef } from 'react';
+﻿import { useState, useEffect, useRef } from 'react';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 import { api } from '../../services/api';
 
 export default function ChatWidget() {
@@ -18,7 +20,7 @@ export default function ChatWidget() {
 
   // Poll for new messages when chat is open
   useEffect(() => {
-    if (open && chatId && status === 'active') {
+    if (open && chatId && status === 'active' && !sending) {
       pollRef.current = setInterval(async () => {
         try {
           const data = await api.get(`/chat/${chatId}`);
@@ -30,7 +32,7 @@ export default function ChatWidget() {
       }, 5000);
     }
     return () => clearInterval(pollRef.current);
-  }, [open, chatId, status]);
+  }, [open, chatId, status, sending]);
 
   async function startChat() {
     try {
@@ -64,16 +66,77 @@ export default function ChatWidget() {
   async function handleSend(e) {
     e.preventDefault();
     if (!input.trim() || sending || !chatId) return;
+    
+    const userMsg = input.trim();
+    setInput('');
     setSending(true);
+
+    // Optimistic UI update
+    const tempBotMsgId = 'temp-'+Date.now();
+    setMessages(prev => [
+      ...prev, 
+      { sender: 'user', message: userMsg, createdAt: new Date().toISOString() },
+      { sender: 'bot', message: '', _id: tempBotMsgId, isStreaming: true }
+    ]);
+
     try {
-      const data = await api.post(`/chat/${chatId}/message`, { message: input.trim() });
-      if (data.data) {
-        setMessages(data.data.messages || []);
-        setStatus(data.data.status);
+      const token = localStorage.getItem('token');
+      const headers = { 'Content-Type': 'application/json' };
+      if (token) headers['x-auth-token'] = token;
+
+      const response = await fetch(`/api/chat/${chatId}/message`, {
+        method: 'POST',
+        headers,
+        body: JSON.stringify({ message: userMsg })
+      });
+
+      if (!response.ok) throw new Error('Request failed');
+
+      if (response.headers.get('content-type')?.includes('text/event-stream')) {
+        const reader = response.body.getReader();
+        const decoder = new TextDecoder();
+        let botText = '';
+        
+        while (true) {
+          const { done, value } = await reader.read();
+          if (done) break;
+          
+          const chunk = decoder.decode(value, { stream: true });
+          const lines = chunk.split('\n');
+          for (const line of lines) {
+            if (line.startsWith('data: ') && line !== 'data: [DONE]') {
+              try {
+                const data = JSON.parse(line.slice(6));
+                if (data.text) {
+                  botText += data.text;
+                  setMessages(prev => prev.map(m => 
+                    m._id === tempBotMsgId ? { ...m, message: botText } : m
+                  ));
+                }
+              } catch (e) {}
+            }
+          }
+        }
+        
+        // Refresh final state from backend after streaming
+        const finalData = await api.get(`/chat/${chatId}`);
+        if (finalData.data) {
+           setMessages(finalData.data.messages || []);
+           setStatus(finalData.data.status);
+        }
+      } else {
+        // Fallback for non-streaming response (e.g. transfer to agent)
+        const data = await response.json();
+        if (data.data) {
+          setMessages(data.data.messages || []);
+          setStatus(data.data.status);
+        }
       }
-      setInput('');
-    } catch { /* ignore */ }
-    setSending(false);
+    } catch (err) { 
+      setMessages(prev => prev.filter(m => m._id !== tempBotMsgId));
+    } finally {
+      setSending(false);
+    }
   }
 
   function handleNewChat() {
@@ -112,12 +175,18 @@ export default function ChatWidget() {
 
       <div className="chat-widget-messages">
         {messages.map((msg, i) => (
-          <div key={i} className={`chat-msg chat-msg-${msg.sender}`}>
+          <div key={msg._id || i} className={`chat-msg chat-msg-${msg.sender}`}>
             <div className="chat-msg-bubble">
               {msg.sender === 'bot' && <span className="chat-msg-label"><i className="fas fa-robot"></i> Bot</span>}
               {msg.sender === 'admin' && <span className="chat-msg-label"><i className="fas fa-shield-alt"></i> Admin</span>}
-              <p>{msg.message}</p>
-              <span className="chat-msg-time">{new Date(msg.createdAt).toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })}</span>
+              {msg.sender === 'user' ? (
+                <p>{msg.message}</p>
+              ) : (
+                <div className={`chat-msg-markdown ${msg.isStreaming ? 'streaming' : ''}`}>
+                    <ReactMarkdown remarkPlugins={[remarkGfm]}>{msg.message || (msg.isStreaming ? '...' : '')}</ReactMarkdown>
+                </div>
+              )}
+              {msg.createdAt && <span className="chat-msg-time">{new Date(msg.createdAt).toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })}</span>}
             </div>
           </div>
         ))}
@@ -131,6 +200,7 @@ export default function ChatWidget() {
             onChange={e => setInput(e.target.value)}
             placeholder="Écrivez votre message..."
             maxLength={2000}
+            disabled={sending}
           />
           <button type="submit" disabled={sending || !input.trim()}>
             {sending ? <i className="fas fa-spinner fa-spin"></i> : <i className="fas fa-paper-plane"></i>}

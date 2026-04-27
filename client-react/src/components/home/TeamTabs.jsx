@@ -2,16 +2,16 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const BUREAU_MEMBERS = [
-  { name: 'Rinel', role: 'Président', desc: "Chargé de la coordination et de l'orientation de l'association. Représente l'AECC auprès des autorités et partenaires.", icon: 'fas fa-crown', color: '#B7222D', initials: 'RI' },
-  { name: 'Cleve', role: 'Secrétaire Général', desc: "Chargé de l'administration, de la rédaction des procès-verbaux et de la tenue des archives de l'association.", icon: 'fas fa-file-alt', color: '#2563eb', initials: 'CL' },
-  { name: 'Mabiala', role: 'Secrétaire Socio-culturel', desc: "Assure la mobilisation, la communication, l'accueil et le suivi des étudiants congolais.", icon: 'fas fa-bullhorn', color: '#7c3aed', initials: 'MA' },
-  { name: 'Exauce', role: 'Trésorier Général', desc: 'Gestionnaire des ressources financières et du patrimoine. Cosignataire des sorties de fonds avec le Président.', icon: 'fas fa-wallet', color: '#d97706', initials: 'EX' },
-  { name: 'Cluivert', role: 'Responsable Technique', desc: "Gère le site web, les réseaux sociaux, les outils numériques et l'infrastructure technique de l'AECC.", icon: 'fas fa-cogs', color: '#059669', initials: 'CV' },
+  { slug: 'rinel', name: 'Rinel', role: 'Président', desc: "Chargé de la coordination et de l'orientation de l'association. Représente l'AECC auprès des autorités et partenaires.", icon: 'fas fa-crown', color: '#B7222D', initials: 'RI' },
+  { slug: 'cleve', name: 'Cleve', role: 'Secrétaire Général', desc: "Chargé de l'administration, de la rédaction des procès-verbaux et de la tenue des archives de l'association.", icon: 'fas fa-file-alt', color: '#2563eb', initials: 'CL' },
+  { slug: 'mabiala', name: 'Mabiala', role: 'Secrétaire Socio-culturel', desc: "Assure la mobilisation, la communication, l'accueil et le suivi des étudiants congolais.", icon: 'fas fa-bullhorn', color: '#7c3aed', initials: 'MA' },
+  { slug: 'exauce', name: 'Exauce', role: 'Trésorier Général', desc: 'Gestionnaire des ressources financières et du patrimoine. Cosignataire des sorties de fonds avec le Président.', icon: 'fas fa-wallet', color: '#d97706', initials: 'EX' },
+  { slug: 'cluivert', name: 'Cluivert', role: 'Responsable Technique', desc: "Gère le site web, les réseaux sociaux, les outils numériques et l'infrastructure technique de l'AECC.", icon: 'fas fa-cogs', color: '#059669', initials: 'CV' },
 ];
 
 const COMMISSION_MEMBERS = [
-  { name: 'Gloire', role: 'Commissaire', desc: "Veille à la bonne gestion des finances, au bon fonctionnement des instances et à l'exécution des activités de l'association.", icon: 'fas fa-gavel', color: '#dc2626', initials: 'GL' },
-  { name: 'David', role: 'Rapporteur', desc: "Rédige les rapports de la commission, assiste le Commissaire et présente les conclusions à l'Assemblée Générale.", icon: 'fas fa-pen-fancy', color: '#0891b2', initials: 'DV' },
+  { slug: 'gloire', name: 'Gloire', role: 'Commissaire', desc: "Veille à la bonne gestion des finances, au bon fonctionnement des instances et à l'exécution des activités de l'association.", icon: 'fas fa-gavel', color: '#dc2626', initials: 'GL' },
+  { slug: 'diba-grace', name: 'Diba Grace', role: 'Rapporteur', desc: "Rédige les rapports de la commission, assiste le Commissaire et présente les conclusions à l'Assemblée Générale.", icon: 'fas fa-pen-fancy', color: '#0891b2', initials: 'DG' },
 ];
 
 const TABS = [
@@ -61,14 +61,12 @@ export default function TeamTabs() {
     <section className="tt-section section">
       <div className="container">
 
-        {/* Section header */}
         <div className="section-header">
           <span className="section-badge">Notre Organisation</span>
           <h2>L'Équipe qui fait vivre l'AECC</h2>
           <p>Découvrez les personnes engagées qui animent, organisent et représentent notre communauté</p>
         </div>
 
-        {/* Tab triggers */}
         <div className="tt-switcher" role="tablist">
           {TABS.map(t => (
             <button
@@ -90,10 +88,7 @@ export default function TeamTabs() {
           ))}
         </div>
 
-        {/* Main panel */}
         <div className="tt-panel" key={tab.id}>
-
-          {/* Left: org context */}
           <div className="tt-org-card" style={{ '--tt-accent': tab.accent }}>
             <div className="tt-org-card-top" style={{ background: `linear-gradient(135deg, ${tab.accent}14, ${tab.accent}06)`, borderBottom: `1px solid ${tab.accent}20` }}>
               <div className="tt-org-icon-wrap" style={{ background: `${tab.accent}18`, border: `1.5px solid ${tab.accent}28` }}>
@@ -123,10 +118,9 @@ export default function TeamTabs() {
             </div>
           </div>
 
-          {/* Right: member cards grid */}
           <div className={`tt-members-grid${tab.members.length <= 2 ? ' tt-members-grid--sm' : ''}`}>
             {tab.members.map((m, i) => (
-              <Link key={i} to={`/equipe/${m.name.toLowerCase()}`} className="tt-member-card" style={{ '--m-color': m.color }}>
+              <Link key={i} to={`/equipe/${m.slug}`} className="tt-member-card" style={{ '--m-color': m.color }}>
                 <div className="tt-member-avatar" style={{ background: `linear-gradient(135deg, ${m.color}, ${m.color}99)` }}>
                   <span>{m.initials}</span>
                 </div>

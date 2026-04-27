@@ -85,17 +85,17 @@ const COMMISSION = [
     email: 'commission@aecc.org',
   },
   {
-    slug: 'david',
-    name: 'David',
-    fullname: 'David',
+    slug: 'diba-grace',
+    name: 'Diba Grace',
+    fullname: 'Diba Grace',
     role: 'Rapporteur',
-    initials: 'DV',
+    initials: 'DG',
     color: '#0891b2',
     grad: 'linear-gradient(135deg,#0e7490,#06b6d4)',
     icon: 'fas fa-pen-fancy',
     bio: "Rédige les rapports de la Commission, assiste le Commissaire dans ses fonctions et présente les conclusions à l'Assemblée Générale.",
     tags: ['Rédaction', 'Rapports', 'Assemblée Générale'],
-    email: 'commission@aecc.org',
+    email: 'dibawang@hotmail.com',
   },
 ];
 
