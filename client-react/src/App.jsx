@@ -1,5 +1,7 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
 import { AuthProvider } from './context/AuthContext';
+import { ThemeProvider } from './context/ThemeContext';
 import { ToastProvider, ConfirmProvider } from './components/common/ConfirmToast';
 import PublicLayout from './components/layout/PublicLayout';
 import ScrollToTop from './components/common/ScrollToTop';
@@ -42,13 +44,38 @@ import AdminContacts from './pages/admin/AdminContacts';
 import AdminNewsletter from './pages/admin/AdminNewsletter';
 import AdminLearning from './pages/admin/AdminLearning';
 
+function ScrollReveal() {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    const SELECTOR = '.reveal,.reveal-fade,.reveal-left,.reveal-right,.reveal-scale';
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+    );
+    const id = setTimeout(() => {
+      document.querySelectorAll(SELECTOR).forEach(el => observer.observe(el));
+    }, 60);
+    return () => { clearTimeout(id); observer.disconnect(); };
+  }, [pathname]);
+  return null;
+}
+
 function App() {
   return (
-    <AuthProvider>
-      <ToastProvider>
-      <ConfirmProvider>
-      <Router>
+    <ThemeProvider>
+      <AuthProvider>
+        <ToastProvider>
+        <ConfirmProvider>
+        <Router>
         <ScrollToTop />
+        <ScrollReveal />
         <Routes>
           <Route element={<PublicLayout />}>
             <Route path="/" element={<Home />} />
@@ -92,10 +119,11 @@ function App() {
             </Route>
           </Route>
         </Routes>
-      </Router>
-      </ConfirmProvider>
-      </ToastProvider>
-    </AuthProvider>
+        </Router>
+        </ConfirmProvider>
+        </ToastProvider>
+      </AuthProvider>
+    </ThemeProvider>
   );
 }
 

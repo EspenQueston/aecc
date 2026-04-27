@@ -1,9 +1,11 @@
 import { Link, NavLink, Outlet } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
+import { useTheme } from '../../context/ThemeContext';
 import { useState } from 'react';
 
 export default function AdminLayout() {
   const { user, logout } = useAuth();
+  const { theme, toggleTheme } = useTheme();
   const [sidebarOpen, setSidebarOpen] = useState(true);
 
   const navItems = [
@@ -55,13 +57,21 @@ export default function AdminLayout() {
             <h2 className="admin-breadcrumb">Administration</h2>
           </div>
           <div className="admin-header-right">
+            <button 
+              className="btn btn-ghost btn-sm theme-toggle-btn" 
+              onClick={toggleTheme} 
+              aria-label="Toggle theme"
+              style={{ marginRight: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', width: '36px', height: '36px', borderRadius: '50%' }}
+            >
+              {theme === 'dark' ? <i className="fas fa-sun"></i> : <i className="fas fa-moon"></i>}
+            </button>
             <div className="admin-user-info">
               <div className="admin-avatar">
                 {user?.firstName?.[0]}{user?.lastName?.[0]}
               </div>
               <span className="admin-user-name">{user?.firstName} {user?.lastName}</span>
             </div>
-            <button onClick={logout} className="btn btn-ghost btn-sm">
+            <button onClick={logout} className="btn btn-ghost btn-sm" title="Déconnexion">
               <i className="fas fa-sign-out-alt"></i>
             </button>
           </div>
