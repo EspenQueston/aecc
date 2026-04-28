@@ -118,12 +118,10 @@ export default function ChatWidget() {
           }
         }
         
-        // Refresh final state from backend after streaming
-        const finalData = await api.get(`/chat/${chatId}`);
-        if (finalData.data) {
-           setMessages(finalData.data.messages || []);
-           setStatus(finalData.data.status);
-        }
+        // Mark streaming message as complete (no extra round-trip needed)
+        setMessages(prev => prev.map(m =>
+          m._id === tempBotMsgId ? { ...m, isStreaming: false } : m
+        ));
       } else {
         // Fallback for non-streaming response (e.g. transfer to agent)
         const data = await response.json();

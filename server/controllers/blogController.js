@@ -40,6 +40,7 @@ exports.getPosts = async (req, res) => {
         : 'Anonymous Author',
       createdAt: post.post_date,
       updatedAt: post.post_modified,
+      views: post.view_count || 0,
       likes: [],
       comments: post.comments || [],
       excerpt: post.post_excerpt
@@ -82,6 +83,7 @@ exports.getPost = async (req, res) => {
         : 'Anonymous Author',
       createdAt: post.post_date,
       updatedAt: post.post_modified,
+      views: post.view_count || 0,
       likes: [],
       comments: post.comments || [],
       excerpt: post.post_excerpt,

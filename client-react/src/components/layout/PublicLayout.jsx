@@ -239,6 +239,7 @@ export default function PublicLayout() {
               <p className="footer-col-title">Navigation</p>
               <ul>
                 <li><Link to="/about">À propos</Link></li>
+                <li><Link to="/equipe">Équipe</Link></li>
                 <li><Link to="/events">Événements</Link></li>
                 <li><Link to="/resources">Ressources</Link></li>
                 <li><Link to="/blogs">Blog</Link></li>

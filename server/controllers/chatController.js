@@ -2,7 +2,17 @@
 const Event = require('../models/Event');
 const FAQ = require('../models/FAQ');
 
+// System prompt cache — rebuilt at most every 5 minutes
+let _systemPromptCache = null;
+let _systemPromptBuiltAt = 0;
+const SYSTEM_PROMPT_TTL_MS = 5 * 60 * 1000;
+
 async function buildSystemPrompt() {
+  const now = Date.now();
+  if (_systemPromptCache && (now - _systemPromptBuiltAt) < SYSTEM_PROMPT_TTL_MS) {
+    return _systemPromptCache;
+  }
+
   let ragContext = "Voici des informations issues de la base de données de l'AECC :\n\n";
 
   try {
@@ -25,12 +35,14 @@ async function buildSystemPrompt() {
       }
   } catch(e){ console.error("RAG FAQ Query Error:", e); }
   
-  return `Tu es l'assistant de l'AECC (Association des Étudiants Congolais en Chine). Tu réponds poliment, de façon claire et tu fournis des informations précises basées sur ce contexte.
+  _systemPromptCache = `Tu es l'assistant de l'AECC (Association des Étudiants Congolais en Chine). Tu réponds poliment, de façon claire et tu fournis des informations précises basées sur ce contexte.
 Ne donne pas d'informations fausses.
 
 ${ragContext}
 
 Si l'utilisateur demande de parler à un agent, indique qu'il va être transféré à un administrateur et dis de patienter. Tu vas générer les réponses suivantes en te référant au contexte. Garde le contexte en mémoire.`;
+  _systemPromptBuiltAt = Date.now();
+  return _systemPromptCache;
 }
 
 async function getOpenRouterStream(messages, onChunk, onComplete) {
@@ -129,11 +141,13 @@ exports.sendMessage = async (req, res) => {
     if (!chat) return res.status(404).json({ msg: 'Conversation not found' });
     if (chat.status === 'closed') return res.status(400).json({ msg: 'Conversation is closed' });
 
-    chat.messages.push({ sender: 'user', message: message.trim() });
+    const trimmed = message.trim();
+    chat.messages.push({ sender: 'user', message: trimmed });
     chat.lastMessageAt = new Date();
     await chat.save();
 
-    const lowerMessage = message.trim().toLowerCase();
+    // Agent transfer — short-circuit before SSE
+    const lowerMessage = trimmed.toLowerCase();
     const agentKeywords = ['agent', 'humain', 'administrateur', 'admin', 'personne'];
     if (agentKeywords.some(kw => lowerMessage.includes(kw))) {
       chat.messages.push({ sender: 'bot', message: 'Je transfère votre conversation à un administrateur. Veuillez patienter, un membre de l\'équipe vous répondra dès que possible.' });
@@ -141,17 +155,18 @@ exports.sendMessage = async (req, res) => {
       return res.json({ success: true, data: chat });
     }
 
-    const history = [];
-    history.push({ role: 'system', content: await buildSystemPrompt() });
-
-    chat.messages.slice(-10).forEach(m => {
-      history.push({ role: m.sender === 'user' ? 'user' : 'assistant', content: m.message });
-    });
-
+    // Open SSE connection immediately — client starts receiving before context is built
     res.setHeader('Content-Type', 'text/event-stream');
     res.setHeader('Cache-Control', 'no-cache');
     res.setHeader('Connection', 'keep-alive');
     res.flushHeaders();
+
+    // Build message history (system prompt served from cache after first call)
+    const history = [];
+    history.push({ role: 'system', content: await buildSystemPrompt() });
+    chat.messages.slice(-10).forEach(m => {
+      history.push({ role: m.sender === 'user' ? 'user' : 'assistant', content: m.message });
+    });
 
     try {
       await getOpenRouterStream(history, 

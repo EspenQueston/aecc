@@ -29,7 +29,9 @@ export default function BlogDetails() {
 
   useEffect(() => {
     loadBlog();
-    api.post(`/blogs/${id}/view`, {}).catch(() => {});
+    api.post(`/blogs/${id}/view`, {})
+      .then(() => setBlog(prev => prev ? { ...prev, views: (prev.views || 0) + 1 } : prev))
+      .catch(() => {});
   }, [id]);
 
   // Reading progress bar

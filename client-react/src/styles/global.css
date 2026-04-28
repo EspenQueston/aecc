@@ -2759,19 +2759,27 @@ button.contact-info-link{border:none;width:100%;text-align:left;font-family:inhe
 [data-theme='dark'] .chat-message.bot { background: #222; color: #eaeaea; border-color: #333; }
 [data-theme='dark'] .chat-message.user { background: var(--primary); color: #fff; }
 
-/* Force Light Mode inside Chat Widget */
+/* Force Light Mode inside Chat Widget — dark mode disabled */
 [data-theme='dark'] .chat-widget { background: #fff !important; color: #333 !important; }
 [data-theme='dark'] .chat-widget-messages { background: #f5f5f5 !important; color: #333 !important; }
 [data-theme='dark'] .chat-widget-input { background: #fff !important; border-top-color: #eee !important; }
 [data-theme='dark'] .chat-widget-input input { background: #fff !important; color: #333 !important; border-color: #ddd !important; }
+[data-theme='dark'] .chat-widget-input input::placeholder { color: #999 !important; }
 [data-theme='dark'] .chat-widget-closed { background: #fff !important; border-top-color: #eee !important; color: #666 !important; }
-[data-theme='dark'] .chat-msg-bot .chat-msg-bubble { background: #e9ecef !important; color: #333 !important; border-color: transparent !important;}
-[data-theme='dark'] .chat-msg-admin .chat-msg-bubble { background: #e9ecef !important; color: #333 !important; border-color: transparent !important;}
-[data-theme='dark'] .chat-msg-user .chat-msg-bubble { background: var(--primary) !important; color: #fff !important; }
-[data-theme='dark'] .chat-widget-header-info strong { color: #fff !important; }
-[data-theme='dark'] .chat-widget-status { color: #fff !important; }
+[data-theme='dark'] .chat-msg-bot .chat-msg-bubble { background: #e9ecef !important; color: #333 !important; border-color: #e5e5e5 !important; }
+[data-theme='dark'] .chat-msg-admin .chat-msg-bubble { background: #e8f5e9 !important; color: #1b5e20 !important; border-color: #c8e6c9 !important; }
+[data-theme='dark'] .chat-msg-user .chat-msg-bubble { background: #B7222D !important; color: #fff !important; }
 [data-theme='dark'] .chat-msg-label { color: #555 !important; }
+[data-theme='dark'] .chat-msg-time { color: #888 !important; }
+[data-theme='dark'] .chat-msg-markdown { color: #333 !important; }
+[data-theme='dark'] .chat-msg-markdown p,
+[data-theme='dark'] .chat-msg-markdown li,
+[data-theme='dark'] .chat-msg-markdown strong { color: #333 !important; }
+[data-theme='dark'] .chat-msg-markdown code { background: #f0f0f0 !important; color: #c7254e !important; }
+[data-theme='dark'] .chat-widget-header-info strong { color: #fff !important; }
+[data-theme='dark'] .chat-widget-status { color: rgba(255,255,255,.85) !important; }
 [data-theme='dark'] .chat-widget-header { background: linear-gradient(135deg,#B7222D,#8a1a22) !important; color: #fff !important; }
+[data-theme='dark'] .chat-widget-header-actions button { color: #fff !important; }
 
 /* Att�nuation Reveal */
 .reveal, .reveal-fade, .reveal-left, .reveal-right, .reveal-scale { transition-duration: 0.4s !important; transform: translateY(8px) !important; opacity: 0; }
