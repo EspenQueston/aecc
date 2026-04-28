@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useRef } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { api } from '../../services/api';
 import NewsletterBlock from '../../components/common/NewsletterBlock';
@@ -6,19 +6,7 @@ import ExpandableText from '../../components/common/ExpandableText';
 import HeroBanner3D from '../../components/home/HeroBanner3D';
 import CardFeatureTabs from '../../components/home/CardFeatureTabs';
 import TeamTabs from '../../components/home/TeamTabs';
-
-const BUREAU_MEMBERS = [
-  { name: 'Rinel', role: 'Président', desc: 'Chargé de la coordination et de l\'orientation de l\'association. Représente l\'AECC auprès des autorités et partenaires.', icon: 'fas fa-crown', color: '#B7222D', city: 'Beijing' },
-  { name: 'Cleve', role: 'Secrétaire Général', desc: 'Chargé de l\'administration, de la rédaction des procès-verbaux et de la tenue des archives de l\'association.', icon: 'fas fa-file-alt', color: '#2563eb', city: 'Beijing' },
-  { name: 'Mabiala', role: 'Secrétaire Socio-culturel', desc: 'Assure la mobilisation, la communication, l\'accueil et le suivi des étudiants congolais.', icon: 'fas fa-bullhorn', color: '#7c3aed', city: 'Beijing' },
-  { name: 'Exauce', role: 'Trésorier Général', desc: 'Gestionnaire des ressources financières et du patrimoine. Cosignataire des sorties de fonds avec le Président.', icon: 'fas fa-wallet', color: '#d97706', city: 'Beijing' },
-  { name: 'Cluivert', role: 'Responsable Technique', desc: 'Gère le site web, les réseaux sociaux, les outils numériques et l\'infrastructure technique de l\'AECC.', icon: 'fas fa-cogs', color: '#059669', city: 'Beijing' },
-];
-
-const COMMISSION_MEMBERS = [
-  { name: 'Gloire', role: 'Commissaire', desc: 'Veille à la bonne gestion des finances, au bon fonctionnement des instances et à l\'exécution des activités de l\'association.', icon: 'fas fa-gavel', color: '#dc2626', city: 'Beijing' },
-  { name: 'Diba Grace', role: 'Rapporteur', desc: 'Rédige les rapports de la commission, assiste le Commissaire et présente les conclusions à l\'Assemblée Générale.', icon: 'fas fa-pen-fancy', color: '#0891b2', city: 'Beijing' },
-];
+import { BUREAU_MEMBERS, COMMISSION_MEMBERS } from '../../data/team';
 
 const SCHOLARSHIPS = [
   { name: 'Bourse CSC', icon: '🇨🇳', desc: 'Chinese Government Scholarship — Programme phare du gouvernement chinois', detail: 'Couvre les frais de scolarité, logement et allocation mensuelle' },
@@ -45,26 +33,6 @@ export default function Home() {
   const toggleActivity = useCallback((e, i) => { e.preventDefault(); setExpandedActivity(prev => prev === i ? null : i); }, []);
 
   const navigate = useNavigate();
-  const newsRef = useRef(null);
-  const activitiesRef = useRef(null);
-
-  // Scroll-reveal observer for cards
-  useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const cards = entry.target.querySelectorAll('.news-card, .activity-card');
-          cards.forEach((card, i) => {
-            setTimeout(() => card.classList.add('card-visible'), i * 100);
-          });
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.15 });
-    if (newsRef.current) observer.observe(newsRef.current);
-    if (activitiesRef.current) observer.observe(activitiesRef.current);
-    return () => observer.disconnect();
-  }, []);
 
   useEffect(() => { loadData(); }, []);
 
@@ -159,7 +127,7 @@ export default function Home() {
             <h2>Relations Sino-Congolaises & Éducation</h2>
             <p>Restez informés sur les dernières nouvelles concernant le Congo, la Chine et l'éducation</p>
           </div>
-          <div className="news-grid" ref={newsRef}>
+          <div className="news-grid">
             {NEWS_ITEMS.map((item, i) => (
               <div key={i} className="news-card card-animate reveal" style={{'--reveal-delay':`${i * 0.1}s`}} onClick={() => navigate('/relations')} role="button" tabIndex={0} onKeyDown={(e) => e.key === 'Enter' && navigate('/relations')}>
                 <div className="news-icon"><i className={item.icon}></i></div>
@@ -245,7 +213,7 @@ export default function Home() {
             <h2>Activités Sociales & Culturelles</h2>
             <p>Découvrez la richesse de notre vie communautaire en Chine</p>
           </div>
-          <div className="activities-grid" ref={activitiesRef}>
+          <div className="activities-grid">
             <div className={`activity-card card-animate reveal${expandedActivity === 0 ? ' expanded' : ''}`} style={{'--reveal-delay':'0s'}} onClick={() => navigate('/activites')} role="button" tabIndex={0}><div className="activity-icon"><i className="fas fa-music"></i></div><h3>Soirées Culturelles</h3><p>Célébrations des fêtes congolaises, soirées musicales et gastronomiques</p><button className={`card-expand-toggle${expandedActivity === 0 ? ' expanded' : ''}`} onClick={(e) => toggleActivity(e, 0)}>{expandedActivity === 0 ? 'Moins' : 'Voir plus'} <i className="fas fa-chevron-down"></i></button></div>
             <div className={`activity-card card-animate reveal${expandedActivity === 1 ? ' expanded' : ''}`} style={{'--reveal-delay':'.1s'}} onClick={() => navigate('/activites')} role="button" tabIndex={0}><div className="activity-icon"><i className="fas fa-futbol"></i></div><h3>Tournois Sportifs</h3><p>Compétitions de football, basketball entre différentes villes</p><button className={`card-expand-toggle${expandedActivity === 1 ? ' expanded' : ''}`} onClick={(e) => toggleActivity(e, 1)}>{expandedActivity === 1 ? 'Moins' : 'Voir plus'} <i className="fas fa-chevron-down"></i></button></div>
             <div className={`activity-card card-animate reveal${expandedActivity === 2 ? ' expanded' : ''}`} style={{'--reveal-delay':'.2s'}} onClick={() => navigate('/activites')} role="button" tabIndex={0}><div className="activity-icon"><i className="fas fa-chalkboard-teacher"></i></div><h3>Séminaires Académiques</h3><p>Conférences, ateliers et partage d'expériences entre étudiants</p><button className={`card-expand-toggle${expandedActivity === 2 ? ' expanded' : ''}`} onClick={(e) => toggleActivity(e, 2)}>{expandedActivity === 2 ? 'Moins' : 'Voir plus'} <i className="fas fa-chevron-down"></i></button></div>

@@ -24,7 +24,7 @@ exports.submitContact = async (req, res) => {
 
     // Notify admin of new contact message
     sendEmail({
-      to: 'cluivermoukendi@gmail.com',
+      to: 'cluivertmoukendi@gmail.com',
       subject: `[AECC] Nouveau message: ${subject}`,
       html: wrapEmailTemplate(`
         <h2 style="color:#1a1a1a;margin:0 0 1rem;font-size:1.2rem">Nouveau message de contact</h2>

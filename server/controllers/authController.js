@@ -5,6 +5,63 @@ const { jwtSecret, jwtExpiration, adminEmails } = require('../config/keys');
 const { validationResult } = require('express-validator');
 const { sendEmail, wrapEmailTemplate } = require('../utils/email');
 
+/**
+ * Shared helper: validate password + 2FA, then sign JWT and send token response.
+ * @param {object} user - Mongoose user doc (must have +password +twoFactorSecret selected)
+ * @param {string} password - Plain-text password from request
+ * @param {string|undefined} twoFactorToken - TOTP token from request
+ * @param {object} res - Express response object
+ * @param {object} [opts] - Options
+ * @param {boolean} [opts.requireEmailVerified] - Block unverified accounts (default true)
+ * @returns {Promise<boolean>} false if response already sent (error/2FA prompt), true if token sent
+ */
+async function _authenticateAndRespond(user, password, twoFactorToken, res, opts = {}) {
+  const { requireEmailVerified = true } = opts;
+
+  const isMatch = await user.matchPassword(password);
+  if (!isMatch) {
+    res.status(400).json({ errors: [{ msg: 'Invalid credentials' }] });
+    return false;
+  }
+
+  if (requireEmailVerified && !user.isEmailVerified) {
+    res.status(403).json({
+      errors: [{ msg: 'Veuillez vérifier votre adresse email avant de vous connecter' }],
+      needsVerification: true,
+      email: user.email
+    });
+    return false;
+  }
+
+  if (user.twoFactorEnabled && user.twoFactorSecret) {
+    if (!twoFactorToken) {
+      res.status(200).json({ requires2FA: true, userId: user.id });
+      return false;
+    }
+    const speakeasy = require('speakeasy');
+    const verified = speakeasy.totp.verify({
+      secret: user.twoFactorSecret,
+      encoding: 'base32',
+      token: twoFactorToken,
+      window: 1
+    });
+    if (!verified) {
+      res.status(400).json({ errors: [{ msg: 'Invalid 2FA code' }] });
+      return false;
+    }
+  }
+
+  const payload = { user: { id: user.id, role: user.role } };
+  jwt.sign(payload, jwtSecret, { expiresIn: jwtExpiration }, (err, token) => {
+    if (err) throw err;
+    res.json({
+      token,
+      user: { id: user.id, firstName: user.firstName, lastName: user.lastName, email: user.email, role: user.role }
+    });
+  });
+  return true;
+}
+
 // @desc    Get authenticated user
 exports.getUser = async (req, res) => {
   try {
@@ -27,64 +84,10 @@ exports.login = async (req, res) => {
 
   try {
     const user = await User.findOne({ email }).select('+password +twoFactorSecret');
-
     if (!user) {
       return res.status(400).json({ errors: [{ msg: 'Invalid credentials' }] });
     }
-
-    const isMatch = await user.matchPassword(password);
-    if (!isMatch) {
-      return res.status(400).json({ errors: [{ msg: 'Invalid credentials' }] });
-    }
-
-    // Block unverified users
-    if (!user.isEmailVerified) {
-      return res.status(403).json({
-        errors: [{ msg: 'Veuillez vérifier votre adresse email avant de vous connecter' }],
-        needsVerification: true,
-        email: user.email
-      });
-    }
-
-    // Check if 2FA is enabled
-    if (user.twoFactorEnabled && user.twoFactorSecret) {
-      if (!twoFactorToken) {
-        return res.status(200).json({
-          requires2FA: true,
-          userId: user.id
-        });
-      }
-
-      const speakeasy = require('speakeasy');
-      const verified = speakeasy.totp.verify({
-        secret: user.twoFactorSecret,
-        encoding: 'base32',
-        token: twoFactorToken,
-        window: 1
-      });
-
-      if (!verified) {
-        return res.status(400).json({ errors: [{ msg: 'Invalid 2FA code' }] });
-      }
-    }
-
-    const payload = {
-      user: { id: user.id, role: user.role }
-    };
-
-    jwt.sign(payload, jwtSecret, { expiresIn: jwtExpiration }, (err, token) => {
-      if (err) throw err;
-      res.json({
-        token,
-        user: {
-          id: user.id,
-          firstName: user.firstName,
-          lastName: user.lastName,
-          email: user.email,
-          role: user.role
-        }
-      });
-    });
+    await _authenticateAndRespond(user, password, twoFactorToken, res, { requireEmailVerified: true });
   } catch (err) {
     console.error(err.message);
     res.status(500).json({ msg: 'Server Error' });
@@ -102,65 +105,22 @@ exports.adminLogin = async (req, res) => {
 
   try {
     const user = await User.findOne({ email }).select('+password +twoFactorSecret');
-
     if (!user) {
       return res.status(400).json({ errors: [{ msg: 'Invalid credentials' }] });
     }
 
-    const isMatch = await user.matchPassword(password);
-    if (!isMatch) {
-      return res.status(400).json({ errors: [{ msg: 'Invalid credentials' }] });
-    }
-
-    // Use centralized admin whitelist from config/keys.js
+    // Admin whitelist check (before 2FA/password to avoid timing leaks)
     if (!adminEmails.includes(email)) {
       return res.status(403).json({ errors: [{ msg: 'Not authorized as admin' }] });
     }
 
-    // Check if 2FA is enabled
-    if (user.twoFactorEnabled && user.twoFactorSecret) {
-      if (!twoFactorToken) {
-        return res.status(200).json({
-          requires2FA: true,
-          userId: user.id
-        });
-      }
-
-      const speakeasy = require('speakeasy');
-      const verified = speakeasy.totp.verify({
-        secret: user.twoFactorSecret,
-        encoding: 'base32',
-        token: twoFactorToken,
-        window: 1
-      });
-
-      if (!verified) {
-        return res.status(400).json({ errors: [{ msg: 'Invalid 2FA code' }] });
-      }
-    }
-
+    // Promote to admin role if needed
     if (user.role !== 'admin') {
       user.role = 'admin';
       await user.save();
     }
 
-    const payload = {
-      user: { id: user.id, role: user.role }
-    };
-
-    jwt.sign(payload, jwtSecret, { expiresIn: jwtExpiration }, (err, token) => {
-      if (err) throw err;
-      res.json({
-        token,
-        user: {
-          id: user.id,
-          firstName: user.firstName,
-          lastName: user.lastName,
-          email: user.email,
-          role: user.role
-        }
-      });
-    });
+    await _authenticateAndRespond(user, password, twoFactorToken, res, { requireEmailVerified: false });
   } catch (err) {
     console.error(err.message);
     res.status(500).json({ msg: 'Server Error' });

@@ -80,7 +80,9 @@ async function getOpenRouterStream(messages, onChunk, onComplete) {
                fullText += text;
                onChunk(text);
              }
-           } catch(e) {}
+           } catch(e) {
+             if (process.env.NODE_ENV !== 'production') console.warn('SSE parse error:', e.message);
+           }
          }
        }
      }

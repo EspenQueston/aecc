@@ -7,7 +7,7 @@ async function main() {
   const db = client.db();
   const result = await db.collection('users').updateOne(
     { email: 'cluivertmoukendi@gmail.com' },
-    { $set: { password: hash, emailVerified: true } }
+    { $set: { password: hash, isEmailVerified: true } }
   );
   console.log('Password reset. Modified:', result.modifiedCount);
   client.close();

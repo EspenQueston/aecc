@@ -3,8 +3,10 @@ const router = express.Router();
 const { check } = require('express-validator');
 const multer = require('multer');
 const path = require('path');
+const crypto = require('crypto');
 const { registerUser, verifyEmail, resendVerification, adminCreateUser, getUsers, getUserById, updateUser, deleteUser } = require('../../controllers/userController');
 const adminAuth = require('../../middleware/adminAuth');
+const { authLimiter } = require('../../middleware/rateLimiter');
 
 // Configure file uploads
 const storage = multer.diskStorage({
@@ -12,7 +14,8 @@ const storage = multer.diskStorage({
     cb(null, path.join(__dirname, '../../uploads/'));
   },
   filename: function(req, file, cb) {
-    cb(null, Date.now() + path.extname(file.originalname));
+    const ext = path.extname(file.originalname).toLowerCase();
+    cb(null, crypto.randomBytes(16).toString('hex') + ext);
   }
 });
 
@@ -23,6 +26,7 @@ const upload = multer({ storage });
 // @access   Public
 router.post(
   '/',
+  authLimiter,
   upload.fields([
     { name: 'passportFile', maxCount: 1 },
     { name: 'visaFile', maxCount: 1 },

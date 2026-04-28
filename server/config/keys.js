@@ -41,9 +41,9 @@ module.exports = {
     ? process.env.ADMIN_EMAILS.split(',').map(e => e.trim())
     : ['cluivertmoukendi@gmail.com', 'admin@aecc.org'],
 
-  // JWT expiration
-  jwtExpiration: '24h',
-  jwtRegistrationExpiration: '5d',
+  // JWT expiration — read from env, fallback to 24h
+  jwtExpiration: process.env.JWT_EXPIRE || '24h',
+  jwtRegistrationExpiration: process.env.JWT_REGISTRATION_EXPIRE || '5d',
 
   // CORS origins — must be explicit in production
   corsOrigins: process.env.CORS_ORIGINS

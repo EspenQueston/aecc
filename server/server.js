@@ -18,7 +18,7 @@ connectDB();
 
 // Security headers
 app.use(helmet({
-  contentSecurityPolicy: false, // React app manages its own CSP
+  contentSecurityPolicy: nodeEnv === 'production' ? undefined : false,
   crossOriginEmbedderPolicy: false
 }));
 
@@ -36,7 +36,7 @@ app.use(cors({
 
 // API Routes (with rate limiting)
 app.use('/api/auth', authLimiter, require('./routes/api/auth'));
-app.use('/api/users', authLimiter, require('./routes/api/users'));
+app.use('/api/users', require('./routes/api/users')); // authLimiter applied per-route inside
 app.use('/api/blogs', apiLimiter, require('./routes/api/blogs'));
 app.use('/api/events', apiLimiter, require('./routes/api/events'));
 app.use('/api/profile', apiLimiter, require('./routes/api/profile'));
