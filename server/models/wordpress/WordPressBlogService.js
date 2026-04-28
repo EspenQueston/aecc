@@ -164,27 +164,34 @@ class WordPressBlogService {
   static async getPost(identifier) {
     try {
       let post;
-      
-      // Check if identifier is ObjectId or slug
+
       if (identifier.match(/^[0-9a-fA-F]{24}$/)) {
+        // Try as ObjectId (production — MongoDB Atlas stores proper ObjectIds)
         post = await Post.findById(identifier).populate('post_author', 'firstName lastName avatar');
+
+        if (!post) {
+          // Fallback: _id was imported as a plain string (local dev after non-EJSON JSON import).
+          // Use the raw driver to find by string _id, then re-fetch by post_name.
+          const raw = await Post.collection.findOne({ _id: identifier });
+          if (raw && raw.post_name) {
+            post = await Post.findOne({ post_name: raw.post_name })
+              .populate('post_author', 'firstName lastName avatar');
+          }
+        }
       } else {
         post = await Post.findOne({ post_name: identifier }).populate('post_author', 'firstName lastName avatar');
       }
-      
+
       if (!post) {
         throw new Error('Post not found');
       }
-      
-      // Increment view count
-      await PostMeta.setMetaValue(post._id, 'view_count', (await this.getPostMeta(post._id, 'view_count') || 0) + 1);
-      
+
       // Attach categories, tags, meta, and comments
       post.categories = await this.getPostCategories(post._id);
       post.tags = await this.getPostTags(post._id);
       post.meta = await this.getPostMeta(post._id);
       post.comments = await Comment.getApprovedComments(post._id);
-      
+
       return post;
     } catch (error) {
       throw new Error(`Failed to get post: ${error.message}`);
@@ -527,16 +534,27 @@ class WordPressBlogService {
    */
   static async incrementViewCount(postId) {
     try {
-      const post = await Post.findByIdAndUpdate(
+      // Try ObjectId update first (production)
+      let post = await Post.findByIdAndUpdate(
         postId,
         { $inc: { view_count: 1 } },
         { new: true }
       );
-      
+
+      // Fallback: string _id (local dev after non-EJSON import)
+      if (!post) {
+        const result = await Post.collection.findOneAndUpdate(
+          { _id: postId },
+          { $inc: { view_count: 1 } },
+          { returnDocument: 'after' }
+        );
+        post = result;
+      }
+
       if (!post) {
         throw new Error('Post not found');
       }
-      
+
       return post;
     } catch (error) {
       throw new Error(`Failed to increment view count: ${error.message}`);

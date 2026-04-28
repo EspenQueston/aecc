@@ -18,7 +18,13 @@ connectDB();
 
 // Security headers
 app.use(helmet({
-  contentSecurityPolicy: nodeEnv === 'production' ? undefined : false,
+  contentSecurityPolicy: nodeEnv === 'production' ? {
+    directives: {
+      ...helmet.contentSecurityPolicy.getDefaultDirectives(),
+      // Allow images from Pexels, Cloudflare R2 and any HTTPS source (blog/resource covers)
+      'img-src': ["'self'", 'data:', 'blob:', 'https:'],
+    }
+  } : false,
   crossOriginEmbedderPolicy: false
 }));
 
