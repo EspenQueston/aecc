@@ -746,7 +746,7 @@ a.sr-card:hover .sr-card-arrow{color:var(--primary);transform:translateX(3px)}
   .card-footer .btn{justify-content:center;font-size:.8rem;padding:.4rem .7rem}
   .cta-buttons{flex-direction:column;align-items:center}
   .cta-buttons .btn{width:100%;max-width:320px;justify-content:center}
-  .nav-user .btn{padding:.35rem .6rem;font-size:.78rem}
+  .nav-user{display:none}
   .hero-buttons .btn{font-size:.85rem}
   .office-card,.team-card{padding:1.2rem 1rem}
   .activity-card,.value-card,.service-card,.scholarship-card{padding:1rem .8rem}
@@ -1018,7 +1018,7 @@ a.sr-card:hover .sr-card-arrow{color:var(--primary);transform:translateX(3px)}
 
 /* ─── PageHero Component ─── */
 .ph-hero{position:relative;overflow:hidden;background:linear-gradient(135deg,#06060f 0%,var(--primary-dark) 58%,var(--primary) 100%);color:#fff;padding:4rem 0 4.5rem}
-.ph-hero-sm{padding:2.6rem 0 3.2rem}
+.ph-hero-sm{padding:2.6rem 0 3.2rem;min-height:300px}
 .ph-canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1;opacity:.6}
 .ph-ring{position:absolute;border-radius:50%;border:1px solid;pointer-events:none;z-index:1}
 .ph-ring-1{right:-100px;top:-100px;width:380px;height:380px}
@@ -2134,6 +2134,9 @@ button.contact-info-link{border:none;width:100%;text-align:left;font-family:inhe
   .dash-stats-grid{grid-template-columns:repeat(2,1fr)}
   .dash-quick-stats{grid-template-columns:repeat(2,1fr)}
   .cards-grid.three-cols{grid-template-columns:repeat(2,1fr)}
+  .page-title-bar{flex-direction:column;gap:.5rem;align-items:center;text-align:center}
+  .dash-stat-card{justify-content:center}
+  .admin-table-wrap,.admin-content .admin-table{overflow-x:auto;display:block;width:100%}
   .message-thread{max-height:300px}
   .message-bubble{max-width:95%}
   .reply-form-actions{flex-direction:column;align-items:stretch}

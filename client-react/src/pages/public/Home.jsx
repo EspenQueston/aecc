@@ -60,7 +60,7 @@ export default function Home() {
         <div className="hero-overlay"></div>
         <div className="container hero-content">
           <span className="hero-badge"><i className="fas fa-star"></i> Bienvenue à l'AECC</span>
-          <h1>Association des Étudiants<br/>Congolais en Chine</h1>
+          <h1 className="hero-mobile-title">Association des <span className="hero-mobile-title-accent">Étudiants Congolais</span><br/>en Chine</h1>
           <p>Une communauté unie pour connecter, soutenir et accompagner les étudiants congolais de la République du Congo à travers toute la Chine</p>
           <div className="hero-buttons">
             <Link to="/register" className="btn btn-primary btn-lg"><i className="fas fa-user-plus"></i> Rejoignez-nous</Link>
