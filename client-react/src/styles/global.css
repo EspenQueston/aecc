@@ -190,6 +190,7 @@ a.sr-card:hover .sr-card-arrow{color:var(--primary);transform:translateX(3px)}
 .hero-cols-grid>*:last-child{border-right:none;border-left:1px solid rgba(255,255,255,.06)}
 /* Template: oval bottom transition shape */
 .hero-oval{position:absolute;left:50%;top:calc(100% - 90px);transform:translateX(-50%);width:700px;height:500px;border-radius:100%;border:1px solid var(--primary-light);background:radial-gradient(closest-side,var(--dark) 82%,var(--primary));z-index:3}
+[data-theme='dark'] .hero-oval{background:radial-gradient(closest-side,#0f0f1e 82%,var(--primary));border-color:rgba(183,34,45,.35)}
 @media(min-width:768px){.hero-oval{width:110%;height:600px;top:calc(100% - 130px)}}
 /* Hero inner stacked content */
 .hero-3d-inner{position:relative;z-index:10;display:flex;flex-direction:column;padding-top:35px;border-bottom:1px solid rgba(255,255,255,.08)}
